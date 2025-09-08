@@ -1,5 +1,8 @@
 <?php
 
+require "usuario.php";
+// require "database.php";
+
 class Rifa{
 
     private $idRifa;
@@ -11,9 +14,86 @@ class Rifa{
     private $localDoSorteio;
     private $valorCadaNumero;
     private $valorTotal;
+    private $idUsuario;
+    private $privacidade;
 
-    public function __construct() {
+    public function __construct($idRifa = 0, $objetivo = 0, $quantidadeDeNumeros = 0, $premio = 0, $imagemIlustrativa = 0, $dataDoSorteio = 0, $localDoSorteio = 0, $valorCadaNumero = 0, $valorTotal = 0, $idUsuario = 0, $privacidade = 0) {
+        $this->idRifa = $idRifa;
+        $this->objetivo = $objetivo;
+        $this->quantidadeDeNumeros = $quantidadeDeNumeros;
+        $this->premio = $premio;
+        $this->imagemIlustrativa = $imagemIlustrativa;
+        $this->dataDoSorteio = $dataDoSorteio;
+        $this->localDoSorteio = $localDoSorteio;
+        $this->valorCadaNumero = $valorCadaNumero;
+        $this->valorTotal = $valorTotal;
+        $this->idUsuario = $idUsuario;
+        $this->privacidade = $privacidade;
+    }
+
+    public function converterSqlEmObjeto(){
+
+        $db = new Database();
+
+        $listSql = $db->select(
+            "SELECT * FROM rifas WHERE privacidade = 0"
+        );
+
+        $list = [];
+
+        foreach($listSql as $rifa){
+            $this->idRifa = $rifa->id_rifa;
+            $this->objetivo = $rifa->objetivo;
+            $this->quantidadeDeNumeros = $rifa->quantidade_de_numeros;
+            $this->premio = $rifa->premio;
+            $this->imagemIlustrativa = $rifa->imagem_ilustrativa;
+            $this->dataDoSorteio = $rifa->data_do_sorteio;
+            $this->localDoSorteio = $rifa->local_do_sorteio;
+            $this->valorCadaNumero = $rifa->valor_cada_numero;
+            $this->valorTotal = $rifa->valor_total;
+            $this->idUsuario = $rifa->id_usuario;
+            $this->privacidade = $rifa->privacidade;
+
+            $list = [$this];
+        }
+
+        return $list;
+
         
+    }
+
+    public function criarRifa($objetivo, $quantidadeDeNumeros, $premio, $imagemIlustrativa, $dataDoSorteio, $localDoSorteio, $valorCadaNumero, $valorTotal, $idUsuario, $privacidade){
+        $db = new Database();
+        // $usuario = new Usuario();
+
+        // $idUsuario = $usuario->getIdUsuario();
+        // $idUsuario = 1;
+
+        if($valorCadaNumero > 0){
+            $valorTotal = $valorCadaNumero * $quantidadeDeNumeros;
+        } else{
+            $valorCadaNumero = $valorTotal / $quantidadeDeNumeros;
+        }
+
+        $db->insert(
+            "INSERT INTO rifas(objetivo, quantidade_de_numeros, premio, imagem_ilustrativa, data_do_sorteio, local_do_sorteio, valor_cada_numero, valor_total, id_usuario, privacidade) 
+            VALUES('$objetivo', '$quantidadeDeNumeros', '$premio', '$imagemIlustrativa', '$dataDoSorteio', '$localDoSorteio', $valorCadaNumero, $valorTotal, '$idUsuario', $privacidade)"
+        );
+    }
+
+    public function listarTodasAsRifas($id = 0){
+        $db = new Database();
+
+        if($id != 0){
+            return $db->select(
+                "SELECT * FROM rifas WHERE id_usuario = $id"
+            );
+        } else{
+            return $db->select(
+                "SELECT * FROM rifas WHERE privacidade = 0"
+            );
+        }
+
     }
 
     public function getIdRifa() {
