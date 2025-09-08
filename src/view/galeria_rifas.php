@@ -30,6 +30,17 @@ foreach($listaDeRifas as $r){
             height: 150px;
             background-color: #fff;
         }
+
+        .rifa_aberta{
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 200px;
+            width: 1000px;
+            height: 600px;
+            background-color: #fff;
+            border: 1px solid #000;
+        }
     </style>
     <title>Galeria de Rifas</title>
 </head>
@@ -44,10 +55,15 @@ foreach($listaDeRifas as $r){
                     <p><?= $rifa->getObjetivo() ?></p>
                     <p><?= $rifa->getPremio() ?></p>
                     <p><?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
+                    <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button>
                 </li>
+                <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
+                    <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)">Fechar Rifa</button>
+                </div>
             <?php } ?>
         </ul>
 
     </section>
+    <script src="../../assets/js/script.js"></script>
 </body>
 </html>
