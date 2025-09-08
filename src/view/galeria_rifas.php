@@ -40,6 +40,25 @@ foreach($listaDeRifas as $r){
             height: 600px;
             background-color: #fff;
             border: 1px solid #000;
+            padding: 5px;
+        }
+
+        .espaco_numeros{
+            background-color: #413636ff;
+            width: 95%;
+            height: 95%;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 10px;
+            overflow: scroll;
+        }
+
+        .numero{
+            background-color: #fff;
+            width: 50px;
+            height: 50px;
+            list-style-type: none;
         }
     </style>
     <title>Galeria de Rifas</title>
@@ -59,6 +78,11 @@ foreach($listaDeRifas as $r){
                 </li>
                 <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                     <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)">Fechar Rifa</button>
+                    <ul class="espaco_numeros">
+                        <?php for($i = 0; $i < $rifa->getQuantidadeDeNumeros(); $i++){ ?>
+                            <li class="numero"><?= $i + 1?></li>
+                        <?php } ?>
+                    </ul>
                 </div>
             <?php } ?>
         </ul>
