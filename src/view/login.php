@@ -9,7 +9,7 @@ if(isset($_POST["email_ou_telefone"])){
         $usuario = new Usuario();
         if($usuario->login($_POST["email_ou_telefone"], $_POST["senha"])){
             $_SESSION["usuario"] = $usuario->getObject();
-            header("Refresh: 0; URL = ../../pg2.php");
+            header("Refresh: 0; URL = ../../index.php");
         }
     }
 }

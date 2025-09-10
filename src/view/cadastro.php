@@ -6,6 +6,8 @@
             if($_POST["senha"] == $_POST["senha_confirm"]){
                 $usuario = new Usuario();
                 $usuario->cadastrarUsuario($_POST["nome"],$_POST["telefone"], $_POST["email"], $_POST["senha"]);
+
+                header("Refresh:0; URL= login.php");
             }
         }
     }

@@ -4,6 +4,6 @@ session_start();
 
 session_destroy();
 
-header("Refresh: 0; URL = ../../pg2.php");
+header("Refresh: 0; URL = ../../index.php");
 
 ?>

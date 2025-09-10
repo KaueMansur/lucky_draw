@@ -77,7 +77,7 @@ foreach($listaDasRifas as $rifa){
             position: fixed;
             top: 10px;
             left: 200px;
-            width: 1000px;
+            width: 900px;
             height: 600px;
             background-color: #fff;
             border: 1px solid #000;
@@ -87,9 +87,9 @@ foreach($listaDasRifas as $rifa){
         .espaco_numeros {
             background-color: #413636ff;
             width: 95%;
-            height: 95%;
+            height: 80%;
             display: flex;
-            gap: 10px;
+            gap: 5px;
             flex-wrap: wrap;
             padding: 10px;
             overflow: scroll;
@@ -97,8 +97,8 @@ foreach($listaDasRifas as $rifa){
 
         .numero {
             background-color: #fff;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             list-style-type: none;
         }
 
@@ -145,17 +145,13 @@ foreach($listaDasRifas as $rifa){
                             
                             $numerosDaRifa = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
 
-                            // var_dump($numerosDaRifa[0]->numero);
-
                             $numerosConvertidos = [];
+
 
                             for($i = 0; $i < count($numerosDaRifa); $i++ ){
                                 // $numerosConvertidos = [$numerosDaRifa[$i]];
                                 array_push($numerosConvertidos, $numerosDaRifa[$i]->numero);
                             }
-
-                            // var_dump($numerosConvertidos);
-
 
 
                            for($i = 1; $i < $rifa->getQuantidadeDeNumeros() + 1; $i++){
