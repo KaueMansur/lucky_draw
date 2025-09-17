@@ -13,11 +13,12 @@ class usuario{
     private $numeros;
     private $idRifa;
 
-    public function __construct($nome = 0, $telefone = 0, $idRifa = 0, $idUsuario = 0) {
+    public function __construct($nome = 0, $telefone = 0, $idRifa = 0, $idUsuario = 0, $numeros = []) {
         $this->nome = $nome;
         $this->telefone = $telefone;
         $this->idRifa = $idRifa;
         $this->idUsuario = $idUsuario;
+        $this->numeros = $numeros;
     }
 
     public function getObject(){
@@ -43,6 +44,14 @@ class usuario{
 
         return $db->select(
             "SELECT * FROM usuarios WHERE id_rifa = $idRifa"
+        );
+    }
+
+    public function listarNumerosDoUsuario($idUsuario){
+        $db = new Database();
+
+        return $db->select(
+            "SELECT numero FROM numeros_comprados WHERE id_usuario = $idUsuario"
         );
     }
 
@@ -151,6 +160,14 @@ class usuario{
 
     public function setIdRifa($idRifa){
         $this->idRifa = $idRifa;
+    }
+
+    public function getNumeros(){
+        return $this->numeros;
+    }
+
+    public function setNumeros($numeros){
+        $this->numeros = $numeros;
     }
 }
 

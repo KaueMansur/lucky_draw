@@ -153,10 +153,22 @@ foreach($listaDeRifas as $r){
 
                                     $listaUsuariosObj = [];
 
+                                    $listaFinalNumeros = [];
 
                                     foreach($listaUsuarios as $u){
-                                        $usuarioTemporario = new Usuario($u->nome, $u->telefone, $u->id_rifa, $u->id_usuario);
-                                        array_push($listaUsuariosObj, $usuarioTemporario);
+
+                                        $listaDeNumeros = $usuarioTemporario->listarNumerosDoUsuario($u->id_usuario);
+
+                                            foreach($listaDeNumeros as $numero){
+                                                array_push($listaFinalNumeros, $numero->numero);
+                                            }
+                                            
+                                            $usuarioTemporario = new Usuario($u->nome, $u->telefone, $u->id_rifa, $u->id_usuario, $listaFinalNumeros);
+                                            array_push($listaUsuariosObj, $usuarioTemporario);
+                                            $listaFinalNumeros = [];
+                                            // var_dump($usuarioTemporario);
+                                            // var_dump($usuarioTemporario);
+                                        // var_dump($usuarioTemporario);
                                     }
 
                                     foreach($listaUsuariosObj as $usuario){
@@ -168,7 +180,7 @@ foreach($listaDeRifas as $r){
                                             <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
                                             <label>Nome: <?= $usuario->getNome() ?></label>
                                             <label>Telefone: <?= $usuario->getTelefone() ?></label>
-                                            <label>Números:</label>
+                                            <label>Números: <ul style="display: flex; list-style-type: none;"><?php foreach($usuario->getNumeros() as $n){  ?> <li><?= $n ?>, </li> <?php } ?> </ul></label>
                                             <button onclick="adicionarNumeros('<?= $usuario->getIdUsuario() ?>')" id="btn_adicionar_numeros<?= $usuario->getIdUsuario() ?>" type="button">Adicionar números</button>
                                             <input type="submit" id="btn_comprar_numeros<?= $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="desativado" value="Próximo">
                                             <button onclick="cancelarNumeros('<?= $usuario->getIdUsuario() ?>')" id="btn_cancelar_numeros<?= $usuario->getIdUsuario() ?>" class="desativado" type="button">Cancelar</button>

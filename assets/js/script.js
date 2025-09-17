@@ -51,7 +51,5 @@ function cancelarNumeros(idUsuario){
 
 function ativarHiddens(idUsuario){
     let item = document.getElementById("id_hidden" + idUsuario)
-    console.log(item)
     item.setAttribute("name", "id_usuario")
-    // console.log(item)
 }
