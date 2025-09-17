@@ -11,27 +11,47 @@ function fecharRifa(idRifa){
     document.getElementById("id" + idRifa).style.display = "none";
 }
 
-function criarVenda(){
-    document.getElementById("btn_cancelar_venda").style.display = "block";
-    document.getElementById("btn_continuar_venda").style.display = "block";
-    document.getElementById("btn_criar_venda").style.display = "none";
-
-    checkBox.forEach(element => {
-        element.style.display = "block";
-    });
+function criarVenda(idRifa){
+    document.getElementById("btn_cancelar_venda" + idRifa).style.display = "block";
+    document.getElementById("card_comprador" + idRifa).style.display = "block";
+    document.getElementById("btn_criar_venda" + idRifa).style.display = "none";
 }
 
-function cancelarVenda(){
-    document.getElementById("btn_cancelar_venda").style.display = "none";
-    document.getElementById("btn_continuar_venda").style.display = "none";
-    document.getElementById("btn_criar_venda").style.display = "block";
-
+function cancelarVenda(idRifa){
+    document.getElementById("btn_cancelar_venda" + idRifa).style.display = "none";
+    document.getElementById("btn_criar_venda" + idRifa).style.display = "block";
+    document.getElementById("card_comprador" + idRifa).style.display = "none";
     
     checkBox.forEach(element => {
         element.style.display = "none";
     });
 }
 
-function continuarVenda(){
-    document.getElementById("card_comprador").style.display = "block"
+function adicionarNumeros(idUsuario){
+    checkBox.forEach(element => {
+        element.style.display = "block";
+    });
+
+    document.getElementById("btn_adicionar_numeros" + idUsuario).style.display = "none";
+    document.getElementById("btn_cancelar_numeros" + idUsuario).style.display = "block";
+    document.getElementById("btn_comprar_numeros" + idUsuario).style.display = "block";
+
+    console.log(idUsuario);
+}
+
+function cancelarNumeros(idUsuario){
+    checkBox.forEach(element => {
+        element.style.display = "none";
+    });
+
+    document.getElementById("btn_adicionar_numeros" + idUsuario).style.display = "block";
+    document.getElementById("btn_cancelar_numeros" + idUsuario).style.display = "none";
+    document.getElementById("btn_comprar_numeros" + idUsuario).style.display = "none";
+}
+
+function ativarHiddens(idUsuario){
+    let item = document.getElementById("id_hidden" + idUsuario)
+    console.log(item)
+    item.setAttribute("name", "id_usuario")
+    // console.log(item)
 }

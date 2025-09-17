@@ -38,16 +38,17 @@ foreach($listaDeRifas as $r){
             top: 10px;
             left: 200px;
             width: 900px;
-            height: 600px;
+            min-height: 600px;
             background-color: #fff;
             border: 1px solid #000;
             padding: 5px;
+            overflow: scroll;
         }
 
         .espaco_numeros {
             background-color: #413636ff;
             width: 95%;
-            height: 80%;
+            height: 200px;
             display: flex;
             gap: 5px;
             flex-wrap: wrap;
@@ -76,6 +77,13 @@ foreach($listaDeRifas as $r){
             height: 100px;
             border: 2px solid #000;
         }
+
+        .card_comprados{
+            background-color: #fff;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
         </style>
     <title>Galeria de Rifas</title>
 </head>
@@ -83,7 +91,6 @@ foreach($listaDeRifas as $r){
     <h1>Galeria de rifas</h1>
     <a href="../../index.php">Voltar à página inicial</a>
     <section style="background-color: #695353ff; width: 100wh; height: 550px; padding: 50px;">
-
         <ul>
             <?php foreach($listaDasRifas as $rifa){ ?>
                 <li class="rifas">
@@ -94,56 +101,105 @@ foreach($listaDeRifas as $r){
                 </li>
                 <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                     <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)">Fechar Rifa</button>
+                    
+                    
+                    <form action="../controller/comprar_numeros_controller.php" method="post">
+                        
+
+                    <input type="hidden" name="pagina_retorno" value="galeria_rifas.php">
+
                     <ul class="espaco_numeros">
                         <?php 
+                            
+                                $numerosDaRifa = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
+
+                                $numerosConvertidos = [];
+
+
+                                for($i = 0; $i < count($numerosDaRifa); $i++ ){
+                                    array_push($numerosConvertidos, $numerosDaRifa[$i]->numero);
+                                }
+
+                            for($i = 1; $i < $rifa->getQuantidadeDeNumeros() + 1; $i++){
+                                    if(in_array($i, $numerosConvertidos)){
+                                        //Número vendido
+                                        ?>
+                                        <label>
+                                            <li class="numero numero_vendido">
+                                                <?= $i ?>
+                                                <input type="checkbox" name="numeros[]"  value="<?= $i  ?>" class="criar_venda_checkbox vendido desativado" checked disabled>
+                                                </li>
+                                        </label>
+                                    
+                            <?php } else{ ?>
+                                <label>
+                                    <li class="numero">
+                                        <?= $i ?>
+                                        <input type="checkbox" name="numeros[]" value="<?= $i  ?>" class="criar_venda_checkbox desativado">
+                                    </li>
+                                </label>
+                                <?php 
+                            }} ?>
+                        </ul>
                         
-                            $numerosDaRifa = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
-
-                            $numerosConvertidos = [];
-
-
-                            for($i = 0; $i < count($numerosDaRifa); $i++ ){
-                                array_push($numerosConvertidos, $numerosDaRifa[$i]->numero);
-                            }
-
-                           for($i = 1; $i < $rifa->getQuantidadeDeNumeros() + 1; $i++){
-                                if(in_array($i, $numerosConvertidos)){
-                                    //Número vendido
-                                    ?>
-                                    <label>
-                                        <li class="numero numero_vendido">
-                                            <?= $i ?>
-                                            <input type="checkbox" name="numeros[]" value="<?= $i  ?>" class="criar_venda_checkbox" checked disabled>
-                                            </li>
-                                    </label>
+                                                <section class="espaco_numeros">
+                            <div class="card_comprados">
+                                <?php
                                 
-                        <?php } else{ ?>
-                            <label>
-                                <li class="numero">
-                                    <?= $i ?>
-                                    <input type="checkbox" name="numeros[]" value="<?= $i  ?>" class="criar_venda_checkbox">
-                                </li>
-                            </label>
-                            <?php }} ?>
-                    </ul>
-                    <button onclick="criarVenda()" id="btn_criar_venda">Criar Venda</button>
-                    <button onclick="cancelarVenda()" id="btn_cancelar_venda" class="desativado">Cancelar Venda</button>
-                    <button onclick="continuarVenda()" id="btn_continuar_venda" class="desativado">Próximo</button>
+                                // $numerosPrivados = $numeroComprado->listarNumerosprivados($rifa->getIdRifa());
+                                    $usuarioTemporario = new Usuario();
 
-                    <div id="card_comprador" class="desativado">
-                        
-                        <div>
-                            <label>Nome:</label>
-                            <input type="text" name="" id="">
-                        </div>
-                        
-                        <div>
-                            <label>Telefone:</label>
-                            <input type="tel" name="" id="">
-                        </div>
-                      
-                        <input type="submit" value="Salvar">
-                    </div>
+                                    $listaUsuarios = $usuarioTemporario->listarUsuariosDaRifa($rifa->getIdRifa());
+
+                                    $listaUsuariosObj = [];
+
+
+                                    foreach($listaUsuarios as $u){
+                                        $usuarioTemporario = new Usuario($u->nome, $u->telefone, $u->id_rifa, $u->id_usuario);
+                                        array_push($listaUsuariosObj, $usuarioTemporario);
+                                    }
+
+                                    foreach($listaUsuariosObj as $usuario){
+                                        // var_dump($usuario);
+                                    ?>
+                                        <!-- <form action="../controller/comprar_numeros_controller.php" method="post"> -->
+                                            <input type="hidden" id="id_hidden<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
+                                            <label for="">Id: <?= $usuario->getIdUsuario() ?></label>
+                                            <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
+                                            <label>Nome: <?= $usuario->getNome() ?></label>
+                                            <label>Telefone: <?= $usuario->getTelefone() ?></label>
+                                            <label>Números:</label>
+                                            <button onclick="adicionarNumeros('<?= $usuario->getIdUsuario() ?>')" id="btn_adicionar_numeros<?= $usuario->getIdUsuario() ?>" type="button">Adicionar números</button>
+                                            <input type="submit" id="btn_comprar_numeros<?= $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="desativado" value="Próximo">
+                                            <button onclick="cancelarNumeros('<?= $usuario->getIdUsuario() ?>')" id="btn_cancelar_numeros<?= $usuario->getIdUsuario() ?>" class="desativado" type="button">Cancelar</button>
+                                        <!-- </form> -->
+                                        
+                                    <?php } ?>
+                                </div>
+                            </section>
+                        </form>
+                        <button onclick="criarVenda('<?= $rifa->getIdRifa() ?>')" type="button" id="btn_criar_venda<?= $rifa->getIdRifa() ?>">Criar Venda</button>
+                        <button onclick="cancelarVenda('<?= $rifa->getIdRifa() ?>')" type="button" class="desativado" id="btn_cancelar_venda<?= $rifa->getIdRifa() ?>">Cancelar Venda</button>
+                        <form action="../controller/cadastrar_usuario.php" method="post">
+                            <div id="card_comprador<?= $rifa->getIdRifa() ?>" class="desativado">
+
+                                <div>
+                                    <label>Nome:</label>
+                                    <input type="text" name="nome" id="">
+                                </div>
+                                
+                                <div>
+                                    <label>Telefone:</label>
+                                    <input type="tel" name="telefone" id="">
+                                </div>
+                            
+                                <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
+
+                                <input type="submit" value="Cadastrar comprador">
+                            </div>
+                        </form>
+                    
+
                 </div>
             <?php } ?>
         </ul>

@@ -10,20 +10,39 @@ class usuario{
     private $email;
     private $senha;
     private $idNumeros;
+    private $numeros;
+    private $idRifa;
 
-    public function __construct() {
-        
+    public function __construct($nome = 0, $telefone = 0, $idRifa = 0, $idUsuario = 0) {
+        $this->nome = $nome;
+        $this->telefone = $telefone;
+        $this->idRifa = $idRifa;
+        $this->idUsuario = $idUsuario;
     }
 
     public function getObject(){
         return $this;
     }
 
-    public function cadastrarUsuario($nome, $telefone, $email, $senha){
+    public function cadastrarUsuario($nome, $telefone, $email = null, $senha = null, $idRifa = null){
+        $db = new Database();
+        
+        if($senha == null){
+            $db->insert(
+                "INSERT INTO usuarios(nome, telefone, id_rifa) VALUES('$nome', '$telefone', $idRifa)"
+            );
+        } else{
+            $db->insert(
+                "INSERT INTO usuarios(nome, telefone, email, senha) VALUES('$nome', '$telefone', '$email', '$senha')"
+            );
+        }
+    }
+
+    public function listarUsuariosDaRifa($idRifa){
         $db = new Database();
 
-        $db->insert(
-            "INSERT INTO usuarios(nome, telefone, email, senha) VALUES('$nome', '$telefone', '$email', '$senha')"
+        return $db->select(
+            "SELECT * FROM usuarios WHERE id_rifa = $idRifa"
         );
     }
 
@@ -124,6 +143,14 @@ class usuario{
 
     public function setIdNumeros($id){
         $this->idNumeros = $id;
+    }
+
+    public function getIdRifa(){
+        return $this->idRifa;
+    }
+
+    public function setIdRifa($idRifa){
+        $this->idRifa = $idRifa;
     }
 }
 

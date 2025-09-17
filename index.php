@@ -78,7 +78,7 @@ foreach($listaDasRifas as $rifa){
             top: 10px;
             left: 200px;
             width: 900px;
-            height: 600px;
+            min-height: 600px;
             background-color: #fff;
             border: 1px solid #000;
             padding: 5px;
