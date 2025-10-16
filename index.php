@@ -17,7 +17,7 @@ $listaDeRifas = $rifa->listarTodasAsRifas();
 $listaDasRifas = [];
 
 foreach ($listaDeRifas as $r) {
-    array_push($listaDasRifas, $rifa = new Rifa($r->id_rifa, $r->objetivo, $r->quantidade_de_numeros, $r->premio, $r->imagem_ilustrativa, $r->data_do_sorteio, $r->local_do_sorteio, $r->valor_cada_numero, $r->valor_total, $r->id_usuario, $r->privacidade));
+    array_push($listaDasRifas, $rifa = new Rifa($r->id_rifa, $r->objetivo, $r->quantidade_numeros, $r->premio, $r->imagem_ilustrativa, $r->data_sorteio, $r->local_sorteio, $r->valor_cada_numero, $r->valor_total, $r->id_usuario, $r->privacidade, $r->numero_sorteado, $r->status_vendas));
 }
 
 // var_dump($listaDasRifas);
@@ -25,28 +25,28 @@ $numeroComprado = new NumeroComprado();
 
 
 
-foreach($listaDasRifas as $rifa){
+foreach ($listaDasRifas as $rifa) {
 
     $listaDeNumerosComprados = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
-    
-    $listaNumeros = $numeroComprado->listarTodosOsNumerosDaRifa($rifa->getIdRifa());
-    
 
-        // foreach($listaNumeros as $numero){
-        //     foreach($listaDeNumerosComprados as $numeroV){
-        //         if($numero == $numeroV){
-        //             //Número foi vendido
-        //             $numerosDaRifa = [$numero => "vendido"];
-        //         } else{
-        //             //Número está disponível
-        //             $numerosDaRifa = [$numero => "disponivel"];
-        //         }
-        //     }
-        // }
+    $listaNumeros = $numeroComprado->listarTodosOsNumerosDaRifa($rifa->getIdRifa());
+
+
+    // foreach($listaNumeros as $numero){
+    //     foreach($listaDeNumerosComprados as $numeroV){
+    //         if($numero == $numeroV){
+    //             //Número foi vendido
+    //             $numerosDaRifa = [$numero => "vendido"];
+    //         } else{
+    //             //Número está disponível
+    //             $numerosDaRifa = [$numero => "disponivel"];
+    //         }
+    //     }
+    // }
 
 
     // $listaFinal = $numeroComprado->criarArrayAssociativo($listaNumeros, $listaDeNumerosComprados);
-                                
+
     // var_dump($listaFinal);             
     // var_dump($listaNumeros);               
     // var_dump($listaNumeros);
@@ -138,52 +138,56 @@ foreach($listaDasRifas as $rifa){
                 </li>
                 <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                     <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)">Fechar Rifa</button>
-                    <form action="src/controller/comprar_numeros_controller.php" method="get">
+                    <form action="src/controller/comprar_numeros_controller.php" method="post">
                         <ul class="espaco_numeros">
                             <?php
 
-                            
+
                             $numerosDaRifa = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
 
                             $numerosConvertidos = [];
 
 
-                            for($i = 0; $i < count($numerosDaRifa); $i++ ){
+                            for ($i = 0; $i < count($numerosDaRifa); $i++) {
                                 // $numerosConvertidos = [$numerosDaRifa[$i]];
                                 array_push($numerosConvertidos, $numerosDaRifa[$i]->numero);
                             }
 
 
-                           for($i = 1; $i < $rifa->getQuantidadeDeNumeros() + 1; $i++){
-                                if(in_array($i, $numerosConvertidos)){
+                            for ($i = 1; $i < $rifa->getQuantidadeDeNumeros() + 1; $i++) {
+                                if (in_array($i, $numerosConvertidos)) {
                                     //Número vendido
-                                
-                                
-                            ?>  
+
+
+                            ?>
 
                                     <label>
                                         <li class="numero numero_vendido">
                                             <?= $i   ?>
-                                            <input type="checkbox" value="<?= $i  ?>" checked disabled>
+                                            <input type="checkbox" value="<?= $i  ?>" checked disabled >
                                         </li>
                                     </label>
-                                    <?php } else{ ?>
+                                <?php } else { ?>
                                     <label>
                                         <li class="numero">
                                             <?= $i  ?>
                                             <input type="checkbox" name="numeros[]" value="<?= $i  ?>">
                                         </li>
                                     </label>
-                                    <?php } 
-                                } ?>
+                            <?php }
+                            } ?>
                         </ul>
-                        <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
-                        <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
-                        <input type="submit" value="Comprar Números">
+
+                        <?php if ($rifa->getStatusVendas() == 1) {  ?>
+
+                            <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
+                            <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
+                            <input type="submit" value="Comprar Números">
+                        <?php } ?>
                     </form>
                 </div>
-        <?php }
-                       ?>
+            <?php }
+            ?>
         </ul>
 
     </section>

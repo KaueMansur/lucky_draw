@@ -16,8 +16,10 @@ class Rifa{
     private $valorTotal;
     private $idUsuario;
     private $privacidade;
+    private $numeroSorteado;
+    private $statusVendas;
 
-    public function __construct($idRifa = 0, $objetivo = 0, $quantidadeDeNumeros = 0, $premio = 0, $imagemIlustrativa = 0, $dataDoSorteio = 0, $localDoSorteio = 0, $valorCadaNumero = 0, $valorTotal = 0, $idUsuario = 0, $privacidade = 0) {
+    public function __construct($idRifa = 0, $objetivo = 0, $quantidadeDeNumeros = 0, $premio = 0, $imagemIlustrativa = 0, $dataDoSorteio = 0, $localDoSorteio = 0, $valorCadaNumero = 0, $valorTotal = 0, $idUsuario = 0, $privacidade = 0, $numeroSorteado = 0, $statusVendas = 0) {
         $this->idRifa = $idRifa;
         $this->objetivo = $objetivo;
         $this->quantidadeDeNumeros = $quantidadeDeNumeros;
@@ -29,6 +31,8 @@ class Rifa{
         $this->valorTotal = $valorTotal;
         $this->idUsuario = $idUsuario;
         $this->privacidade = $privacidade;
+        $this->numeroSorteado = $numeroSorteado;
+        $this->statusVendas = $statusVendas;
     }
 
     public function converterSqlEmObjeto(){
@@ -44,15 +48,16 @@ class Rifa{
         foreach($listSql as $rifa){
             $this->idRifa = $rifa->id_rifa;
             $this->objetivo = $rifa->objetivo;
-            $this->quantidadeDeNumeros = $rifa->quantidade_de_numeros;
+            $this->quantidadeDeNumeros = $rifa->quantidade_numeros;
             $this->premio = $rifa->premio;
             $this->imagemIlustrativa = $rifa->imagem_ilustrativa;
-            $this->dataDoSorteio = $rifa->data_do_sorteio;
-            $this->localDoSorteio = $rifa->local_do_sorteio;
+            $this->dataDoSorteio = $rifa->data_sorteio;
+            $this->localDoSorteio = $rifa->local_sorteio;
             $this->valorCadaNumero = $rifa->valor_cada_numero;
             $this->valorTotal = $rifa->valor_total;
             $this->idUsuario = $rifa->id_usuario;
             $this->privacidade = $rifa->privacidade;
+            $this->numeroSorteado = $rifa->numero_sorteado;
 
             $list = [$this];
         }
@@ -76,7 +81,7 @@ class Rifa{
         }
 
         $db->insert(
-            "INSERT INTO rifas(objetivo, quantidade_de_numeros, premio, imagem_ilustrativa, data_do_sorteio, local_do_sorteio, valor_cada_numero, valor_total, id_usuario, privacidade) 
+            "INSERT INTO rifas(objetivo, quantidade_numeros, premio, imagem_ilustrativa, data_sorteio, local_sorteio, valor_cada_numero, valor_total, id_usuario, privacidade) 
             VALUES('$objetivo', '$quantidadeDeNumeros', '$premio', '$imagemIlustrativa', '$dataDoSorteio', '$localDoSorteio', $valorCadaNumero, $valorTotal, '$idUsuario', $privacidade)"
         );
     }
@@ -93,6 +98,40 @@ class Rifa{
                 "SELECT * FROM rifas WHERE privacidade = 0"
             );
         }
+
+    }
+
+    public function sortearNumero($idRifa, $somenteNumerosComprados){
+        $db = new Database();
+
+        $numerosParaSortear = [];
+
+        if($somenteNumerosComprados){
+            $numerosParaSortear = $db->select(
+                "SELECT numero FROM numeros_comprados WHERE id_rifa = $idRifa"
+            );
+
+            $chaveSorteada = array_rand($numerosParaSortear, 1);
+
+            // var_dump($numerosParaSortear[0]->numero);
+
+            $numeroSorteado = $numerosParaSortear[$chaveSorteada]->numero;
+
+        } else{
+            $tamRifa = $db->select(
+                "SELECT quantidade_numeros FROM rifas WHERE id_rifa = $idRifa"
+            );
+
+            // var_dump($tamRifa[0]->quantidade_numeros);
+
+            $numeroSorteado = rand(1, $tamRifa[0]->quantidade_numeros);
+        }
+
+        // var_dump($numeroSorteado);
+
+            $db->update(
+                "UPDATE rifas SET numero_sorteado = $numeroSorteado WHERE id_rifa = $idRifa"
+            );
 
     }
 
@@ -167,6 +206,22 @@ class Rifa{
     public function setValorTotal($valorTotal) {
         $this->valorTotal = $valorTotal;
     }    
+
+    public function getNumeroSorteado(){
+        return $this->numeroSorteado;
+    }
+
+    public function setNumeroSorteado($numero){
+        $this->numeroSorteado = $numero;
+    }
+
+    public function getStatusVendas(){
+        return $this->statusVendas;
+    }
+
+    public function setStatusVendas($status){
+        $this->statusVendas = $status;
+    }
 }
 
 ?>

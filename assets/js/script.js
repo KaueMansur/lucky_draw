@@ -51,5 +51,21 @@ function cancelarNumeros(idUsuario){
 
 function ativarHiddens(idUsuario){
     let item = document.getElementById("id_hidden" + idUsuario)
-    item.setAttribute("name", "id_usuario")
+    item.setAttribute("name", "id_usuarios_temp")
+}
+
+function mostrarOpcoesDeSorteio(idRifa){
+    document.getElementById("opcoes_de_sorteio" + idRifa).style.display = "block";
+}
+
+function cancelarOpcoesSorteio(idRifa){
+    document.getElementById("opcoes_de_sorteio" + idRifa).style.display = "none";
+}
+
+function abrirSorteio(idRifa){
+    document.getElementById("popup_sorteio" + idRifa).style.display = "block";
+}
+
+function cancelarSorteio(idRifa){
+    document.getElementById("popup_sorteio" + idRifa).style.display = "none";
 }

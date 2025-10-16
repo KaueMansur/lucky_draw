@@ -39,14 +39,6 @@ class usuario{
         }
     }
 
-    public function listarUsuariosDaRifa($idRifa){
-        $db = new Database();
-
-        return $db->select(
-            "SELECT * FROM usuarios WHERE id_rifa = $idRifa"
-        );
-    }
-
     public function listarNumerosDoUsuario($idUsuario){
         $db = new Database();
 

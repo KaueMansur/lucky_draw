@@ -1,6 +1,6 @@
 <?php
 
-require "database.php";
+require "usuarioTemporario.php";
 
 class NumeroComprado{
 
@@ -72,7 +72,7 @@ class NumeroComprado{
         $db = new Database();
 
         return $db->select(
-            "SELECT quantidade_de_numeros FROM rifas WHERE id_rifa = $idRifa"
+            "SELECT quantidade_numeros FROM rifas WHERE id_rifa = $idRifa"
         );
     }
 
