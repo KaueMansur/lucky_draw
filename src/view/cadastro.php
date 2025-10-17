@@ -28,8 +28,8 @@
         <label for="">Nome:</label>
         <input type="text" name="nome" id="">
 
-        <label for="">Telefone:</label>
-        <input type="tel" name="telefone" id="">
+        <label for="telefone">Telefone:</label>
+        <input type="tel" name="telefone" id="telefone">
 
         <label for="">Email:</label>
         <input type="email" name="email" id="">
@@ -42,5 +42,6 @@
 
         <input type="submit" value="Cadastrar">
     </form>
+    <script src="../../assets/js/mascaras.js"></script>
 </body>
 </html>
