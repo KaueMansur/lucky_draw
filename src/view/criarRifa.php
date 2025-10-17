@@ -17,7 +17,7 @@ $usuario = $_SESSION["usuario"];
 <body>
     <h1>Criar Rifa</h1>
 
-    <form action="../controller/criar_rifa_controller.php" method="post" style="display: flex; flex-direction: column; width: 200px;">
+    <form action="../controller/criar_rifa_controller.php" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; width: 200px;">
 
         <label for="">Objetivo:</label>
         <input type="text" name="objetivo" id="">        
@@ -35,7 +35,7 @@ $usuario = $_SESSION["usuario"];
         <input type="text" name="premio" id="">
 
         <label for="">Imagem ilustrativa:</label>
-        <input type="text" name="img_ilustrativa" id="">
+        <input type="file" name="img_ilustrativa" id="">
 
         <label for="">Data do sorteio:</label>
         <input type="date" name="data_sorteio" id="">
