@@ -190,6 +190,7 @@ foreach ($listaDasRifas as $rifa) {
                             <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
                             <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
                             <input type="submit" value="Comprar Números" id="btn_comprar_numeros<?= $rifa->getIdRifa() ?>" class="btn_comprar_numeros" disabled>
+                            <button type="button" class="btn_limpar_selecao" disabled>Limpar Seleções</button>
                         <?php } ?>
                     </form>
                 </div>

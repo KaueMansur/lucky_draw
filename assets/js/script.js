@@ -9,6 +9,7 @@ function abrirRifa(idRifa) {
 
 function fecharRifa(idRifa) {
     document.getElementById("id" + idRifa).style.display = "none";
+    limparSelecao()
 }
 
 function criarVenda(idRifa) {
@@ -70,23 +71,33 @@ function cancelarSorteio(idRifa) {
     document.getElementById("popup_sorteio" + idRifa).style.display = "none";
 }
 
-function habilitarBotaoDeCompra(idRifa) {
+function limparSelecao() {
+    numerosDisponiveis.forEach(element => {
+        element.checked = false;
+    })
+
+    btnComprar.forEach(btn => {
+        btn.setAttribute("disabled", true)
+    })
+
+    btnLimpar.forEach(btn=>{
+        btn.setAttribute("disabled", true)
+    })
 }
 
 let numerosDisponiveis = document.querySelectorAll(".numeros_rifa_disponeis");
 let btnComprar = document.querySelectorAll(".btn_comprar_numeros");
+let btnLimpar = document.querySelectorAll(".btn_limpar_selecao");
 
-
-// numerosDisponiveis.forEach(element=>{
-//     element.eventListener("click", ()=>{
-//         console.log(element)
-//     })       
-// })   
+ 
 let key = 0;
 numerosDisponiveis.forEach(element => {
     element.addEventListener("change", () => {
         if (element.checked) {
             btnComprar.forEach(btn => {
+                btn.removeAttribute("disabled")
+            })
+            btnLimpar.forEach(btn=>{
                 btn.removeAttribute("disabled")
             })
             key++;
@@ -97,7 +108,16 @@ numerosDisponiveis.forEach(element => {
                 btnComprar.forEach(btn => {
                     btn.setAttribute("disabled", true)
                 })
+                btnLimpar.forEach(btn => {
+                    btn.setAttribute("disabled", true)
+                })
             }
         }
+    })
+})
+
+btnLimpar.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+        limparSelecao()
     })
 })
