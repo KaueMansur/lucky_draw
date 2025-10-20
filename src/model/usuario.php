@@ -39,6 +39,14 @@ class usuario{
         }
     }
 
+    public function listarNumerosDoUsuarioDaRifa($idUsuario, $idRifa){
+        $db = new Database();
+
+        return $db->select(
+            "SELECT numero FROM numeros_comprados WHERE id_usuario = $idUsuario AND id_rifa = $idRifa"
+        );
+    }
+
     public function listarNumerosDoUsuario($idUsuario){
         $db = new Database();
 
@@ -92,10 +100,6 @@ class usuario{
 
         return $key;
         
-    }
-
-    public function comprarRifa($idNumero){
-
     }
 
     public function getIdUsuario(){

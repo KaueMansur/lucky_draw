@@ -193,6 +193,17 @@ foreach ($listaDasRifas as $rifa) {
                             <button type="button" class="btn_limpar_selecao" disabled>Limpar Seleções</button>
                         <?php } ?>
                     </form>
+                    <?php $numerosDoUsuario = $usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifa->getIdRifa()); 
+                    // var_dump($numerosDoUsuario);
+                    ?>
+                    <p>Seus números:</p>
+                    <ul>
+                        <?php
+                            foreach($numerosDoUsuario as $numero){
+                        ?>
+                        <li><?= $numero->numero ?></li>
+                        <?php } ?>
+                    </ul>
                 </div>
             <?php }
             ?>
