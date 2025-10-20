@@ -134,8 +134,9 @@ foreach ($listaDasRifas as $rifa) {
                     <p><?= $rifa->getObjetivo() ?></p>
                     <p><?= $rifa->getPremio() ?></p>
                     <p><?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
-                    <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="100px">
-                     <!-- <p><?= $rifa->getImagemIlustrativa() ?></p> -->
+                    <?php if ($rifa->getImagemIlustrativa() != null) { ?>
+                        <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="100px">
+                    <?php } ?>
                     <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button>
                 </li>
                 <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
@@ -159,21 +160,25 @@ foreach ($listaDasRifas as $rifa) {
                             for ($i = 1; $i < $rifa->getQuantidadeDeNumeros() + 1; $i++) {
                                 if (in_array($i, $numerosConvertidos)) {
                                     //Número vendido
-
-
                             ?>
 
                                     <label>
                                         <li class="numero numero_vendido">
-                                            <?= $i   ?>
-                                            <input type="checkbox" value="<?= $i  ?>" checked disabled >
+                                            <?= $i;
+                                            if ($rifa->getStatusVendas() == 1) {
+                                            ?>
+                                                <input type="checkbox" value="<?= $i  ?>" checked disabled>
+                                            <?php } ?>
                                         </li>
                                     </label>
                                 <?php } else { ?>
                                     <label>
                                         <li class="numero">
-                                            <?= $i  ?>
-                                            <input type="checkbox" name="numeros[]" value="<?= $i  ?>">
+                                            <?= $i;
+                                            if ($rifa->getStatusVendas() == 1) {
+                                            ?>
+                                                <input type="checkbox" name="numeros[]" value="<?= $i  ?>" class="numeros_rifa_disponeis">
+                                            <?php } ?>
                                         </li>
                                     </label>
                             <?php }
@@ -184,7 +189,7 @@ foreach ($listaDasRifas as $rifa) {
 
                             <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
                             <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
-                            <input type="submit" value="Comprar Números">
+                            <input type="submit" value="Comprar Números" id="btn_comprar_numeros<?= $rifa->getIdRifa() ?>" class="btn_comprar_numeros" disabled>
                         <?php } ?>
                     </form>
                 </div>
