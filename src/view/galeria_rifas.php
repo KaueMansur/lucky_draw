@@ -29,7 +29,7 @@ foreach ($listaDeRifas as $r) {
     <style>
         .rifas {
             width: 400px;
-            height: 50px;
+            height: 200px;
             background-color: #fff;
         }
 
@@ -102,6 +102,17 @@ foreach ($listaDeRifas as $r) {
                     <p><?= $rifa->getPremio() ?></p>
                     <p><?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
                     <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button>
+
+                    <?php
+                    $numerosDaRifa = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
+                    if (!count($numerosDaRifa) > 0) {
+                    ?>
+
+                        <form action="../controller/deletar_rifa_controller.php" method="post" onsubmit="confirm('Tem certeza de que deseja excluir esta Rifa?')">
+                            <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
+                            <input type="submit" value="Excluir Rifa">
+                        </form>
+                    <?php } ?>
                 </li>
                 <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                     <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)">Fechar Rifa</button>
@@ -168,13 +179,9 @@ foreach ($listaDeRifas as $r) {
                                     $usuarioTemporario = new UsuarioTemporario($u->nome, $u->telefone, $u->id_rifa, $u->id_usuario, $listaFinalNumeros);
                                     array_push($listaUsuariosObj, $usuarioTemporario);
                                     $listaFinalNumeros = [];
-                                    // var_dump($usuarioTemporario);
-                                    // var_dump($usuarioTemporario);
-                                    // var_dump($usuarioTemporario);
                                 }
 
                                 foreach ($listaUsuariosObj as $usuario) {
-                                    // var_dump($usuario);
                                 ?>
                                     <!-- <form action="../controller/comprar_numeros_controller.php" method="post"> -->
                                     <input type="hidden" id="id_hidden<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
@@ -230,7 +237,7 @@ foreach ($listaDeRifas as $r) {
                         </form>
 
                     <?php } elseif (!in_array($rifa->getNumeroSorteado(), $numerosConvertidos)) { ?>
-                        <button onclick="mostrarOpcoesDeSorteio('<?= $rifa->getIdRifa() ?>')">Opções de sorteio</button>    
+                        <button onclick="mostrarOpcoesDeSorteio('<?= $rifa->getIdRifa() ?>')">Opções de sorteio</button>
                     <?php } ?>
 
                     <div id="opcoes_de_sorteio<?= $rifa->getIdRifa() ?>" class="desativado">

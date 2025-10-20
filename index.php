@@ -134,7 +134,7 @@ foreach ($listaDasRifas as $rifa) {
                     <p><?= $rifa->getObjetivo() ?></p>
                     <p><?= $rifa->getPremio() ?></p>
                     <p><?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
-                    <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa">
+                    <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="100px">
                      <!-- <p><?= $rifa->getImagemIlustrativa() ?></p> -->
                     <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button>
                 </li>
