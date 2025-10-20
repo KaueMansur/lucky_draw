@@ -26,6 +26,8 @@ if(isset($_POST["email_ou_telefone"])){
 <body>
     <h1>Pg Login</h1>
     <a href="cadastro.php">Cadastre-se</a>
+    <br>
+    <a href="./recuperar_senha.php">Esqueci minha senha</a>
 
     <form action="#" method="post">
 

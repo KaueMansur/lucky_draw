@@ -19,7 +19,7 @@ class Rifa{
     private $numeroSorteado;
     private $statusVendas;
 
-    public function __construct($idRifa = 0, $objetivo = 0, $quantidadeDeNumeros = 0, $premio = 0, $imagemIlustrativa = 0, $dataDoSorteio = 0, $localDoSorteio = 0, $valorCadaNumero = 0, $valorTotal = 0, $idUsuario = 0, $privacidade = 0, $numeroSorteado = 0, $statusVendas = 0) {
+    public function __construct($idRifa = 0, $objetivo = null, $quantidadeDeNumeros = 0, $premio = null, $imagemIlustrativa = null, $dataDoSorteio = null, $localDoSorteio = null, $valorCadaNumero = 0, $valorTotal = 0, $idUsuario = 0, $privacidade = 0, $numeroSorteado = 0, $statusVendas = 0) {
         $this->idRifa = $idRifa;
         $this->objetivo = $objetivo;
         $this->quantidadeDeNumeros = $quantidadeDeNumeros;

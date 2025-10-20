@@ -35,7 +35,7 @@ $usuario = $_SESSION["usuario"];
         <input type="text" name="premio" id="">
 
         <label for="">Imagem ilustrativa:</label>
-        <input type="file" name="img_ilustrativa" id="">
+        <input type="file" name="foto" id="">
 
         <label for="">Data do sorteio:</label>
         <input type="date" name="data_sorteio" id="">

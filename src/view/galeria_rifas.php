@@ -29,7 +29,7 @@ foreach ($listaDeRifas as $r) {
     <style>
         .rifas {
             width: 400px;
-            height: 150px;
+            height: 50px;
             background-color: #fff;
         }
 
@@ -96,6 +96,7 @@ foreach ($listaDeRifas as $r) {
         <ul>
             <?php foreach ($listaDasRifas as $rifa) { ?>
                 <li class="rifas">
+                    <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="img" width="100px">
                     <p>Número Sorteado: <?= $rifa->getNumeroSorteado() ?></p>
                     <p><?= $rifa->getObjetivo() ?></p>
                     <p><?= $rifa->getPremio() ?></p>
