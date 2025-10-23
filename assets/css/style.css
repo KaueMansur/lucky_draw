@@ -144,7 +144,6 @@ p{
 #cards_diferencial_container{
     display: flex;
     justify-content: space-evenly;
-    /* gap: 10px; */
 }
 
 .card_diferencial{
@@ -168,4 +167,55 @@ p{
     text-align: center;
     font-size: 10pt;
     width: 90%;    
+}
+
+#main{
+    background-color: var(--azul-claro);
+    padding-inline: 30px;
+}
+
+.cards_rifa_container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.rifas{
+    margin-bottom: 25px;
+    width: 30vw;
+    height: 200px;
+    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
+    border-radius: 10px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+}
+
+.rifas_infos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    height: 60px;
+}
+
+.premio_rifa{
+    font-weight: 700;
+    color: var(--cinza-escuro);
+    padding-left: 30px;
+    font-size: 12pt;
+    text-transform: capitalize;
+}
+
+.valor_rifa{
+    font-weight: 700;
+    color: var(--vermelho-primario);
+    padding-left: 30px;
+    font-size: 14pt;
+    text-transform: capitalize;
 }

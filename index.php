@@ -67,11 +67,11 @@ foreach ($listaDasRifas as $rifa) {
     <title>página principal</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .rifas {
-            width: 400px;
-            height: 150px;
-            background-color: #fff;
-        }
+        /* .rifas {
+                width: 400px;
+                height: 150px;
+                background-color: #fff;
+            } */
 
         .rifa_aberta {
             display: none;
@@ -168,93 +168,95 @@ foreach ($listaDasRifas as $rifa) {
         </section>
     </header>
 
-    <main>
-        <h3>Upcoming prizes</h3>
+    <main id="main">
+        <h2 class="subtitulo">Upcoming prizes</h3>
 
-        <section style="background-color: #695353ff; width: 100wh; height: 550px; padding: 50px;">
+            <section>
 
-            <ul>
-                <?php foreach ($listaDasRifas as $rifa) { ?>
-                    <li class="rifas">
-                        <p><?= $rifa->getObjetivo() ?></p>
-                        <p><?= $rifa->getPremio() ?></p>
-                        <p><?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
-                        <?php if ($rifa->getImagemIlustrativa() != null) { ?>
-                            <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="100px">
-                        <?php } ?>
-                        <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button>
-                    </li>
-                    <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
-                        <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)">Fechar Rifa</button>
-                        <form action="src/controller/comprar_numeros_controller.php" method="post">
-                            <ul class="espaco_numeros">
-                                <?php
-
-
-                                $numerosDaRifa = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
-
-                                $numerosConvertidos = [];
-
-
-                                for ($i = 0; $i < count($numerosDaRifa); $i++) {
-                                    // $numerosConvertidos = [$numerosDaRifa[$i]];
-                                    array_push($numerosConvertidos, $numerosDaRifa[$i]->numero);
-                                }
-
-
-                                for ($i = 1; $i < $rifa->getQuantidadeDeNumeros() + 1; $i++) {
-                                    if (in_array($i, $numerosConvertidos)) {
-                                        //Número vendido
-                                ?>
-
-                                        <label>
-                                            <li class="numero numero_vendido">
-                                                <?= $i;
-                                                if ($rifa->getStatusVendas() == 1) {
-                                                ?>
-                                                    <input type="checkbox" value="<?= $i  ?>" checked disabled>
-                                                <?php } ?>
-                                            </li>
-                                        </label>
-                                    <?php } else { ?>
-                                        <label>
-                                            <li class="numero">
-                                                <?= $i;
-                                                if ($rifa->getStatusVendas() == 1) {
-                                                ?>
-                                                    <input type="checkbox" name="numeros[]" value="<?= $i  ?>" class="numeros_rifa_disponeis">
-                                                <?php } ?>
-                                            </li>
-                                        </label>
-                                <?php }
-                                } ?>
-                            </ul>
-
-                            <?php if ($rifa->getStatusVendas() == 1) {  ?>
-
-                                <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
-                                <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
-                                <input type="submit" value="Comprar Números" id="btn_comprar_numeros<?= $rifa->getIdRifa() ?>" class="btn_comprar_numeros" disabled>
-                                <button type="button" class="btn_limpar_selecao" disabled>Limpar Seleções</button>
+                <ul class="cards_rifa_container">
+                    <?php foreach ($listaDasRifas as $rifa) { ?>
+                        <li class="rifas">
+                            <?php if ($rifa->getImagemIlustrativa() != null) { ?>
+                                <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="120px">
                             <?php } ?>
-                        </form>
-                        <?php $numerosDoUsuario = $usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifa->getIdRifa());
-                        // var_dump($numerosDoUsuario);
-                        ?>
-                        <p>Seus números:</p>
-                        <ul>
-                            <?php
-                            foreach ($numerosDoUsuario as $numero) {
+                            <div class="rifas_infos">
+                                <!-- <p><?= $rifa->getObjetivo() ?></p> -->
+                                <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
+                                <p class="valor_rifa">R$ <?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
+                            </div>
+                            <!-- <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button> -->
+                        </li>
+                        <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
+                            <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)">Fechar Rifa</button>
+                            <form action="src/controller/comprar_numeros_controller.php" method="post">
+                                <ul class="espaco_numeros">
+                                    <?php
+
+
+                                    $numerosDaRifa = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
+
+                                    $numerosConvertidos = [];
+
+
+                                    for ($i = 0; $i < count($numerosDaRifa); $i++) {
+                                        // $numerosConvertidos = [$numerosDaRifa[$i]];
+                                        array_push($numerosConvertidos, $numerosDaRifa[$i]->numero);
+                                    }
+
+
+                                    for ($i = 1; $i < $rifa->getQuantidadeDeNumeros() + 1; $i++) {
+                                        if (in_array($i, $numerosConvertidos)) {
+                                            //Número vendido
+                                    ?>
+
+                                            <label>
+                                                <li class="numero numero_vendido">
+                                                    <?= $i;
+                                                    if ($rifa->getStatusVendas() == 1) {
+                                                    ?>
+                                                        <input type="checkbox" value="<?= $i  ?>" checked disabled>
+                                                    <?php } ?>
+                                                </li>
+                                            </label>
+                                        <?php } else { ?>
+                                            <label>
+                                                <li class="numero">
+                                                    <?= $i;
+                                                    if ($rifa->getStatusVendas() == 1) {
+                                                    ?>
+                                                        <input type="checkbox" name="numeros[]" value="<?= $i  ?>" class="numeros_rifa_disponeis">
+                                                    <?php } ?>
+                                                </li>
+                                            </label>
+                                    <?php }
+                                    } ?>
+                                </ul>
+
+                                <?php if ($rifa->getStatusVendas() == 1) {  ?>
+
+                                    <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
+                                    <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
+                                    <input type="submit" value="Comprar Números" id="btn_comprar_numeros<?= $rifa->getIdRifa() ?>" class="btn_comprar_numeros" disabled>
+                                    <button type="button" class="btn_limpar_selecao" disabled>Limpar Seleções</button>
+                                <?php } ?>
+                            </form>
+                            <?php $numerosDoUsuario = $usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifa->getIdRifa());
+                            // var_dump($numerosDoUsuario);
                             ?>
-                                <li><?= $numero->numero ?></li>
-                            <?php } ?>
-                        </ul>
-                    </div>
-                <?php }
-                ?>
-            </ul>
+                            <p>Seus números:</p>
+                            <ul>
+                                <?php
+                                foreach ($numerosDoUsuario as $numero) {
+                                ?>
+                                    <li><?= $numero->numero ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    <?php }
+                    ?>
+                </ul>
 
-        </section>
+            </section>
     </main>
 
     <footer>
