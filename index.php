@@ -175,7 +175,7 @@ foreach ($listaDasRifas as $rifa) {
 
                 <ul class="cards_rifa_container">
                     <?php foreach ($listaDasRifas as $rifa) { ?>
-                        <li class="rifas">
+                        <li class="rifas" onclick="abrirRifa('<?= $rifa->getIdRifa() ?>')">
                             <?php if ($rifa->getImagemIlustrativa() != null) { ?>
                                 <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="120px">
                             <?php } ?>
@@ -259,25 +259,25 @@ foreach ($listaDasRifas as $rifa) {
             </section>
     </main>
 
-    <footer>
-        <article>
-            <h4>About LuckyDraw</h4>
-            <p>Lorem ipsum dolor sit amet.</p>
-        </article>
-        <article>
-            <h4>About LuckyDraw</h4>
-            <p>Lorem ipsum dolor sit amet.</p>
-        </article>
-        <article>
-            <h4>About LuckyDraw</h4>
-            <p>Lorem ipsum dolor sit amet.</p>
-        </article>
-        <article>
-            <h4>About LuckyDraw</h4>
-            <p>Lorem ipsum dolor sit amet.</p>
-        </article>
-        <hr>
-        <p>Lorem ipsum dolor sit amet.</p>
+    <footer id="footer">
+        <div id="footer_content">
+            <article class="article_footer">
+                <h4 class="titulo_footer">About LuckyDraw</h4>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </article>
+            <article class="article_footer">
+                <h4 class="titulo_footer">About LuckyDraw</h4>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </article>
+            <article class="article_footer">
+                <h4 class="titulo_footer">About LuckyDraw</h4>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </article>
+            <article class="article_footer">
+                <h4 class="titulo_footer">About LuckyDraw</h4>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </article>
+        </div>
     </footer>
 
 

@@ -62,6 +62,7 @@
     font-weight: 600;
     color: var(--texto-primario);
     font-size: 14pt;
+    cursor: pointer;
 }
 
 .btn_nav{
@@ -74,6 +75,7 @@
     padding-inline: 25px;
     font-size: 14pt;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .logo{
@@ -172,6 +174,7 @@ p{
 #main{
     background-color: var(--azul-claro);
     padding-inline: 30px;
+    padding-bottom: 40px;
 }
 
 .cards_rifa_container{
@@ -192,6 +195,7 @@ p{
     justify-content: end;
     align-items: center;
     gap: 20px;
+    cursor: pointer;
 }
 
 .rifas_infos{
@@ -218,4 +222,31 @@ p{
     padding-left: 30px;
     font-size: 14pt;
     text-transform: capitalize;
+}
+
+#footer{
+    background-color: var(--cinza-escuro);
+    height: 300px;
+    padding-top: 50px;
+}
+
+#footer_content{
+    display: flex;
+    padding-inline: 30px;
+}
+
+.article_footer{
+    width: 22vw;
+}
+
+.article_footer p{
+    color: #fff;
+    font-size: 10pt;
+}
+
+.titulo_footer{
+    color: var(--amarelo-primario);
+    font-weight: 600;
+    font-family: var(--fonte-primaria);
+    font-size: 11pt;
 }
