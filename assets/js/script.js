@@ -85,9 +85,10 @@ function limparSelecao() {
     })
 }
 
-let numerosDisponiveis = document.querySelectorAll(".numeros_rifa_disponeis");
+let numerosDisponiveis = document.querySelectorAll(".numeros_rifa_disponiveis");
 let btnComprar = document.querySelectorAll(".btn_comprar_numeros");
 let btnLimpar = document.querySelectorAll(".btn_limpar_selecao");
+let numero = document.querySelectorAll(".numero");
 
  
 let key = 0;

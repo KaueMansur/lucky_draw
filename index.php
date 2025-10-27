@@ -66,47 +66,6 @@ foreach ($listaDasRifas as $rifa) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>página principal</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        /* .rifas {
-                width: 400px;
-                height: 150px;
-                background-color: #fff;
-            } */
-
-        .rifa_aberta {
-            display: none;
-            position: fixed;
-            top: 10px;
-            left: 200px;
-            width: 900px;
-            min-height: 600px;
-            background-color: #fff;
-            border: 1px solid #000;
-            padding: 5px;
-        }
-
-        .espaco_numeros {
-            background-color: #413636ff;
-            width: 95%;
-            height: 80%;
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-            padding: 10px;
-            overflow: scroll;
-        }
-
-        .numero {
-            background-color: #fff;
-            width: 40px;
-            height: 40px;
-            list-style-type: none;
-        }
-
-        .numero_vendido {
-            background-color: #e91111ff;
-        }
-    </style>
 </head>
 
 <body>
@@ -187,7 +146,7 @@ foreach ($listaDasRifas as $rifa) {
                             <!-- <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button> -->
                         </li>
                         <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
-                            <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)">Fechar Rifa</button>
+                            <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)" class="btn_fechar">x</button>
                             <form action="src/controller/comprar_numeros_controller.php" method="post">
                                 <ul class="espaco_numeros">
                                     <?php
@@ -214,7 +173,7 @@ foreach ($listaDasRifas as $rifa) {
                                                     <?= $i;
                                                     if ($rifa->getStatusVendas() == 1) {
                                                     ?>
-                                                        <input type="checkbox" value="<?= $i  ?>" checked disabled>
+                                                        <input type="checkbox" value="<?= $i  ?>" checked disabled class="numeros_rifa_vendidos">
                                                     <?php } ?>
                                                 </li>
                                             </label>
@@ -224,7 +183,7 @@ foreach ($listaDasRifas as $rifa) {
                                                     <?= $i;
                                                     if ($rifa->getStatusVendas() == 1) {
                                                     ?>
-                                                        <input type="checkbox" name="numeros[]" value="<?= $i  ?>" class="numeros_rifa_disponeis">
+                                                        <input type="checkbox" name="numeros[]" value="<?= $i  ?>" class="numeros_rifa_disponiveis">
                                                     <?php } ?>
                                                 </li>
                                             </label>
