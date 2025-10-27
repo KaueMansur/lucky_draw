@@ -250,3 +250,73 @@ p{
     font-family: var(--fonte-primaria);
     font-size: 11pt;
 }
+
+.txt_secundario{
+    color: var(--texto-secundario);
+    font-size: 15pt;
+    text-align: center;
+}
+
+.label_login{
+    color: var(--cinza-escuro);
+    font-size: 16pt;
+    font-family: var(--fonte-primaria);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#body_login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.form_login{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 100vh;
+    padding: 50px 0;
+    gap: 15px;
+}
+
+.input_login{
+    background-color: var(--azul-claro);
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid rgba(66, 43, 43, 0.133);
+    text-align: center;
+    font-size: 15pt;
+    font-weight: 600;
+}
+
+.btn_form{
+    height: 65px;
+    border-radius: 10px;
+    background-image: linear-gradient(-135deg, var(--vermelho-primario), orange);
+    color: #fff;
+    font-size: 16pt;
+    font-family: var(--fonte-primaria);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.div_campo_login{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.txt_left{
+    text-align: center;
+}
+
+.link{
+    color: var(--vermelho-primario);
+    text-decoration: none;
+    font-weight: 700;
+}
