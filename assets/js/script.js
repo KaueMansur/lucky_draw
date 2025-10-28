@@ -71,7 +71,7 @@ function cancelarSorteio(idRifa) {
     document.getElementById("popup_sorteio" + idRifa).style.display = "none";
 }
 
-function limparSelecao() {  
+function limparSelecao() {
     numerosDisponiveis.forEach(element => {
         element.checked = false;
     })
@@ -147,5 +147,26 @@ numerosDisponiveis.forEach(element => {
 btnLimpar.forEach(btn => {
     btn.addEventListener("click", () => {
         limparSelecao()
+    })
+})
+
+let radios = document.querySelectorAll(".tipo_de_valor");
+let valorTotal = document.getElementById("valor_total");
+let valorNumeros = document.getElementById("valor_numeros");
+
+
+radios.forEach(element => {
+    element.addEventListener("change", () => {
+
+        let idRadio = element.getAttribute("id");
+        if(idRadio == "radio_valor_numeros"){
+            valorNumeros.removeAttribute("disabled");
+            valorTotal.setAttribute("disabled", true);
+            valorNumeros.focus()
+        } else{
+            valorTotal.removeAttribute("disabled");
+            valorNumeros.setAttribute("disabled", true);
+            valorTotal.focus()
+        }
     })
 })

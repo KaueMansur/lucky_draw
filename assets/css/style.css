@@ -310,6 +310,8 @@ p {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 120px;
+    justify-content: space-around;
 }
 
 .txt_left {
@@ -471,4 +473,90 @@ p {
     color: var(--azul-claro);
     cursor: not-allowed;
     outline: 0;
+}
+
+.input_valor_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 40px;
+    background-color: var(--azul-claro);
+    height: 170px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: #000 1px 2px 3px;
+}
+
+.input_login:disabled{
+    background-color: var(--texto-secundario) !important;
+}
+
+.lista_privacidade{
+    height: 60px;
+    margin-bottom: 15px;
+    margin-right: 100px;
+}
+
+.lista_privacidade li{
+    list-style-type: none;
+    font-family: var(--fonte-primaria);
+    font-size: 15pt;
+}
+
+.div_duplo_input{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 30px; */
+}
+
+.div_duplo_input input:not([type=radio]){
+    min-width: 300px;
+}
+
+.btn_carregar_imagem{
+    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
+    width: 200px;
+    margin-right: 100px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fonte-primaria);
+    color: #FFF;
+    font-size: 15pt;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn_carregar_imagem:hover{
+    transform: scale(1.05);
+}
+
+.tipo_de_valor{
+    display: none;
+}
+
+.btn_radio{
+    font-family: var(--fonte-primaria);
+    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
+    color: #FFF;
+    border-radius: 5px;
+    font-size: 15pt;
+    font-weight: 500;
+    width: 70%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+#valor_numeros, #valor_total{
+    background-color: #FFF;
 }
