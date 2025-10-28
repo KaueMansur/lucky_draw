@@ -4,7 +4,7 @@ let checkBox = document.querySelectorAll(".criar_venda_checkbox");
 
 
 function abrirRifa(idRifa) {
-    document.getElementById("id" + idRifa).style.display = "block";
+    document.getElementById("id" + idRifa).style.display = "flex";
 }
 
 function fecharRifa(idRifa) {
@@ -85,7 +85,10 @@ function limparSelecao() {
     })
 
     document.querySelectorAll(".numero_disponivel").forEach(element => {
-        element.style.backgroundColor = "#FFF";
+        element.classList.remove("numero_selecionado");
+        // element.style.backgroundColor = "#FFF";
+        // element.style.transform = "scale(1.0)"
+        // element.style.borderRadius = "5px"
     })
 }
 
@@ -108,7 +111,10 @@ numerosDisponiveis.forEach(element => {
 
             let id = "n" + element.getAttribute("id").substring(1);
             let item = document.getElementById(id);
-            item.style.backgroundColor = "#F00";
+            item.classList.add("numero_selecionado");
+            // item.style.backgroundColor = "#F30";
+            // item.style.transform = "scale(1.1)"
+            // item.style.borderRadius = "1px"
             // console.log(item);
 
 
@@ -118,8 +124,11 @@ numerosDisponiveis.forEach(element => {
 
             let id = "n" + element.getAttribute("id").substring(1);
             let item = document.getElementById(id);
-            item.style.backgroundColor = "#FFF";
-            // console.log(item);
+            item.classList.remove("numero_selecionado");
+            // item.style.backgroundColor = "#FFF";
+            // item.style.transform = "scale(1.0)"
+            // item.style.borderRadius = "5px"
+            // // console.log(item);
 
             if (key == 0) {
 

@@ -195,21 +195,28 @@ foreach ($listaDasRifas as $rifa) {
 
                                     <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
                                     <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
-                                    <input type="submit" value="Comprar Números" id="btn_comprar_numeros<?= $rifa->getIdRifa() ?>" class="btn_comprar_numeros" disabled>
-                                    <button type="button" class="btn_limpar_selecao" disabled>Limpar Seleções</button>
+                                    <div class="container_btn_rifa">
+                                        <input type="submit" value="Comprar Números" id="btn_comprar_numeros<?= $rifa->getIdRifa() ?>" class="btn_comprar_numeros btn_nav" disabled>
+                                        <button type="button" class="btn_limpar_selecao btn_nav white" disabled>Limpar Seleções</button>
+                                    </div>
                                 <?php } ?>
                             </form>
                             <?php $numerosDoUsuario = $usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifa->getIdRifa());
                             // var_dump($numerosDoUsuario);
+                            if (count($numerosDoUsuario) > 0) {
                             ?>
-                            <p>Seus números:</p>
-                            <ul>
-                                <?php
-                                foreach ($numerosDoUsuario as $numero) {
-                                ?>
-                                    <li><?= $numero->numero ?></li>
-                                <?php } ?>
-                            </ul>
+                                <div class="lista_numeros_container">
+                                    <p class="label_lista_numeros">Seus números:</p>
+                                    <ul class="lista_numeros_usuario">
+                                        <?php
+
+                                        foreach ($numerosDoUsuario as $numero) {
+                                        ?>
+                                            <li class="numeros_usuario"><?= $numero->numero ?></li>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
+                            <?php } ?>
                         </div>
                     <?php }
                     ?>
