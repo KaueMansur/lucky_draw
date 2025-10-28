@@ -169,21 +169,21 @@ foreach ($listaDasRifas as $rifa) {
                                     ?>
 
                                             <label>
-                                                <li class="numero numero_vendido">
+                                                <li class="numero numero_vendido" id="n<?= $i ?>r<?= $rifa->getIdRifa() ?>">
                                                     <?= $i;
                                                     if ($rifa->getStatusVendas() == 1) {
                                                     ?>
-                                                        <input type="checkbox" value="<?= $i  ?>" checked disabled class="numeros_rifa_vendidos">
+                                                        <input type="checkbox" value="<?= $i  ?>" id="i<?= $i ?>r<?= $rifa->getIdRifa() ?>" checked disabled class="numeros_rifa_vendidos">
                                                     <?php } ?>
                                                 </li>
                                             </label>
                                         <?php } else { ?>
                                             <label>
-                                                <li class="numero">
+                                                <li class="numero numero_disponivel" id="n<?= $i ?>r<?= $rifa->getIdRifa() ?>">
                                                     <?= $i;
                                                     if ($rifa->getStatusVendas() == 1) {
                                                     ?>
-                                                        <input type="checkbox" name="numeros[]" value="<?= $i  ?>" class="numeros_rifa_disponiveis">
+                                                        <input type="checkbox" name="numeros[]" value="<?= $i  ?>" id="i<?= $i ?>r<?= $rifa->getIdRifa() ?>" class="numeros_rifa_disponiveis">
                                                     <?php } ?>
                                                 </li>
                                             </label>

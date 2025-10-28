@@ -71,17 +71,21 @@ function cancelarSorteio(idRifa) {
     document.getElementById("popup_sorteio" + idRifa).style.display = "none";
 }
 
-function limparSelecao() {
+function limparSelecao() {  
     numerosDisponiveis.forEach(element => {
         element.checked = false;
     })
 
     btnComprar.forEach(btn => {
-        btn.setAttribute("disabled", true)
+        btn.setAttribute("disabled", true);
     })
 
-    btnLimpar.forEach(btn=>{
-        btn.setAttribute("disabled", true)
+    btnLimpar.forEach(btn => {
+        btn.setAttribute("disabled", true);
+    })
+
+    document.querySelectorAll(".numero_disponivel").forEach(element => {
+        element.style.backgroundColor = "#FFF";
     })
 }
 
@@ -90,35 +94,49 @@ let btnComprar = document.querySelectorAll(".btn_comprar_numeros");
 let btnLimpar = document.querySelectorAll(".btn_limpar_selecao");
 let numero = document.querySelectorAll(".numero");
 
- 
+
 let key = 0;
 numerosDisponiveis.forEach(element => {
     element.addEventListener("change", () => {
         if (element.checked) {
             btnComprar.forEach(btn => {
-                btn.removeAttribute("disabled")
+                btn.removeAttribute("disabled");
             })
-            btnLimpar.forEach(btn=>{
-                btn.removeAttribute("disabled")
+            btnLimpar.forEach(btn => {
+                btn.removeAttribute("disabled");
             })
+
+            let id = "n" + element.getAttribute("id").substring(1);
+            let item = document.getElementById(id);
+            item.style.backgroundColor = "#F00";
+            // console.log(item);
+
+
             key++;
         } else {
             key--;
+
+            let id = "n" + element.getAttribute("id").substring(1);
+            let item = document.getElementById(id);
+            item.style.backgroundColor = "#FFF";
+            // console.log(item);
+
             if (key == 0) {
 
                 btnComprar.forEach(btn => {
-                    btn.setAttribute("disabled", true)
+                    btn.setAttribute("disabled", true);
                 })
                 btnLimpar.forEach(btn => {
-                    btn.setAttribute("disabled", true)
+                    btn.setAttribute("disabled", true);
                 })
+
             }
         }
     })
 })
 
-btnLimpar.forEach(btn=>{
-    btn.addEventListener("click", ()=>{
+btnLimpar.forEach(btn => {
+    btn.addEventListener("click", () => {
         limparSelecao()
     })
 })
