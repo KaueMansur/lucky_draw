@@ -99,6 +99,9 @@ foreach ($listaDasRifas as $rifa) {
                     <a class="btn_nav white" href="#">Buy Tickets</a>
                 </div>
             </article>
+            <div class="card_dourado">
+                <p class="legenda_hero">Your Lucky Ticket</p>
+            </div>
         </section>
         <section id="diferencial">
             <h2 class="subtitulo">Why Choose Us?</h2>
@@ -173,7 +176,7 @@ foreach ($listaDasRifas as $rifa) {
                                                     <?= $i;
                                                     if ($rifa->getStatusVendas() == 1) {
                                                     ?>
-                                                        <input type="checkbox" value="<?= $i  ?>" id="i<?= $i ?>r<?= $rifa->getIdRifa() ?>" checked disabled class="numeros_rifa_vendidos">
+                                                        <input type="checkbox" value="<?= $i ?>" id="i<?= $i ?>r<?= $rifa->getIdRifa() ?>" checked disabled class="numeros_rifa_vendidos">
                                                     <?php } ?>
                                                 </li>
                                             </label>
@@ -183,7 +186,7 @@ foreach ($listaDasRifas as $rifa) {
                                                     <?= $i;
                                                     if ($rifa->getStatusVendas() == 1) {
                                                     ?>
-                                                        <input type="checkbox" name="numeros[]" value="<?= $i  ?>" id="i<?= $i ?>r<?= $rifa->getIdRifa() ?>" class="numeros_rifa_disponiveis">
+                                                        <input type="checkbox" name="numeros[]" value="<?= $i ?>" id="i<?= $i ?>r<?= $rifa->getIdRifa() ?>" class="numeros_rifa_disponiveis">
                                                     <?php } ?>
                                                 </li>
                                             </label>

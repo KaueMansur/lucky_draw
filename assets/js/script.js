@@ -14,7 +14,7 @@ function fecharRifa(idRifa) {
 
 function criarVenda(idRifa) {
     document.getElementById("btn_cancelar_venda" + idRifa).style.display = "block";
-    document.getElementById("card_comprador" + idRifa).style.display = "block";
+    document.getElementById("card_comprador" + idRifa).style.display = "flex";
     document.getElementById("btn_criar_venda" + idRifa).style.display = "none";
 }
 
