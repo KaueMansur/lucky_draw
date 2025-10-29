@@ -176,6 +176,7 @@ p {
     background-color: var(--azul-claro);
     padding-inline: 30px;
     padding-bottom: 40px;
+    /* padding-top: 40px; */
 }
 
 .cards_rifa_container {
@@ -197,6 +198,7 @@ p {
     align-items: center;
     gap: 20px;
     cursor: pointer;
+    box-shadow: #000 1px 1px 5px;
 }
 
 .rifas_infos {
@@ -559,4 +561,16 @@ p {
 
 #valor_numeros, #valor_total{
     background-color: #FFF;
+}
+
+#header_galeria{
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_voltar{
+    position: absolute;
+    left: 40px;
 }
