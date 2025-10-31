@@ -42,6 +42,14 @@ class UsuarioTemporario
         );
     }
 
+    public function editarUsuarioTemporario($idUsuario, $novoNome, $novoTelefone){
+        $db = new Database();
+
+        $db->update(
+            "UPDATE usuarios_temp SET nome = '$novoNome', telefone = '$novoTelefone' WHERE id_usuario = $idUsuario"
+        );
+    }
+
     public function getIdUsuario()
     {
         return $this->idUsuario;

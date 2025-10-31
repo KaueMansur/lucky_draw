@@ -25,6 +25,7 @@
     --btn-cta-hover: #E53900;
     --link-hover: #FF6B35;
 
+    --azul-ceu: #4A90E2;
 }
 
 * {
@@ -193,7 +194,8 @@ p {
     margin-bottom: 25px;
     width: 30vw;
     height: 200px;
-    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));;
+    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
+    ;
     border-radius: 10px;
     list-style-type: none;
     display: flex;
@@ -340,7 +342,7 @@ p {
     border-radius: 8px;
     cursor: pointer;
     position: absolute;
-    top: 12px; 
+    top: 12px;
     left: 15px;
     display: flex;
     align-items: center;
@@ -349,7 +351,7 @@ p {
     border: 1px solid #000;
 }
 
-.btn_fechar:hover{
+.btn_fechar:hover {
     transform: scale(1.1);
     font-size: 21pt;
 }
@@ -383,11 +385,11 @@ p {
     cursor: pointer;
 }
 
-.numero_disponivel:hover{
+.numero_disponivel:hover {
     transform: scale(1.1);
 }
 
-.numero_selecionado{
+.numero_selecionado {
     background-color: var(--vermelho-primario);
     transform: scale(1.1);
     border-radius: 1px;
@@ -415,7 +417,7 @@ p {
     gap: 30px;
 }
 
-.rifa_aberta form{
+.rifa_aberta form {
     width: calc(100% - 15px);
     display: flex;
     flex-direction: column;
@@ -423,33 +425,34 @@ p {
     gap: 12px;
 }
 
-.numeros_rifa_vendidos{
+.numeros_rifa_vendidos {
     display: none;
 }
 
-.numeros_rifa_disponiveis{
+.numeros_rifa_disponiveis {
     position: absolute;
     visibility: hidden;
 }
 
-.lista_numeros_container{
+.lista_numeros_container {
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));;
+    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
+    ;
     padding: 20px;
     border-radius: 10px;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.lista_numeros_usuario{
+.lista_numeros_usuario {
     display: flex;
     justify-content: space-around;
     gap: 10px;
     /* justify-content: center; */
 }
 
-.numeros_usuario{
+.numeros_usuario {
     list-style-type: none;
     font-family: var(--fonte-primaria);
     font-weight: 600;
@@ -460,7 +463,7 @@ p {
     border-radius: 5px;
 }
 
-.label_lista_numeros{
+.label_lista_numeros {
     font-weight: 600;
     font-size: 18pt;
     color: var(--cinza-escuro);
@@ -468,20 +471,20 @@ p {
     color: #fff;
 }
 
-.container_btn_rifa{
+.container_btn_rifa {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
 }
 
-.btn_nav:disabled{
+.btn_nav:disabled {
     background-color: var(--texto-secundario);
     color: var(--azul-claro);
     cursor: not-allowed;
     outline: 0;
 }
 
-.input_valor_container{
+.input_valor_container {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -493,34 +496,34 @@ p {
     box-shadow: #000 1px 2px 3px;
 }
 
-.input_login:disabled{
+.input_login:disabled {
     background-color: var(--texto-secundario) !important;
 }
 
-.lista_privacidade{
+.lista_privacidade {
     height: 60px;
     margin-bottom: 15px;
     margin-right: 100px;
 }
 
-.lista_privacidade li{
+.lista_privacidade li {
     list-style-type: none;
     font-family: var(--fonte-primaria);
     font-size: 15pt;
 }
 
-.div_duplo_input{
+.div_duplo_input {
     display: flex;
     align-items: center;
     justify-content: space-between;
     /* gap: 30px; */
 }
 
-.div_duplo_input input:not([type=radio]){
+.div_duplo_input input:not([type=radio]) {
     min-width: 300px;
 }
 
-.btn_carregar_imagem{
+.btn_carregar_imagem {
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     width: 200px;
     margin-right: 100px;
@@ -537,15 +540,15 @@ p {
     transition: .3s;
 }
 
-.btn_carregar_imagem:hover{
+.btn_carregar_imagem:hover {
     transform: scale(1.05);
 }
 
-.tipo_de_valor{
+.tipo_de_valor {
     display: none;
 }
 
-.btn_radio{
+.btn_radio {
     font-family: var(--fonte-primaria);
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     color: #FFF;
@@ -563,23 +566,24 @@ p {
     text-transform: capitalize;
 }
 
-#valor_numeros, #valor_total{
+#valor_numeros,
+#valor_total {
     background-color: #FFF;
 }
 
-#header_galeria{
+#header_galeria {
     height: 15vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.btn_voltar{
+.btn_voltar {
     position: absolute;
     left: 40px;
 }
 
-.btn_encerrar_venda{
+.btn_encerrar_venda {
     background-color: #F00;
     color: #FFF;
     font-family: var(--fonte-primaria);
@@ -589,13 +593,13 @@ p {
     border-radius: 5px;
 }
 
-.label_cadastro_rifa{
+.label_cadastro_rifa {
     font-family: var(--fonte-primaria);
     font-weight: 600;
     font-size: 14pt;
 }
 
-.card_cadastro{
+.card_cadastro {
     background-color: var(--azul-claro);
     flex-direction: column;
     align-items: center;
@@ -609,20 +613,19 @@ p {
     margin-bottom: 30px;
 }
 
-.card_cadastro div{
+.card_cadastro div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 70%;
 }
 
-.btn_cadastro{
-    /* width: 50%; */
+.btn_cadastro {
     font-size: 12pt;
     padding-inline: 5px;
 }
 
-.input_usuario_temp{
+.input_usuario_temp {
     border-radius: 5px;
     font-size: 14pt;
     height: 40px;
@@ -630,27 +633,46 @@ p {
     box-shadow: #000 1px 1px 2px;
 }
 
-.btn_add_usuario{
+.btn_add_usuario {
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
 }
 
-.label_usuarios_temp{
+.label_usuario_temp {
     font-family: var(--fonte-primaria);
     font-size: 15pt;
-    font-weight: 700;    
+    color: var(--texto-secundario);
 }
 
-.cards_usuarios_temp_container{
+.nome_usuario_temp{
+    background-color: transparent;
+    font-weight: 700;
+    padding-left: 10px;
+    font-size: 14pt;
+    color: var(--cinza-escuro);
+    border-radius: 5px;
+    width: 200px;
+}
+
+.infos_usuario_temp{
+    color: var(--cinza-escuro);
+    font-size: 14pt;
+    font-family: var(--fonte-primaria);
+    padding-left: 10px;
+    background-color: transparent;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.cards_usuarios_temp_container {
     display: flex;
     flex-direction: column;
     background-color: #F00;
-    /* gap: 40px; */
 }
 
-.card_dourado{
+.card_dourado {
     background-image: linear-gradient(135deg, var(--amarelo-primario) 40%, var(--vermelho-primario));
     height: 250px;
     width: 190px;
@@ -663,7 +685,7 @@ p {
     justify-content: center;
 }
 
-.legenda_hero{
+.legenda_hero {
     color: #FFF;
     font-family: var(--fonte-primaria);
     font-weight: 700;
@@ -671,4 +693,107 @@ p {
     text-transform: uppercase;
     text-align: center;
     text-shadow: #0008 1px 1px 2px;
+}
+
+.espaco_usuarios_temp {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* height: 400px; */
+    align-items: center;
+    overflow-y: scroll;
+    /* background-color: #000 !important; */
+}
+
+.card_comprados {
+    display: flex;
+    border-radius: 20px;
+    flex-direction: column;
+    gap: 40px;
+    background-color: transparent;
+}
+
+.card_vendas {
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #FFF;
+    box-shadow: #000 1px 2px 2px;
+    width: 400px;
+}
+
+.usuario_temp_container {
+    display: flex;
+    border-bottom: 1px solid var(--texto-secundario);
+    height: 55px;
+    align-items: center;
+    padding-left: 10px;
+    justify-content: space-between;
+}
+
+.btn_add_numeros {
+    color: #FFF;
+    background-color: var(--azul-ceu);
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 13pt;
+    min-width: 200px !important;
+    width: 200px;
+    cursor: pointer;
+}
+
+.btn_add_numeros:disabled {
+    background-color: var(--cinza-escuro);
+    cursor: not-allowed;
+}
+
+.btn_editar_usuario_temp{
+    color: #FFF;
+    background-color: var(--azul-ceu);
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 13pt;
+    min-width: 40px !important;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.numeros_usuario_temp_container{
+    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
+    margin-bottom: 10px;
+    padding-right: 10px;
+}
+
+.numeros_usuario_temp_ul{
+    display: flex;
+    list-style-type: none;
+    gap: 10px;
+}
+
+.label_numero_usuario_temp{
+    color: #FFF;
+    font-weight: 600;
+}
+
+.numero_usuario_temp{
+    background-color: #FFF;
+    padding: 8px;
+    border-radius: 8px;
+    color: #000;
+    font-family: var(--fonte-primaria);
+    font-weight: 600;
+}
+
+.campo_usuario_temporario_ativo{
+    background-color: rgb(233, 98, 9);
+    color: #FFF;
+    height: 40px;
 }

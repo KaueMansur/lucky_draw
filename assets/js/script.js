@@ -71,6 +71,30 @@ function cancelarSorteio(idRifa) {
     document.getElementById("popup_sorteio" + idRifa).style.display = "none";
 }
 
+function editarUsuarioTemp(idRifaEidUsuario) {
+    let campoNome = document.getElementById("nome_usuario_temp" + idRifaEidUsuario);
+    let campoTel = document.getElementById("telefone_usuario_temp" + idRifaEidUsuario);
+
+    campoNome.removeAttribute("disabled");
+    campoTel.removeAttribute("disabled");
+
+    campoNome.focus();
+
+    document.getElementById("btns_confirmar" + idRifaEidUsuario).style.display = "flex";
+    document.getElementById("btns_padrao" + idRifaEidUsuario).style.display = "none";
+}
+
+function cancelarEdicao(idRifaEidUsuario) {
+    let campoNome = document.getElementById("nome_usuario_temp" + idRifaEidUsuario);
+    let campoTel = document.getElementById("telefone_usuario_temp" + idRifaEidUsuario);
+
+    campoNome.setAttribute("disabled", true);
+    campoTel.setAttribute("disabled", true);
+
+    document.getElementById("btns_confirmar" + idRifaEidUsuario).style.display = "none";
+    document.getElementById("btns_padrao" + idRifaEidUsuario).style.display = "flex";
+}
+
 function limparSelecao() {
     numerosDisponiveis.forEach(element => {
         element.checked = false;
@@ -86,9 +110,6 @@ function limparSelecao() {
 
     document.querySelectorAll(".numero_disponivel").forEach(element => {
         element.classList.remove("numero_selecionado");
-        // element.style.backgroundColor = "#FFF";
-        // element.style.transform = "scale(1.0)"
-        // element.style.borderRadius = "5px"
     })
 }
 
@@ -96,6 +117,8 @@ let numerosDisponiveis = document.querySelectorAll(".numeros_rifa_disponiveis");
 let btnComprar = document.querySelectorAll(".btn_comprar_numeros");
 let btnLimpar = document.querySelectorAll(".btn_limpar_selecao");
 let numero = document.querySelectorAll(".numero");
+let btnAddNumero = document.querySelectorAll(".btn_add_numeros");
+
 
 
 let key = 0;
@@ -109,14 +132,13 @@ numerosDisponiveis.forEach(element => {
                 btn.removeAttribute("disabled");
             })
 
+            btnAddNumero.forEach(btn => {
+                btn.removeAttribute("disabled")
+            })
+
             let id = "n" + element.getAttribute("id").substring(1);
             let item = document.getElementById(id);
             item.classList.add("numero_selecionado");
-            // item.style.backgroundColor = "#F30";
-            // item.style.transform = "scale(1.1)"
-            // item.style.borderRadius = "1px"
-            // console.log(item);
-
 
             key++;
         } else {
@@ -125,20 +147,20 @@ numerosDisponiveis.forEach(element => {
             let id = "n" + element.getAttribute("id").substring(1);
             let item = document.getElementById(id);
             item.classList.remove("numero_selecionado");
-            // item.style.backgroundColor = "#FFF";
-            // item.style.transform = "scale(1.0)"
-            // item.style.borderRadius = "5px"
-            // // console.log(item);
 
             if (key == 0) {
 
                 btnComprar.forEach(btn => {
                     btn.setAttribute("disabled", true);
                 })
+
                 btnLimpar.forEach(btn => {
                     btn.setAttribute("disabled", true);
                 })
 
+                btnAddNumero.forEach(btn => {
+                    btn.setAttribute("disabled", true);
+                })
             }
         }
     })
@@ -159,11 +181,11 @@ radios.forEach(element => {
     element.addEventListener("change", () => {
 
         let idRadio = element.getAttribute("id");
-        if(idRadio == "radio_valor_numeros"){
+        if (idRadio == "radio_valor_numeros") {
             valorNumeros.removeAttribute("disabled");
             valorTotal.setAttribute("disabled", true);
             valorNumeros.focus()
-        } else{
+        } else {
             valorTotal.removeAttribute("disabled");
             valorNumeros.setAttribute("disabled", true);
             valorTotal.focus()

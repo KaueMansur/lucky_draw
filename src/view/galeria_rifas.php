@@ -27,21 +27,6 @@ foreach ($listaDeRifas as $r) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <style>
-        #card_comprador {
-            background-color: #fff;
-            width: 80%;
-            height: 100px;
-            border: 2px solid #000;
-        }
-
-        .card_comprados {
-            background-color: #fff;
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-        }
-    </style>
     <title>Galeria de Rifas</title>
 </head>
 
@@ -121,11 +106,10 @@ foreach ($listaDeRifas as $r) {
                                 <button type="button" class="btn_limpar_selecao btn_nav white" disabled>Limpar Seleções</button>
                             </div> -->
 
-                            <section class="espaco_numeros">
-                                <div class="card_comprados">
+                            <section class="espaco_numeros espaco_usuarios_temp">
+                                <ul class="card_comprados">
                                     <?php
 
-                                    // $numerosPrivados = $numeroComprado->listarNumerosprivados($rifa->getIdRifa());
                                     $usuarioTemporario = new UsuarioTemporario();
 
                                     $listaUsuarios = $usuarioTemporario->listarUsuariosDaRifa($rifa->getIdRifa());
@@ -149,27 +133,45 @@ foreach ($listaDeRifas as $r) {
 
                                     foreach ($listaUsuariosObj as $usuario) {
                                     ?>
-                                        <input type="hidden" id="id_hidden<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
-                                        <label for="">Id: <?= $usuario->getIdUsuario() ?></label>
-                                        <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
-                                        <label>Nome: <?= $usuario->getNome() ?></label>
-                                        <label>Telefone: <?= $usuario->getTelefone() ?></label>
 
-                                        <label>Números:</label>
-                                        <ul style="display: flex; list-style-type: none;">
-                                            <?php foreach ($usuario->getNumeros() as $n) {  ?>
-                                                <li><?= $n ?>, </li>
-                                            <?php } ?>
-                                        </ul>
+                                        <li class="card_vendas">
 
-                                        <?php if ($rifa->getStatusVendas() == 1) { ?>
-                                            <button onclick="adicionarNumeros('<?= $usuario->getIdUsuario() ?>')" id="btn_adicionar_numeros<?= $usuario->getIdUsuario() ?>" type="button">Adicionar números</button>
-                                            <button onclick="cancelarNumeros('<?= $usuario->getIdUsuario() ?>')" id="btn_cancelar_numeros<?= $usuario->getIdUsuario() ?>" class="desativado" type="button">Cancelar</button>
-                                            <input type="submit" id="btn_comprar_numeros<?= $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="desativado" value="Próximo">
+                                            <form action="../controller/editar_usuario_temp_controller.php" method="post">
+                                                <input type="hidden" id="id_hidden<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
+                                                <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
 
-                                    <?php }
-                                    } ?>
-                                </div>
+                                                <div class="usuario_temp_container">
+                                                    <label class="label_usuario_temp">Nome:</label>
+                                                    <input type="text" name="nome_usuario_temp" class="nome_usuario_temp" id="nome_usuario_temp<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>" value="<?= $usuario->getNome() ?>" disabled>
+                                                </div>
+
+                                                <div class="usuario_temp_container">
+                                                    <label class="label_usuario_temp">Telefone:</label>
+                                                    <input type="tel" name="tel_usuario_temp" class="infos_usuario_temp" id="telefone_usuario_temp<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>" value="<?= $usuario->getTelefone() ?>" disabled>
+                                                </div>
+
+                                                <div class="usuario_temp_container numeros_usuario_temp_container">
+                                                    <label class="label_usuario_temp label_numero_usuario_temp">Números:</label>
+                                                    <ul class="numeros_usuario_temp_ul">
+                                                        <?php foreach ($usuario->getNumeros() as $n) {  ?>
+                                                            <li class="numero_usuario_temp"><?= $n ?></li>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </div>
+                                                <?php if ($rifa->getStatusVendas() == 1) { ?>
+                                                    <div class="div_duplo_input" style="display: none;" id="btns_confirmar<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>">
+                                                        <input type="submit" class="btn_add_numeros" onclick="ativarHiddens(<?= $usuario->getIdUsuario() ?>)" style="background-color: rgba(7, 148, 7, 1);" value="Salvar">
+                                                        <button type="button" class="btn_add_numeros" style="background-color: #F00;" onclick="cancelarEdicao(<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>)">Cancelar</button>
+                                                    </div>
+                                            </form>
+                                            <div class="div_duplo_input" id="btns_padrao<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>">
+                                                <input type="submit" id="btn_comprar_numeros<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="btn_add_numeros" value="Adicionar Números" disabled>
+                                                <button type="button" id="btn_editar_usuario<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="25px"></button>
+                                            </div>
+                                        </li>
+                                <?php }
+                                            } ?>
+                                </ul>
                             </section>
                         </form>
 
