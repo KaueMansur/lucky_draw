@@ -78,7 +78,14 @@ function editarUsuarioTemp(idRifaEidUsuario) {
     campoNome.removeAttribute("disabled");
     campoTel.removeAttribute("disabled");
 
+    campoNome.classList.add("campo_usuario_temporario_ativo");
+    campoTel.classList.add("campo_usuario_temporario_ativo");
+
+    let comprimento = campoNome.value.length;
+
     campoNome.focus();
+
+    campoNome.setSelectionRange(comprimento, comprimento);
 
     document.getElementById("btns_confirmar" + idRifaEidUsuario).style.display = "flex";
     document.getElementById("btns_padrao" + idRifaEidUsuario).style.display = "none";

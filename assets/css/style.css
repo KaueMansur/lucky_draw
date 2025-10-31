@@ -438,7 +438,6 @@ p {
     display: flex;
     justify-content: center;
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
-    ;
     padding: 20px;
     border-radius: 10px;
     align-items: center;
@@ -516,7 +515,8 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* gap: 30px; */
+    /* gap: 60px; */
+    width: 100%;
 }
 
 .div_duplo_input input:not([type=radio]) {
@@ -714,15 +714,19 @@ p {
 }
 
 .card_vendas {
-    height: 230px;
+    height: 250px;
     display: flex;
+    padding-inline: 50px;
     flex-direction: column;
-    /* justify-content: space-between; */
-    padding: 15px;
+    justify-content: center;
+    /* gap: 10px; */
+    /* padding-inline: 50px; */
+    align-items: center;
     border-radius: 20px;
     background-color: #FFF;
     box-shadow: #000 1px 2px 2px;
-    width: 400px;
+    width: 500px;
+    overflow: hidden;
 }
 
 .usuario_temp_container {
@@ -732,6 +736,7 @@ p {
     align-items: center;
     padding-left: 10px;
     justify-content: space-between;
+    width: 400px;
 }
 
 .btn_add_numeros {
@@ -796,4 +801,21 @@ p {
     background-color: rgb(233, 98, 9);
     color: #FFF;
     height: 40px;
+}
+
+.form_container{
+    display: flex;
+    flex-direction: column;
+    min-height: 180px;
+}
+
+.btns_confirm{
+    color: #FFF;
+    background-color: var(--azul-ceu);
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 13pt;
+    width: 45%;
+    cursor: pointer;
 }

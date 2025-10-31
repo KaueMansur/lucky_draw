@@ -106,7 +106,7 @@ foreach ($listaDeRifas as $r) {
                                 <button type="button" class="btn_limpar_selecao btn_nav white" disabled>Limpar Seleções</button>
                             </div> -->
 
-                            <section class="espaco_numeros espaco_usuarios_temp">
+                            <section class="espaco_numeros">
                                 <ul class="card_comprados">
                                     <?php
 
@@ -136,7 +136,10 @@ foreach ($listaDeRifas as $r) {
 
                                         <li class="card_vendas">
 
-                                            <form action="../controller/editar_usuario_temp_controller.php" method="post">
+                                            <input type="hidden" id="id_hidden<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
+                                            <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
+
+                                            <form action="../controller/editar_usuario_temp_controller.php" method="post" class="form_container">
                                                 <input type="hidden" id="id_hidden<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
                                                 <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
 
@@ -160,8 +163,8 @@ foreach ($listaDeRifas as $r) {
                                                 </div>
                                                 <?php if ($rifa->getStatusVendas() == 1) { ?>
                                                     <div class="div_duplo_input" style="display: none;" id="btns_confirmar<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>">
-                                                        <input type="submit" class="btn_add_numeros" onclick="ativarHiddens(<?= $usuario->getIdUsuario() ?>)" style="background-color: rgba(7, 148, 7, 1);" value="Salvar">
-                                                        <button type="button" class="btn_add_numeros" style="background-color: #F00;" onclick="cancelarEdicao(<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>)">Cancelar</button>
+                                                        <button type="submit" class="btns_confirm" onclick="ativarHiddens(<?= $usuario->getIdUsuario() ?>)" style="background-color: rgba(7, 148, 7, 1);">Salvar</button>
+                                                        <button type="button" class="btns_confirm" style="background-color: #F00;" onclick="cancelarEdicao(<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>)">Cancelar</button>
                                                     </div>
                                             </form>
                                             <div class="div_duplo_input" id="btns_padrao<?= $rifa->getIdRifa() . $usuario->getIdUsuario() ?>">
