@@ -18,10 +18,10 @@ function criarVenda(idRifa) {
     document.getElementById("btn_criar_venda" + idRifa).style.display = "none";
 }
 
-function cancelarVenda(idRifa) {
-    document.getElementById("btn_cancelar_venda" + idRifa).style.display = "none";
-    document.getElementById("btn_criar_venda" + idRifa).style.display = "block";
-    document.getElementById("card_comprador" + idRifa).style.display = "none";
+function cancelarVenda(idUsuario) {
+    document.getElementById("btn_cancelar_venda" + idUsuario).style.display = "none";
+    document.getElementById("btn_criar_venda" + idUsuario).style.display = "block";
+    document.getElementById("card_comprador" + idUsuario).style.display = "none";
 
     checkBox.forEach(element => {
         element.style.display = "none";
@@ -52,7 +52,9 @@ function cancelarNumeros(idUsuario) {
 
 function ativarHiddens(idUsuario) {
     let item = document.getElementById("id_hidden" + idUsuario)
+    let itens = document.getElementById("id_usuario" + idUsuario)
     item.setAttribute("name", "id_usuarios_temp")
+    itens.setAttribute("name", "id_usuarios_temp")
 }
 
 function mostrarOpcoesDeSorteio(idRifa) {
@@ -71,9 +73,9 @@ function cancelarSorteio(idRifa) {
     document.getElementById("popup_sorteio" + idRifa).style.display = "none";
 }
 
-function editarUsuarioTemp(idRifaEidUsuario) {
-    let campoNome = document.getElementById("nome_usuario_temp" + idRifaEidUsuario);
-    let campoTel = document.getElementById("telefone_usuario_temp" + idRifaEidUsuario);
+function editarUsuarioTemp(idUsuario) {
+    let campoNome = document.getElementById("nome_usuario_temp" + idUsuario);
+    let campoTel = document.getElementById("telefone_usuario_temp" + idUsuario);
 
     campoNome.removeAttribute("disabled");
     campoTel.removeAttribute("disabled");
@@ -87,19 +89,19 @@ function editarUsuarioTemp(idRifaEidUsuario) {
 
     campoNome.setSelectionRange(comprimento, comprimento);
 
-    document.getElementById("btns_confirmar" + idRifaEidUsuario).style.display = "flex";
-    document.getElementById("btns_padrao" + idRifaEidUsuario).style.display = "none";
+    document.getElementById("btns_confirmar" + idUsuario).style.display = "flex";
+    document.getElementById("btns_padrao" + idUsuario).style.display = "none";
 }
 
-function cancelarEdicao(idRifaEidUsuario) {
-    let campoNome = document.getElementById("nome_usuario_temp" + idRifaEidUsuario);
-    let campoTel = document.getElementById("telefone_usuario_temp" + idRifaEidUsuario);
+function cancelarEdicao(idUsuario) {
+    let campoNome = document.getElementById("nome_usuario_temp" + idUsuario);
+    let campoTel = document.getElementById("telefone_usuario_temp" + idUsuario);
 
     campoNome.setAttribute("disabled", true);
     campoTel.setAttribute("disabled", true);
 
-    document.getElementById("btns_confirmar" + idRifaEidUsuario).style.display = "none";
-    document.getElementById("btns_padrao" + idRifaEidUsuario).style.display = "flex";
+    document.getElementById("btns_confirmar" + idUsuario).style.display = "none";
+    document.getElementById("btns_padrao" + idUsuario).style.display = "flex";
 }
 
 function limparSelecao() {
