@@ -366,8 +366,10 @@ p {
     padding: 15px;
     justify-content: center;
     overflow-y: scroll;
+    overflow-x: hidden;
     border-radius: 15px;
     box-shadow: #000 1px 2px 3px;
+    position: relative;
 }
 
 .numero {
@@ -415,15 +417,18 @@ p {
     border-radius: 8px;
     padding-top: 60px;
     gap: 30px;
+    height: 90vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
-
+/* 
 .rifa_aberta form {
     width: calc(100% - 15px);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
-}
+} */
 
 .numeros_rifa_vendidos {
     display: none;
@@ -604,20 +609,26 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* gap: 20px; */
-    height: 170px;
-    width: 40vw;
+    gap: 20px;
+    height: 250px;
+    border: 2px solid #000;
+    width: 50%;
     border-radius: 20px;
     box-shadow: #000 1px 1px 2px;
-    gap: 10px;
+    /* gap: 100px; */
+    display: none;
     margin-bottom: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .card_cadastro div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 70%;
+    width: 60%;
 }
 
 .btn_cadastro {
@@ -629,8 +640,9 @@ p {
     border-radius: 5px;
     font-size: 14pt;
     height: 40px;
-    width: 18vw;
+    width: 230px;
     box-shadow: #000 1px 1px 2px;
+    padding: 10px;
 }
 
 .btn_add_usuario {
@@ -638,6 +650,9 @@ p {
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 .label_usuario_temp {
@@ -828,3 +843,9 @@ p {
     visibility: hidden;
     position: absolute;
 }
+/* 
+.container_cadastro_usuarios_temp{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+} */

@@ -9,19 +9,15 @@ function abrirRifa(idRifa) {
 
 function fecharRifa(idRifa) {
     document.getElementById("id" + idRifa).style.display = "none";
-    limparSelecao()
+    limparSelecao();
 }
 
 function criarVenda(idRifa) {
-    document.getElementById("btn_cancelar_venda" + idRifa).style.display = "block";
     document.getElementById("card_comprador" + idRifa).style.display = "flex";
-    document.getElementById("btn_criar_venda" + idRifa).style.display = "none";
 }
 
-function cancelarVenda(idUsuario) {
-    document.getElementById("btn_cancelar_venda" + idUsuario).style.display = "none";
-    document.getElementById("btn_criar_venda" + idUsuario).style.display = "block";
-    document.getElementById("card_comprador" + idUsuario).style.display = "none";
+function cancelarVenda(idRifa) {
+    document.getElementById("card_comprador" + idRifa).style.display = "none";
 
     checkBox.forEach(element => {
         element.style.display = "none";
