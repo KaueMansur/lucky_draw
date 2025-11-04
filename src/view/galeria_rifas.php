@@ -88,7 +88,7 @@ foreach ($listaDeRifas as $r) {
                                     <input type="submit" value="Comprar Números" id="btn_comprar_numeros<?= $rifa->getIdRifa() ?>" class="btn_comprar_numeros btn_nav" disabled>
                                     <button type="button" class="btn_limpar_selecao btn_nav white" disabled>Limpar Seleções</button>
                                 </div> -->
-                                
+
                                 <section class="espaco_numeros">
                                     <img src="../../assets/img/icons/adicionar-usuario.png" onclick="criarVenda('<?= $rifa->getIdRifa() ?>')" id="btn_criar_venda<?= $rifa->getIdRifa() ?>" class="btn_add_usuario">
                                     <ul class="card_comprados">
@@ -141,10 +141,17 @@ foreach ($listaDeRifas as $r) {
                                                         <input type="tel" name="tel_usuario_temp" class="infos_usuario_temp" id="telefone_usuario_temp<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getTelefone() ?>" disabled>
                                                     </div>
 
-                                                    <div class="usuario_temp_container numeros_usuario_temp_container">
-                                                        <label class="label_usuario_temp label_numero_usuario_temp">Números:</label>
-                                                        <ul class="numeros_usuario_temp_ul">
-                                                            <?php foreach ($usuario->getNumeros() as $n) {  ?>
+                                                    <div class="usuario_temp_container numeros_usuario_temp_container" id="lista_numeros<?= $usuario->getIdUsuario() ?>">
+                                                        <label class="label_usuario_temp label_numero_usuario_temp" id="label_numeros<?= $usuario->getIdUsuario() ?>">Números:</label>
+                                                        <ul class="numeros_usuario_temp_ul" id="ul_numeros_usuario_temp<?= $usuario->getIdUsuario() ?>">
+                                                            <?php
+                                                            $key = 1;
+                                                            foreach ($usuario->getNumeros() as $n) {
+                                                                if ($key == 5) {
+                                                            ?>
+                                                                    <li class="numero_usuario_temp" style="padding: 3px; padding-inline: 10px; font-size: 18pt; cursor:pointer;" onclick="expandirNumerosVendidos(<?= $usuario->getIdUsuario() ?>)" id="btn_mostrar_numeros<?= $usuario->getIdUsuario() ?>">+</li>
+                                                                <?php }
+                                                                $key++; ?>
                                                                 <li class="numero_usuario_temp"><?= $n ?></li>
                                                             <?php } ?>
                                                         </ul>

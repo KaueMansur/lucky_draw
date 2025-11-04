@@ -197,3 +197,30 @@ radios.forEach(element => {
         }
     })
 })
+
+function expandirNumerosVendidos(idUsuario) {
+    let div = document.getElementById("lista_numeros" + idUsuario);
+    let btnMostrarNumeros = document.getElementById("btn_mostrar_numeros" + idUsuario);
+    let ul = document.getElementById("ul_numeros_usuario_temp" + idUsuario);
+    let label = document.getElementById("label_numeros" + idUsuario);
+
+    console.log(div)
+    if (!div.classList.contains("lista_expandida")) {
+        div.classList.add("lista_expandida");
+        btnMostrarNumeros.innerHTML = "-";
+        ul.style.height = "fit-content";
+        ul.style.padding = "15px";
+        // ul.style.marginTop = "100px";
+        label.style.position = "sticky";
+        label.style.top = "43px";
+
+    } else {
+        div.classList.remove("lista_expandida");
+        btnMostrarNumeros.innerHTML = "+";
+        ul.style.height = "40px";
+        ul.style.padding = "0px";
+        ul.style.marginTop = "5px";
+        label.style.position = "static";
+        label.style.top = "0px";
+    }
+}
