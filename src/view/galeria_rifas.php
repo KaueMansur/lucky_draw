@@ -37,18 +37,19 @@ foreach ($listaDeRifas as $r) {
     </header>
 
     <main id="main">
+        <a class="btn_nav" href="criarRifa.php">Criar Rifa</a>
         <h2 class="subtitulo">Suas Rifas</h2>
         <section>
             <ul class="cards_rifa_container">
                 <?php foreach ($listaDasRifas as $rifa) { ?>
                     <li class="rifas" onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">
                         <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="img" width="100px">
-                        <p>Número Sorteado: <?= $rifa->getNumeroSorteado() ?></p>
+                        <!-- <p>Número Sorteado: <?= $rifa->getNumeroSorteado() ?></p> -->
                         <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                             <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)" class="btn_fechar">x</button>
 
 
-                            <form action="../controller/comprar_numeros_controller.php" method="post" style="display: flex; flex-direction: column; gap: 30px">
+                            <form action="../controller/comprar_numeros_controller.php" method="post" style="display: flex; flex-direction: column; align-items: center; gap: 30px">
                                 <!-- </form> -->
                                 <ul class="espaco_numeros">
                                     <?php
@@ -75,10 +76,17 @@ foreach ($listaDeRifas as $r) {
 
                                         <?php } else { ?>
                                             <label>
-                                                <li class="numero numero_disponivel" id="n<?= $i ?>r<?= $rifa->getIdRifa() ?>">
-                                                    <?= $i ?>
-                                                    <input type="checkbox" name="numeros[]" value="<?= $i ?>" id="i<?= $i ?>r<?= $rifa->getIdRifa() ?>" class="numeros_rifa_disponiveis">
-                                                </li>
+                                                <?php if ($rifa->getStatusVendas() == 1) { ?>
+                                                    <li class="numero numero_disponivel" id="n<?= $i ?>r<?= $rifa->getIdRifa() ?>">
+                                                        <?= $i ?>
+                                                        <input type="checkbox" name="numeros[]" value="<?= $i ?>" id="i<?= $i ?>r<?= $rifa->getIdRifa() ?>" class="numeros_rifa_disponiveis">
+                                                    </li>
+                                                <?php } else { ?>
+                                                    <li class="numero" id="n<?= $i ?>r<?= $rifa->getIdRifa() ?>" style="cursor: default;">
+                                                        <?= $i ?>
+                                                        <input type="checkbox" name="numeros[]" value="<?= $i ?>" id="i<?= $i ?>r<?= $rifa->getIdRifa() ?>" class="numeros_rifa_disponiveis" disabled>
+                                                    </li>
+                                                <?php } ?>
                                             </label>
                                     <?php
                                         }
@@ -86,11 +94,15 @@ foreach ($listaDeRifas as $r) {
                                 </ul>
                                 <!-- <div class="container_btn_rifa">
                                     <input type="submit" value="Comprar Números" id="btn_comprar_numeros<?= $rifa->getIdRifa() ?>" class="btn_comprar_numeros btn_nav" disabled>
-                                    <button type="button" class="btn_limpar_selecao btn_nav white" disabled>Limpar Seleções</button>
                                 </div> -->
+                                <?php if ($rifa->getStatusVendas() == 1) { ?>
+                                    <button style="width: 20%;" type="button" class="btn_limpar_selecao btn_nav" disabled>Limpar Seleções</button>
+                                <?php } ?>
 
                                 <section class="espaco_numeros">
-                                    <img src="../../assets/img/icons/adicionar-usuario.png" onclick="criarVenda('<?= $rifa->getIdRifa() ?>')" id="btn_criar_venda<?= $rifa->getIdRifa() ?>" class="btn_add_usuario">
+                                    <?php if ($rifa->getStatusVendas() == 1) { ?>
+                                        <img src="../../assets/img/icons/adicionar-usuario.png" onclick="criarVenda('<?= $rifa->getIdRifa() ?>')" id="btn_criar_venda<?= $rifa->getIdRifa() ?>" class="btn_add_usuario">
+                                    <?php } ?>
                                     <ul class="card_comprados">
                                         <?php
 
@@ -127,7 +139,7 @@ foreach ($listaDeRifas as $r) {
                                                 <input type="hidden" id="id_hidden<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
                                                 <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
 
-                                                <form action="../controller/editar_usuario_temp_controller.php" method="post" class="form_container">
+                                                <form action="../controller/editar_usuario_temp_controller.php" method="post" class="form_container" id="editar_usuario<?= $usuario->getIdUsuario() ?>">
                                                     <input type="hidden" id="id_usuario<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
                                                     <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
 
@@ -163,10 +175,23 @@ foreach ($listaDeRifas as $r) {
                                                         </div>
                                                     <?php } ?>
                                                 </form>
-                                                <div class="div_duplo_input" id="btns_padrao<?= $usuario->getIdUsuario() ?>">
-                                                    <input type="submit" id="btn_comprar_numeros<?= $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="btn_add_numeros" value="Adicionar Números" disabled>
-                                                    <button type="button" id="btn_editar_usuario<?= $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="25px"></button>
-                                                </div>
+                                                <?php if ($rifa->getStatusVendas() == 1) { ?>
+                                                    <div class="div_duplo_input" id="btns_padrao<?= $usuario->getIdUsuario() ?>">
+                                                        <input type="submit" id="btn_comprar_numeros<?= $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="btn_add_numeros" value="Adicionar Números" disabled>
+                                                        <div class="div_duplo_input" style="width: 100px;">
+                                                            <?php
+                                                            //  if ($usuario->getQuantidadeNumeros() == 0) { 
+                                                            ?>
+                                                            <form action="../controller/excluir_usuario_temp_controller.php" method="post">
+                                                                <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
+                                                                <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir"></button>
+                                                            </form>
+                                                            <!-- <?php //} 
+                                                                    ?>  -->
+                                                            <button type="button" id="btn_editar_usuario<?= $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="25px"></button>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
                                             </li>
                                         <?php }
                                         ?>
@@ -177,14 +202,17 @@ foreach ($listaDeRifas as $r) {
                             <?php if ($rifa->getStatusVendas() == 1) { ?>
                                 <form action="../controller/cadastrar_usuario_controller.php" method="post" class="card_cadastro" id="card_comprador<?= $rifa->getIdRifa() ?>">
 
-                                    <div class="container_cadastro_usuarios_temp">
-                                        <label class="label_cadastro_rifa">Nome:</label>
-                                        <input type="text" name="nome" id="" class="input_usuario_temp">
-                                    </div>
+                                    <div class="container_container_cadastro_temp">
+                                        <div class="container_cadastro_usuarios_temp">
+                                            <label class="label_cadastro_rifa">Nome:</label>
+                                            <input type="text" name="nome" id="" class="input_usuario_temp">
+                                        </div>
 
-                                    <div class="container_cadastro_usuarios_temp">
-                                        <label class="label_cadastro_rifa">Telefone:</label>
-                                        <input type="tel" name="telefone" id="" class="input_usuario_temp">
+                                        <div class="container_cadastro_usuarios_temp">
+                                            <label class="label_cadastro_rifa">Telefone:</label>
+                                            <input type="tel" name="telefone" id="" class="input_usuario_temp">
+                                        </div>
+
                                     </div>
 
                                     <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
@@ -202,26 +230,41 @@ foreach ($listaDeRifas as $r) {
                                 </form>
 
                             <?php } elseif (!in_array($rifa->getNumeroSorteado(), $numerosConvertidos)) { ?>
-                                <button onclick="mostrarOpcoesDeSorteio('<?= $rifa->getIdRifa() ?>')">Opções de sorteio</button>
+                                <button onclick="mostrarOpcoesDeSorteio('<?= $rifa->getIdRifa() ?>')" class="btn_encerrar_venda" style="background-color: #F80;">Opções de sorteio</button>
                             <?php } ?>
-
+                            <!-- 
                             <div id="opcoes_de_sorteio<?= $rifa->getIdRifa() ?>" class="desativado">
                                 <button onclick="abrirSorteio('<?= $rifa->getIdRifa() ?>')">Sortear</button>
                                 <button onclick="cancelarOpcoesSorteio('<?= $rifa->getIdRifa() ?>')">Cancelar</button>
-                            </div>
+                            </div> -->
 
-                            <!-- <form id="popup_sorteio<?= $rifa->getIdRifa() ?>" method="post" action="../controller/sorteio_controller.php" class="desativado">
-                                <input type="checkbox" name="numeros_comprados" id="numeros_comprados<?= $rifa->getIdRifa() ?>" value="true" checked>
-                                <label for="numeros_comprados<?= $rifa->getIdRifa() ?>">Somente números comprados</label>
-                                <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
-                                <button type="button" onclick="cancelarSorteio('<?= $rifa->getIdRifa() ?>')">Cancelar Sorteio</button>
-                                <input type="submit" value="Sortear">
-                            </form> -->
+                            <form id="popup_sorteio<?= $rifa->getIdRifa() ?>" method="post" action="../controller/sorteio_controller.php" class="desativado card_sorteio">
+                                <div class="sorteio_container">
+                                    <div>
+                                        <input type="checkbox" name="numeros_comprados" id="numeros_comprados<?= $rifa->getIdRifa() ?>" value="true" checked>
+                                        <label for="numeros_comprados<?= $rifa->getIdRifa() ?>" class="legenda_sorteio">Somente números comprados</label>
+                                    </div>
+                                    <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
+                                    <div class="div_duplo_input">
+                                        <button type="button" onclick="cancelarSorteio('<?= $rifa->getIdRifa() ?>')" class="btn_nav white">Cancelar Sorteio</button>
+                                        <input type="submit" value="Sortear" class="btn_nav">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="rifas_infos">
                             <!-- <p><?= $rifa->getObjetivo() ?></p> -->
-                            <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
-                            <p class="valor_rifa"><?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
+                            <div class="rifas_infos_p_container">
+                                <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
+                                <p class="valor_rifa"><?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
+                            </div>
+                            <?php 
+                            if ($rifa->getQuantidadeNumerosVendidos($rifa->getIdRifa()) == 0) { ?>
+                                <form action="../controller/deletar_rifa_controller.php" method="post">
+                                    <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
+                                    <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir"></button>
+                                </form>
+                            <?php } ?>
                         </div>
 
                         <?php

@@ -222,6 +222,16 @@ class Rifa{
     public function setStatusVendas($status){
         $this->statusVendas = $status;
     }
+
+    public function getQuantidadeNumerosVendidos($idRifa){
+        $db = new Database();
+
+        $qntNumeros = $db->select(
+            "SELECT COUNT(*) FROM numeros_comprados WHERE id_rifa = $idRifa"
+        );
+
+        return $qntNumeros[0]->{'COUNT(*)'};
+    }
 }
 
 ?>

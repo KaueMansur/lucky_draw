@@ -69,62 +69,64 @@ foreach ($listaDasRifas as $rifa) {
 </head>
 
 <body>
-    <header>
+    <header id="header">
 
         <nav id="nav">
             <h2 class="logo">LuckyDraw</h2>
             <ul class="ul_nav">
-                <li><a href="#" class="nav_links">Home</a></li>
-                <li><a href="#" class="nav_links">About</a></li>
-                <li><a href="#" class="nav_links">Tickets</a></li>
-                <li><a href="#" class="nav_links">Results</a></li>
-                <li><a href="#" class="nav_links">Contact</a></li>
+                <li><a href="#header" class="nav_links">Início</a></li>
+                <li><a href="#footer" class="nav_links">Sobre</a></li>
+                <li><a href="#main" class="nav_links">Rifas</a></li>
+                <!-- <li><a href="#" class="nav_links">Results</a></li> -->
+                <li><a href="#footer" class="nav_links">Contatos</a></li>
             </ul>
             <ul class="ul_nav">
-                <li><a class="btn_nav" href="src/view/criarRifa.php">Criar Rifa</a></li>
                 <?php if (!isset($_SESSION["usuario"])) { ?>
                     <li><a class="btn_nav" href="src/view/login.php">Login</a></li>
                 <?php } else { ?>
                     <li><a class="btn_nav" href="src/controller/session_destroy.php">Sair da sessão</a></li>
-                    <li><a class="btn_nav" href="src/view/galeria_rifas.php">Galeria de rifas</a></li>
                 <?php } ?>
             </ul>
         </nav>
         <section id="hero">
             <article class="hero_content">
-                <h1 class="titulo">Win Big Prizes!</h1>
-                <p>Buy your tickets and have a chance to win amazing prizes</p>
+                <h1 class="titulo">Ganhe Grandes Prêmios!</h1>
+                <p>Compre números e tenha a chance de ganhar prêmios incríveis! ou Crie Suas próprias Rifas!</p>
+                 <!-- <p>Crie suas próprias rifas!</p> -->
                 <div>
-                    <a class="btn_nav" href="#">View Prizes</a>
-                    <a class="btn_nav white" href="#">Buy Tickets</a>
+                    <a href="#" class="btn_nav">Comprar números</a>
+                    <!-- <a class="btn_nav" href="src/view/criarRifa.php">Criar Rifa</a> -->
+                    <a class="btn_nav white" href="src/view/galeria_rifas.php">Galeria de rifas</a>
+                    <!-- <a class="btn_nav" href="#">View Prizes</a> -->
+                    <!-- <a class="btn_nav white" href="#">Buy Tickets</a> -->
                 </div>
             </article>
             <div class="card_dourado">
-                <p class="legenda_hero">Your Lucky Ticket</p>
+                <p class="legenda_hero">Sua rifa premiada!</p>
             </div>
         </section>
         <section id="diferencial">
-            <h2 class="subtitulo">Why Choose Us?</h2>
+            <h2 class="subtitulo">Por Que Nos Escolher?</h2>
             <div id="cards_diferencial_container">
                 <article class="card_diferencial">
                     <img src="" alt="">
-                    <h3>Easy to Play</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, aut?</p>
+                    <h3>Fácil De Usar</h3>
+                    <p>Com poucos cliques, você cria sua rifa ou compra outras rifas</p>
                 </article>
                 <article class="card_diferencial">
                     <img src="" alt="">
-                    <h3>Easy to Play</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, aut?</p>
+                    <h3>Gratuito</h3>
+                    <p>A plataforma não te cobra nada para criar, vender ou administrar suas rifas</p>
                 </article>
                 <article class="card_diferencial">
                     <img src="" alt="">
-                    <h3>Easy to Play</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, aut?</p>
+                    <h3>Velocidade</h3>
+                    <p>A plataforma é bem otimizada, e opera muito rápida</p>
                 </article>
                 <article class="card_diferencial">
                     <img src="" alt="">
-                    <h3>Easy to Play</h3>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime, aut?</p>
+                    <h3>Segurança No Pagamento</h3>
+                    <p>Seus pagamentos são protegidos com tecnologia de ponta!</p>
                 </article>
             </div>
         </section>
@@ -231,20 +233,12 @@ foreach ($listaDasRifas as $rifa) {
     <footer id="footer">
         <div id="footer_content">
             <article class="article_footer">
-                <h4 class="titulo_footer">About LuckyDraw</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <h4 class="titulo_footer">Sobre LuckyDraw</h4>
+                <p>LuckyDraw é uma plataforma de criação e venda de rifas, feita para facilitar a organização e a divulgação das rifas</p>
             </article>
             <article class="article_footer">
-                <h4 class="titulo_footer">About LuckyDraw</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
-            </article>
-            <article class="article_footer">
-                <h4 class="titulo_footer">About LuckyDraw</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
-            </article>
-            <article class="article_footer">
-                <h4 class="titulo_footer">About LuckyDraw</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <h4 class="titulo_footer">Contatos</h4>
+                <p>Email: kaueantoniomansursantos@gmail.com</p>
             </article>
         </div>
     </footer>

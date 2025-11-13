@@ -1,8 +1,6 @@
 let checkBox = document.querySelectorAll(".criar_venda_checkbox");
 
 
-
-
 function abrirRifa(idRifa) {
     document.getElementById("id" + idRifa).style.display = "flex";
 }
@@ -54,7 +52,7 @@ function ativarHiddens(idUsuario) {
 }
 
 function mostrarOpcoesDeSorteio(idRifa) {
-    document.getElementById("opcoes_de_sorteio" + idRifa).style.display = "block";
+    document.getElementById("popup_sorteio" + idRifa).style.display = "block";
 }
 
 function cancelarOpcoesSorteio(idRifa) {
@@ -62,7 +60,7 @@ function cancelarOpcoesSorteio(idRifa) {
 }
 
 function abrirSorteio(idRifa) {
-    document.getElementById("popup_sorteio" + idRifa).style.display = "block";
+    document.getElementById("popup_sorteio" + idRifa).style.display = "flex";
 }
 
 function cancelarSorteio(idRifa) {
@@ -209,7 +207,7 @@ function expandirNumerosVendidos(idUsuario) {
         div.classList.add("lista_expandida");
         btnMostrarNumeros.innerHTML = "-";
         ul.style.height = "fit-content";
-        ul.style.padding = "15px";
+        // ul.style.padding = "15px";
         // ul.style.marginTop = "100px";
         label.style.position = "sticky";
         label.style.top = "43px";

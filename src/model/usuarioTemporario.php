@@ -50,6 +50,14 @@ class UsuarioTemporario
         );
     }
 
+    public function excluirUsuarioTemp($idUsuario){
+        $db = new Database();
+
+        $db->delete(
+            "DELETE FROM usuarios_temp WHERE id_usuario = $idUsuario"
+        );
+    }
+
     public function getIdUsuario()
     {
         return $this->idUsuario;
@@ -94,5 +102,9 @@ class UsuarioTemporario
 
     public function setNumeros($numeros){
         $this->numeros = $numeros;
+    }
+
+    public function getQuantidadeNumeros(){
+        return count($this->numeros);
     }
 }

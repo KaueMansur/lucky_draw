@@ -35,6 +35,14 @@
     box-sizing: border-box;
 }
 
+body{
+    overflow-x: hidden;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
 .desativado {
     display: none;
 }
@@ -47,6 +55,9 @@
     height: 10vh;
     align-items: center;
     padding-inline: 30px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
 }
 
 .ul_nav {
@@ -65,6 +76,12 @@
     color: var(--texto-primario);
     font-size: 14pt;
     cursor: pointer;
+    display: inline-block;
+    transition: 0.1s;
+}
+
+.nav_links:hover{
+    transform: scale(1.15);
 }
 
 .btn_nav {
@@ -91,11 +108,12 @@
 #hero {
     background-color: var(--azul-claro);
     width: 100%;
-    height: 50vh;
+    height: 60vh;
     padding-inline: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 10vh;
 }
 
 .titulo {
@@ -208,28 +226,30 @@ p {
 
 .rifas_infos {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: #fff;
     border-radius: 0 0 10px 10px;
     width: 100%;
     height: 60px;
+    overflow: hidden;
+    padding-inline: 30px;
+    align-items: center;
 }
 
 .premio_rifa {
     font-weight: 700;
     color: var(--cinza-escuro);
-    padding-left: 30px;
     font-size: 12pt;
     text-transform: capitalize;
+    width: fit-content;
 }
 
 .valor_rifa {
     font-weight: 700;
     color: var(--vermelho-primario);
-    padding-left: 30px;
     font-size: 14pt;
     text-transform: capitalize;
+    width: fit-content;
 }
 
 #footer {
@@ -241,10 +261,19 @@ p {
 #footer_content {
     display: flex;
     padding-inline: 30px;
+    justify-content: space-around;
 }
 
 .article_footer {
-    width: 22vw;
+    /* width: 22vw;
+    display: flex;
+    justify-content: space-around; */
+}
+
+.article_footer p {
+    /* width: 18vw; */
+    letter-spacing: 1px;
+    line-height: 20px;
 }
 
 .article_footer p {
@@ -369,6 +398,7 @@ p {
     border-radius: 15px;
     box-shadow: #000 1px 2px 3px;
     position: relative;
+    min-height: 100px;
 }
 
 .numero {
@@ -594,6 +624,7 @@ p {
     padding: 15px;
     font-size: 15pt;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .label_cadastro_rifa {
@@ -604,17 +635,17 @@ p {
 
 .card_cadastro {
     background-color: var(--azul-claro);
+    display: none;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-evenly;
+    gap: 10px;
     height: 250px;
     border: 2px solid #000;
     width: 50%;
     border-radius: 20px;
     box-shadow: #000 1px 1px 2px;
     /* gap: 100px; */
-    display: none;
     margin-bottom: 30px;
     position: fixed;
     left: 50%;
@@ -622,11 +653,19 @@ p {
     transform: translate(-50%, -50%);
 }
 
-.card_cadastro div {
+.container_container_cadastro_temp{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.container_cadastro_usuarios_temp {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 60%;
+    width: 50%; 
 }
 
 .btn_cadastro {
@@ -857,18 +896,48 @@ p {
     cursor: pointer;
 }
 
+.btn_deletar{
+    padding: 3px;
+    background-color: rgb(241, 36, 36);
+    border-radius: 5px;
+}
+
 #card-1, #btns_padrao-1{
     visibility: hidden;
     position: absolute;
 }
-.lista_expandida{
-    /* 
-     height: fit-content; 
-    padding: 10px;
-    position: absolute;
-    */
-    /* overflow-y: visible; */
-    /*
-    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
-    */
-    }  
+
+.legenda_sorteio{
+    font-family: var(--fonte-primaria);
+    font-size: 15pt;
+}
+
+.card_sorteio{
+    background-color: var(--azul-claro);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* gap: 20px; */
+    height: 250px;
+    border: 2px solid #000;
+    width: 50%;
+    border-radius: 20px;
+    box-shadow: #000 1px 1px 2px;
+    padding-inline: 5%;
+    display: none;
+    margin-bottom: 30px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sorteio_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+}
