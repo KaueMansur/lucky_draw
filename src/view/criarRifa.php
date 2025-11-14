@@ -24,14 +24,14 @@ $usuario = $_SESSION["usuario"];
 
         <div class="div_campo_login">
             <label for="" class="label_login">Objetivo</label>
-            <input type="text" name="objetivo" id="" class="input_login">
+            <input type="text" name="objetivo" id="" class="input_login" placeholder="Escreva o objetivo da rifa">
         </div>
 
         <section class="div_duplo_input">
 
             <div class="div_campo_login">
                 <label for="" class="label_login">Quantidade de números</label>
-                <input type="number" name="quantidade_numeros" id="" class="input_login">
+                <input type="number" name="quantidade_numeros" id="" class="input_login" placeholder="Ex: 100">
             </div>
 
             <div class="div_campo_login">
@@ -62,21 +62,21 @@ $usuario = $_SESSION["usuario"];
                 <label class="btn_radio" for="radio_valor_numeros">Usar este</label>
                 <input type="radio" name="tipo_de_valor" id="radio_valor_numeros" class="tipo_de_valor" checked>
                 <label for="" class="label_login" style="text-align: center;">Valor de cada número</label>
-                <input type="number" name="valor_numeros" id="valor_numeros" class="input_login">
+                <input type="number" name="valor_numeros" id="valor_numeros" class="input_login" placeholder="Ex: 2.00">
             </div>
 
             <div class="div_campo_login">
                 <label class="btn_radio" for="radio_valor_total">Usar este</label>
                 <input type="radio" name="tipo_de_valor" id="radio_valor_total" class="tipo_de_valor">
                 <label for="" class="label_login" style="text-align: center;">Valor total</label>
-                <input type="number" name="valor_total" id="valor_total" class="input_login" disabled>
+                <input type="number" name="valor_total" id="valor_total" class="input_login" disabled placeholder="Ex: 200.00">
             </div>
         </section>
 
         <section class="div_duplo_input">
             <div class="div_campo_login">
                 <label for="" class="label_login">Prêmio</label>
-                <input type="text" name="premio" id="" class="input_login">
+                <input type="text" name="premio" id="" class="input_login" placeholder="Digite o prêmio da rifa">
             </div>
     
             <div class="div_campo_login">
@@ -94,7 +94,7 @@ $usuario = $_SESSION["usuario"];
     
             <div class="div_campo_login">
                 <label for="" class="label_login">Local do sorteio</label>
-                <input type="text" name="local_sorteio" id="" class="input_login">
+                <input type="text" name="local_sorteio" id="" class="input_login" placeholder="Ex: Instagram: Meu_Instagram">
             </div>
         </section>
 
@@ -103,7 +103,7 @@ $usuario = $_SESSION["usuario"];
 
         <div class="div_duplo_input">
             <input type="submit" value="Criar Rifa" class="btn_nav">
-            <input type="reset" value="Cancelar" class="btn_nav white">
+            <a href="../view/galeria_rifas.php" class="btn_nav white" style="width: 300px; text-align:center">Cancelar</a>
         </div>
 
     </form>

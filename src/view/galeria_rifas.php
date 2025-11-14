@@ -178,16 +178,17 @@ foreach ($listaDeRifas as $r) {
                                                 <?php if ($rifa->getStatusVendas() == 1) { ?>
                                                     <div class="div_duplo_input" id="btns_padrao<?= $usuario->getIdUsuario() ?>">
                                                         <input type="submit" id="btn_comprar_numeros<?= $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="btn_add_numeros" value="Adicionar Números" disabled>
-                                                        <div class="div_duplo_input" style="width: 100px;">
+                                                        <div class="div_duplo_input delete_edit" style="width: 100px;">
                                                             <?php
-                                                            //  if ($usuario->getQuantidadeNumeros() == 0) { 
+                                                            $qnt = $usuario->getQuantidadeNumeros($usuario->getIdUsuario());
+                                                            if ($qnt == 0) {
                                                             ?>
-                                                            <form action="../controller/excluir_usuario_temp_controller.php" method="post">
-                                                                <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
-                                                                <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir"></button>
-                                                            </form>
-                                                            <!-- <?php //} 
-                                                                    ?>  -->
+                                                                <form action="../controller/excluir_usuario_temp_controller.php" method="post">
+                                                                    <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
+                                                                    <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir"></button>
+                                                                </form>
+                                                            <?php }
+                                                            ?>
                                                             <button type="button" id="btn_editar_usuario<?= $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="25px"></button>
                                                         </div>
                                                     </div>
@@ -258,7 +259,7 @@ foreach ($listaDeRifas as $r) {
                                 <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
                                 <p class="valor_rifa"><?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
                             </div>
-                            <?php 
+                            <?php
                             if ($rifa->getQuantidadeNumerosVendidos($rifa->getIdRifa()) == 0) { ?>
                                 <form action="../controller/deletar_rifa_controller.php" method="post">
                                     <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
@@ -286,20 +287,12 @@ foreach ($listaDeRifas as $r) {
     <footer id="footer">
         <div id="footer_content">
             <article class="article_footer">
-                <h4 class="titulo_footer">About LuckyDraw</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <h4 class="titulo_footer">Sobre LuckyDraw</h4>
+                <p>LuckyDraw é uma plataforma de criação e venda de rifas, feita para facilitar a organização e a divulgação das rifas</p>
             </article>
             <article class="article_footer">
-                <h4 class="titulo_footer">About LuckyDraw</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
-            </article>
-            <article class="article_footer">
-                <h4 class="titulo_footer">About LuckyDraw</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
-            </article>
-            <article class="article_footer">
-                <h4 class="titulo_footer">About LuckyDraw</h4>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <h4 class="titulo_footer">Contatos</h4>
+                <p>Email: kaueantoniomansursantos@gmail.com</p>
             </article>
         </div>
     </footer>

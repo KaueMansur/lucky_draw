@@ -109,22 +109,22 @@ foreach ($listaDasRifas as $rifa) {
             <h2 class="subtitulo">Por Que Nos Escolher?</h2>
             <div id="cards_diferencial_container">
                 <article class="card_diferencial">
-                    <img src="" alt="">
+                    <img src="assets/img/icons/facil_de_usar.png" alt="Ícone: fácil de usar" height="50px">
                     <h3>Fácil De Usar</h3>
                     <p>Com poucos cliques, você cria sua rifa ou compra outras rifas</p>
                 </article>
                 <article class="card_diferencial">
-                    <img src="" alt="">
+                    <img src="assets/img/icons/free.png" alt="ícone de símbolo grátis" height="50px">
                     <h3>Gratuito</h3>
                     <p>A plataforma não te cobra nada para criar, vender ou administrar suas rifas</p>
                 </article>
                 <article class="card_diferencial">
-                    <img src="" alt="">
+                    <img src="assets/img/icons/velocidade.png" alt="Ícone de velocidade" height="50px">
                     <h3>Velocidade</h3>
                     <p>A plataforma é bem otimizada, e opera muito rápida</p>
                 </article>
                 <article class="card_diferencial">
-                    <img src="" alt="">
+                    <img src="assets/img/icons/seguranca.png" alt="ícone de segurança" height="50px">
                     <h3>Segurança No Pagamento</h3>
                     <p>Seus pagamentos são protegidos com tecnologia de ponta!</p>
                 </article>
@@ -133,7 +133,7 @@ foreach ($listaDasRifas as $rifa) {
     </header>
 
     <main id="main">
-        <h2 class="subtitulo">Upcoming prizes</h3>
+        <h2 class="subtitulo">Rifas</h3>
 
             <section>
 

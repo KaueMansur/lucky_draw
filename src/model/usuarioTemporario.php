@@ -104,7 +104,15 @@ class UsuarioTemporario
         $this->numeros = $numeros;
     }
 
-    public function getQuantidadeNumeros(){
-        return count($this->numeros);
+    public function getQuantidadeNumeros($idUsuario){
+        // return count($this->numeros);
+
+        $db = new Database();
+
+        $qnt = $db->select(
+            "SELECT COUNT(*) FROM numeros_comprados WHERE id_usuarios_temp = $idUsuario"
+        );
+
+        return $qnt[0]->{'COUNT(*)'};
     }
 }
