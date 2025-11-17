@@ -207,8 +207,9 @@ function expandirNumerosVendidos(idUsuario) {
         div.classList.add("lista_expandida");
         btnMostrarNumeros.innerHTML = "-";
         ul.style.height = "fit-content";
-        // ul.style.padding = "15px";
-        // ul.style.marginTop = "100px";
+        // div.style.alignItems = "baseline";
+        // ul.style.padding = "15px 0";
+        // ul.style.marginTop = "300px";
         label.style.position = "sticky";
         label.style.top = "43px";
 
@@ -217,7 +218,7 @@ function expandirNumerosVendidos(idUsuario) {
         btnMostrarNumeros.innerHTML = "+";
         ul.style.height = "40px";
         ul.style.padding = "0px";
-        ul.style.marginTop = "5px";
+        // ul.style.marginTop = "5px";
         label.style.position = "static";
         label.style.top = "0px";
     }

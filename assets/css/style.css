@@ -831,7 +831,10 @@ p {
 .numeros_usuario_temp_container {
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     margin-bottom: 10px;
-    padding-right: 10px;
+    /* padding-right: 10px; */
+    /* padding: 0 10px; */
+    display: flex;
+    align-items: center;
 }
 
 .lista_expandida{
@@ -840,6 +843,8 @@ p {
     position: absolute;
     top: 110px;
     overflow-y: scroll;
+    align-items: baseline;
+    padding: 10px;
 }
 
 .numeros_usuario_temp_ul {
