@@ -81,4 +81,28 @@
     #main{
         min-height: 40vh;
     }
+
+    .label_lista_numeros{
+        font-size: 16pt;
+        text-align: center;
+    }
+
+    .lista_numeros_container{
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .container_btn_rifa{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero_content{
+        align-items: center;
+    }
+
+    .legenda_titulo{
+        max-width: 70%;
+    }
 }

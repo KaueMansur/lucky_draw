@@ -105,7 +105,7 @@ foreach ($listaDasRifas as $rifa) {
                 <p class="legenda_titulo">Compre números e tenha a chance de ganhar prêmios incríveis! ou Crie Suas próprias Rifas!</p>
                 <!-- <p>Crie suas próprias rifas!</p> -->
                 <div class="btn_hero">
-                    <a href="#" class="btn_nav">Comprar números</a>
+                    <a href="#main" class="btn_nav">Comprar números</a>
                     <!-- <a class="btn_nav" href="src/view/criarRifa.php">Criar Rifa</a> -->
                     <a class="btn_nav white" href="src/view/galeria_rifas.php">Galeria de rifas</a>
                     <!-- <a class="btn_nav" href="#">View Prizes</a> -->
