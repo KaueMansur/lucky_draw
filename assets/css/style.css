@@ -54,7 +54,7 @@ html{
     justify-content: space-between;
     height: 10vh;
     align-items: center;
-    padding-inline: 30px;
+    padding-inline: 2vw;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -109,7 +109,7 @@ html{
     background-color: var(--azul-claro);
     width: 100%;
     height: 60vh;
-    padding-inline: 30px;
+    padding-inline: 2vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -152,8 +152,8 @@ p {
 
 #diferencial {
     background-color: var(--fundo-principal);
-    padding-inline: 30px;
-    height: 40vh;
+    padding: 20px 2vw;
+    min-height: 40vh;
 }
 
 .subtitulo {
@@ -169,6 +169,7 @@ p {
 #cards_diferencial_container {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .card_diferencial {
@@ -181,6 +182,7 @@ p {
     align-items: center;
     justify-content: space-around;
     padding: 10px 0;
+    box-shadow: 1px 1px 2px #000;
 }
 
 .card_diferencial h3 {
@@ -197,21 +199,26 @@ p {
 
 #main {
     background-color: var(--azul-claro);
-    padding-inline: 30px;
+    padding-inline: 2vw;
     padding-bottom: 40px;
     padding-top: 40px;
+    /* height: fit-content; */
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cards_rifa_container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
+    padding-inline: 1vw;
 }
 
 .rifas {
     margin-bottom: 25px;
-    width: 30vw;
+    width: 28vw;
     height: 200px;
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     border-radius: 10px;
@@ -220,21 +227,23 @@ p {
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    gap: 20px;
+    /* gap: 20px; */
     cursor: pointer;
     box-shadow: #000 1px 1px 5px;
 }
 
 .rifas_infos {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    width: fit-content;
+    text-align: left;
     background-color: #fff;
     border-radius: 0 0 10px 10px;
     width: 100%;
     height: 60px;
     overflow: hidden;
-    padding-inline: 30px;
-    align-items: center;
+    padding-inline: 2vw;
 }
 
 .premio_rifa {
@@ -255,14 +264,26 @@ p {
 
 #footer {
     background-color: var(--cinza-escuro);
-    height: 300px;
+    height: 30vh;
     padding-top: 50px;
+    max-width: 100vw;
+}
+
+html{
+    overflow-x: hidden;
 }
 
 #footer_content {
     display: flex;
-    padding-inline: 30px;
     justify-content: space-around;
+}
+
+.legenda_footer{
+    color: #fff;
+}
+
+.li_footer{
+    list-style-type: none;
 }
 
 .article_footer {
@@ -271,15 +292,26 @@ p {
     justify-content: space-around; */
 }
 
+.article_footer{
+    width: 40%;
+    /* height: 100%; */
+}
+
 .article_footer p {
     /* width: 18vw; */
     letter-spacing: 1px;
     line-height: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 .article_footer p {
     color: #fff;
-    font-size: 10pt;
+    font-size: 1em;
+}
+
+.img_vantagens{
+    height: 50px;
 }
 
 .titulo_footer {
@@ -731,10 +763,11 @@ p {
 
 .card_dourado {
     background-image: linear-gradient(135deg, var(--amarelo-primario) 40%, var(--vermelho-primario));
-    height: 250px;
-    width: 190px;
+    min-width: 170px;
+    height: 40vh;
+    width: 15vw;
     border-radius: 20px;
-    margin-right: 300px;
+    margin-right: 20%;
     transform: rotate(5deg);
     box-shadow: #0008 2px 2px 5px;
     display: flex;
@@ -750,6 +783,12 @@ p {
     text-transform: uppercase;
     text-align: center;
     text-shadow: #0008 1px 1px 2px;
+}
+
+.btn_hero{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
 
 .espaco_usuarios_temp {
@@ -950,4 +989,35 @@ p {
 
 .delete_edit{
     flex-direction: row-reverse;
+}
+
+.btn_menu_hamburguer{
+    position: fixed;
+    right: 30px;
+    top: 90px;
+    z-index: 2;
+    cursor: pointer;
+    display: none;
+    background-color: transparent;
+}
+
+.menu_hamburguer{
+    height: 30vh;
+    position: fixed;
+    right: 20px;
+    top: 120px;
+    width: 200px;
+    background-color: #fff;
+    display: none;
+    z-index: 2;
+    padding: 20px 0;
+    box-shadow: 1px 1px 2px #000;
+    border-radius: 20px;
+}
+
+.menu_hamburguer .ul_nav{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
