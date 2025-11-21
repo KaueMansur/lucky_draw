@@ -26,7 +26,7 @@ if (isset($_POST["email_ou_telefone"])) {
     <title>Login</title>
 </head>
 
-<body id="body_login">
+<body id="body_login" style="height: 100vh;">
     <!--<a href="./recuperar_senha.php">Esqueci minha senha</a> -->
     
     <form action="#" method="post" class="form_login">

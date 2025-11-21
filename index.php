@@ -91,7 +91,15 @@ foreach ($listaDasRifas as $rifa) {
         </nav>
         <section id="hero">
             <li class="hero_content">
-                <button class="btn_menu_hamburguer" onclick="abrirMenu()"><img src="assets/img/icons/hamburguer-menu.png" alt=""></button>
+                <button class="btn_menu_hamburguer" onclick="abrirMenu()">
+                    <svg width="40" height="45" viewBox="0 0 45 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="5" rx="3" fill="#564141" id="bar1" />
+                        <rect y="10" width="40" height="5" rx="3" fill="#564141" id="bar2" />
+                        <rect y="20" width="40" height="5" rx="3" fill="#564141" id="bar3" />
+                    </svg>
+
+                    <!-- <img src="assets/img/icons/btn_menu_hamburguer.svg" id="btn_menu_haburguer" height="25px" alt="" > -->
+                </button>
                 <aside class="menu_hamburguer" id="menu_hamburguer">
                     <ul class="ul_nav menu">
                         <li><a href="#header" class="nav_links">Início</a></li>

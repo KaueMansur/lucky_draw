@@ -95,6 +95,7 @@ html {
     font-size: 14pt;
     border-radius: 20px;
     cursor: pointer;
+    max-width: 400px;
 }
 
 .logo {
@@ -235,7 +236,7 @@ p {
 .rifas_infos {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     width: fit-content;
     text-align: left;
     background-color: #fff;
@@ -333,6 +334,8 @@ html {
     font-family: var(--fonte-primaria);
     font-weight: 700;
     text-transform: uppercase;
+    text-align: left;
+    width: 100%;
 }
 
 #body_login {
@@ -346,9 +349,16 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     min-height: 100vh;
+    width: 500px;
     padding: 50px 0;
     gap: 15px;
+}
+
+.form_rifa{
+    align-items: center;
+    flex-grow: 1;
 }
 
 .input_login {
@@ -359,6 +369,7 @@ html {
     text-align: center;
     font-size: 15pt;
     font-weight: 600;
+    width: 80%;
 }
 
 .btn_form {
@@ -373,14 +384,19 @@ html {
     letter-spacing: 2px;
     margin-top: 20px;
     cursor: pointer;
+    width: 80%;
+    max-width: 70vw;
 }
 
 .div_campo_login {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
     height: 120px;
     justify-content: space-around;
+    max-width: 70vw;
+    width: 100%;
 }
 
 .txt_left {
@@ -419,19 +435,24 @@ html {
 
 .espaco_numeros {
     background-color: var(--azul-claro);
-    width: 95%;
+    /* width: 80%; */
     max-height: 400px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     padding: 15px;
     justify-content: center;
+    align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
     border-radius: 15px;
     box-shadow: #000 1px 2px 3px;
     position: relative;
     min-height: 100px;
+}
+
+.espaco_vendas{
+    padding: 20px;
 }
 
 .numero {
@@ -593,7 +614,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* gap: 60px; */
+    gap: 60px;
     width: 100%;
 }
 
@@ -638,8 +659,6 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 50%;
-    transform: translateX(-50%);
     cursor: pointer;
     text-transform: capitalize;
 }
@@ -818,13 +837,16 @@ html {
     border-radius: 20px;
     flex-direction: column;
     gap: 40px;
+    align-items: center;
+    width: 90%;
+    /* max-width: 90%; */
     background-color: transparent;
 }
 
 .card_vendas {
     height: 250px;
     display: flex;
-    padding-inline: 50px;
+    padding-inline: 5%;
     flex-direction: column;
     justify-content: center;
     /* gap: 10px; */
@@ -833,7 +855,7 @@ html {
     border-radius: 20px;
     background-color: #FFF;
     box-shadow: #000 1px 2px 2px;
-    width: 500px;
+    width: 70%;
     overflow: hidden;
 }
 
@@ -844,7 +866,7 @@ html {
     align-items: center;
     padding-left: 10px;
     justify-content: space-between;
-    width: 400px;
+    /* width: 90%; */
 }
 
 .btn_add_numeros {
@@ -940,6 +962,7 @@ html {
     flex-direction: column;
     min-height: 180px;
     position: relative;
+    width: 70%;
 }
 
 .btns_confirm {
@@ -1018,7 +1041,7 @@ html {
     height: 30vh;
     position: fixed;
     right: 20px;
-    top: 140px;
+    top: 20vh;
     width: 200px;
     background-color: #fff;
     display: none;
@@ -1033,4 +1056,14 @@ html {
     align-items: center;
     justify-content: center;
     height: 100%;
+}
+
+.btn_aside{
+    position: absolute;
+    left: 30px;
+    top: 17vh;
+}
+
+.btn_actions_rifa{
+    flex-grow: 1;
 }

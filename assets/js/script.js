@@ -1,11 +1,14 @@
 let checkBox = document.querySelectorAll(".criar_venda_checkbox");
 let menu = document.getElementById("menu_hamburguer");
+let btnMenu = document.getElementById("btn_menu_haburguer");
 
 function abrirMenu(){
     if(menu.style.display == "block"){
         menu.style.display = "none";
+        btnMenu.src = "assets/img/icons/btn_menu_hamburguer.svg"
     } else{
         menu.style.display = "block";
+        btnMenu.src = "assets/img/icons/btn_fechar_menu.svg"
     }
 }
 

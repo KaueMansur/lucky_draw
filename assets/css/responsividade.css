@@ -1,3 +1,39 @@
+@media screen and (max-width:1300px){
+    .local_data_container{
+        flex-direction: column;
+    }
+
+    .local_data_container label{
+        text-align: center;
+    }
+
+    .label_valor{
+        font-size: 12pt;
+    }
+}
+
+@media screen and (max-width: 1110px){
+    .qnt_numeros_prvacidade_container, .premio_imagem_container{
+        flex-direction: column;
+    }
+
+    .qnt_numeros_prvacidade_container label, .premio_imagem_container label{
+        text-align: center;
+    }
+
+    .btn_carregar_imagem{
+        margin-right: 0;
+    }
+
+    .lista_privacidade{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-right: 0;
+        align-items: center;
+    }
+}
+
 @media screen and (max-width: 1050px){
     .card_dourado{
         margin-right: 10%;
@@ -6,6 +42,10 @@
     h3{
         font-size: 1em;
     }
+}
+
+@media screen and (max-width:930px){
+    
 }
 
 @media screen and (max-width: 820px){
@@ -25,6 +65,14 @@
 @media screen and (max-width: 750px){
     .article_footer p{
         font-size: .7em;
+    }
+
+    .btn_menu_hamburguer{
+        top: 90px;
+    }
+
+    .menu_hamburguer{
+        top: 120px;
     }
 
     .cards_rifa_container{
@@ -100,9 +148,21 @@
 
     .hero_content{
         align-items: center;
+        width: 100%;
     }
 
     .legenda_titulo{
         max-width: 70%;
+    }
+
+    .btn_hero{
+        flex-direction: column;
+        width: 80%;
+    }
+    
+    .btn_hero .btn_nav{
+        text-align: center;
+        padding: 15px 0;
+        border-radius: 30px;
     }
 }
