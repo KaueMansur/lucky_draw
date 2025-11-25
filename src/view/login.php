@@ -34,12 +34,12 @@ if (isset($_POST["email_ou_telefone"])) {
         <P class="txt_secundario" style="margin-bottom: 25px;">Bem vindo de volta</P>
 
         <div class="div_campo_login">
-            <label for="" class="label_login">E-mail ou telefone</label>
+            <label for="" class="label_login" style="width: 80%;">E-mail ou telefone</label>
             <input type="text" name="email_ou_telefone" class="input_login" id="">
         </div>
 
         <div class="div_campo_login">
-            <label for="" class="label_login">Senha</label>
+            <label for="" class="label_login" style="width: 80%;">Senha</label>
             <input type="password" name="senha" class="input_login" id="">
         </div>
 

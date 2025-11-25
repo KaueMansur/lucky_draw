@@ -96,10 +96,10 @@ foreach ($listaDeRifas as $r) {
                                     <input type="submit" value="Comprar Números" id="btn_comprar_numeros<?= $rifa->getIdRifa() ?>" class="btn_comprar_numeros btn_nav" disabled>
                                 </div> -->
                             <?php if ($rifa->getStatusVendas() == 1) { ?>
-                                <button style="width: 20%;" type="button" class="btn_limpar_selecao btn_nav" disabled>Limpar Seleções</button>
+                                <button type="button" class="btn_limpar_selecao btn_nav" disabled>Limpar Seleções</button>
                             <?php } ?>
 
-                            <section class="espaco_numeros">
+                            <section class="espaco_numeros espaco_compradores">
                                 <?php if ($rifa->getStatusVendas() == 1) { ?>
                                     <img src="../../assets/img/icons/adicionar-usuario.png" onclick="criarVenda('<?= $rifa->getIdRifa() ?>')" id="btn_criar_venda<?= $rifa->getIdRifa() ?>" class="btn_add_usuario">
                                 <?php } ?>
@@ -159,7 +159,7 @@ foreach ($listaDeRifas as $r) {
                                                         <?php
                                                         $key = 1;
                                                         foreach ($usuario->getNumeros() as $n) {
-                                                            if ($key == 5) {
+                                                            if ($key == 3) {
                                                         ?>
                                                                 <li class="numero_usuario_temp" style="padding: 3px; padding-inline: 10px; font-size: 18pt; cursor:pointer;" onclick="expandirNumerosVendidos(<?= $usuario->getIdUsuario() ?>)" id="btn_mostrar_numeros<?= $usuario->getIdUsuario() ?>">+</li>
                                                             <?php }
@@ -176,20 +176,20 @@ foreach ($listaDeRifas as $r) {
                                                 <?php } ?>
                                             </form>
                                             <?php if ($rifa->getStatusVendas() == 1) { ?>
-                                                <div class="div_duplo_input" id="btns_padrao<?= $usuario->getIdUsuario() ?>">
+                                                <div class="actions_usuario_temp" id="btns_padrao<?= $usuario->getIdUsuario() ?>">
                                                     <input type="submit" id="btn_comprar_numeros<?= $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="btn_add_numeros" value="Adicionar Números" disabled>
-                                                    <div class="div_duplo_input delete_edit" style="width: 100px;">
+                                                    <div class="delete_edit">
                                                         <?php
                                                         $qnt = $usuario->getQuantidadeNumeros($usuario->getIdUsuario());
                                                         if ($qnt == 0) {
                                                         ?>
                                                             <form action="../controller/excluir_usuario_temp_controller.php" method="post">
                                                                 <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
-                                                                <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir"></button>
+                                                                <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
                                                             </form>
                                                         <?php }
                                                         ?>
-                                                        <button type="button" id="btn_editar_usuario<?= $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="25px"></button>
+                                                        <button type="button" id="btn_editar_usuario<?= $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="20px"></button>
                                                     </div>
                                                 </div>
                                             <?php } ?>

@@ -25,7 +25,7 @@ $usuario = $_SESSION["usuario"];
 
         <div class="div_campo_login">
             <label for="" class="label_login">Objetivo</label>
-            <input type="text" name="objetivo" id="" class="input_login" style="width: 100%;" placeholder="Escreva o objetivo da rifa">
+            <input type="text" name="objetivo" id="" class="input_login input_objetivo" placeholder="Escreva o objetivo da rifa">
         </div>
 
         <section class="div_duplo_input qnt_numeros_prvacidade_container">
@@ -98,8 +98,8 @@ $usuario = $_SESSION["usuario"];
         <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
 
         <div class="div_duplo_input">
-            <input type="submit" value="Criar Rifa" class="btn_nav">
-            <a href="../view/galeria_rifas.php" class="btn_nav white" style="width: 300px; text-align:center">Cancelar</a>
+            <button class="btn_nav" style="width: 40%;">Criar Rifa</button>
+            <button type="button" onclick="window.locate.href='../view/galeria_rifas.php'" class="btn_nav white" style="width: 40%;">Cancelar</button>
         </div>
 
     </form>
