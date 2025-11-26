@@ -646,8 +646,12 @@ html {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    gap: 60px;
+    /* gap: 60px; */
     width: 100%;
+}
+
+.btn_sorteio{
+    width: 40%;
 }
 
 .div_duplo_input input:not([type=radio]) {
@@ -716,6 +720,11 @@ html {
     font-family: var(--fonte-primaria);
     font-weight: 600;
     font-size: 14pt;
+    padding-right: 24.5px;
+}
+
+#label_cadastro_telefone{
+    padding-right: 0;
 }
 
 .card_cadastro {
@@ -727,7 +736,8 @@ html {
     gap: 10px;
     height: 250px;
     border: 2px solid #000;
-    width: 50%;
+    width: 50vw;
+    min-width: 400px;
     border-radius: 20px;
     box-shadow: #000 1px 1px 2px;
     /* gap: 100px; */
@@ -748,7 +758,8 @@ html {
 
 .container_cadastro_usuarios_temp {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
     align-items: center;
     width: 50%;
 }
@@ -784,13 +795,13 @@ html {
 }
 
 .nome_usuario_temp {
+    color: var(--cinza-escuro);
     background-color: transparent;
+    font-size: 14pt;
     font-weight: 700;
     padding-left: 10px;
-    font-size: 14pt;
-    color: var(--cinza-escuro);
     border-radius: 5px;
-    width: 200px;
+    width: 60%;
 }
 
 .rifa_aberta {
@@ -799,12 +810,12 @@ html {
 
 .infos_usuario_temp {
     color: var(--cinza-escuro);
+    background-color: transparent;
     font-size: 14pt;
     font-family: var(--fonte-primaria);
     padding-left: 10px;
-    background-color: transparent;
     border-radius: 5px;
-    width: 200px;
+    width: 60%;
 }
 
 .cards_usuarios_temp_container {
@@ -978,6 +989,7 @@ html {
     background-color: rgb(233, 98, 9);
     color: #FFF;
     height: 40px;
+    width: calc(fit-content + 20px);
 }
 
 .form_container {
@@ -1026,6 +1038,7 @@ html {
     height: 250px;
     border: 2px solid #000;
     width: 50%;
+    min-width: 400px;
     border-radius: 20px;
     box-shadow: #000 1px 1px 2px;
     padding-inline: 5%;
@@ -1044,7 +1057,7 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 100px;
+    gap: 30%;
 }
 
 .delete_edit {

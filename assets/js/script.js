@@ -102,6 +102,9 @@ function cancelarEdicao(idUsuario) {
     let campoNome = document.getElementById("nome_usuario_temp" + idUsuario);
     let campoTel = document.getElementById("telefone_usuario_temp" + idUsuario);
 
+    campoNome.classList.remove("campo_usuario_temporario_ativo");
+    campoTel.classList.remove("campo_usuario_temporario_ativo");
+
     campoNome.setAttribute("disabled", true);
     campoTel.setAttribute("disabled", true);
 

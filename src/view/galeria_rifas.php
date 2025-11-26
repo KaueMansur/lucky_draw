@@ -210,7 +210,7 @@ foreach ($listaDeRifas as $r) {
                                     </div>
 
                                     <div class="container_cadastro_usuarios_temp">
-                                        <label class="label_cadastro_rifa">Telefone:</label>
+                                        <label class="label_cadastro_rifa" id="label_cadastro_telefone">Telefone:</label>
                                         <input type="tel" name="telefone" id="" class="input_usuario_temp">
                                     </div>
 
@@ -218,7 +218,7 @@ foreach ($listaDeRifas as $r) {
 
                                 <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
 
-                                <div class="div_duplo_input" style="width:70%; justify-content:space-around;">
+                                <div class="div_duplo_input">
                                     <button onclick="cancelarVenda('<?= $rifa->getIdRifa() ?>')" type="button" class="btn_nav white btn_cadastro" id="btn_cancelar_venda<?= $usuario->getIdUsuario() ?>">Cancelar Venda</button>
                                     <button type="submit" class="btn_nav btn_cadastro">Cadastrar Comprador</button>
                                 </div>
@@ -247,8 +247,8 @@ foreach ($listaDeRifas as $r) {
                                 </div>
                                 <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
                                 <div class="div_duplo_input">
-                                    <button type="button" onclick="cancelarSorteio('<?= $rifa->getIdRifa() ?>')" class="btn_nav white">Cancelar Sorteio</button>
-                                    <input type="submit" value="Sortear" class="btn_nav">
+                                    <button type="button" onclick="cancelarSorteio('<?= $rifa->getIdRifa() ?>')" class="btn_nav white btn_cadastro btn_sorteio">Cancelar Sorteio</button>
+                                    <button type="submit" class="btn_nav btn_cadastro btn_sorteio">Sortear</button>
                                 </div>
                             </div>
                         </form>

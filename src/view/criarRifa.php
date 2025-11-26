@@ -97,7 +97,7 @@ $usuario = $_SESSION["usuario"];
 
         <div class="div_duplo_input">
             <button class="btn_nav" style="width: 40%;">Criar Rifa</button>
-            <button type="button" onclick="window.locate.href='../view/galeria_rifas.php'" class="btn_nav white" style="width: 40%;">Cancelar</button>
+            <button type="button" onclick="window.location.href='../view/galeria_rifas.php'" class="btn_nav white" style="width: 40%;">Cancelar</button>
         </div>
 
     </form>
