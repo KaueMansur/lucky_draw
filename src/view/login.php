@@ -23,6 +23,7 @@ if (isset($_POST["email_ou_telefone"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/responsividade.css">
     <title>Login</title>
 </head>
 
@@ -34,12 +35,12 @@ if (isset($_POST["email_ou_telefone"])) {
         <P class="txt_secundario" style="margin-bottom: 25px;">Bem vindo de volta</P>
 
         <div class="div_campo_login">
-            <label for="" class="label_login" style="width: 80%;">E-mail ou telefone</label>
+            <label for="" class="label_login login" style="width: 80%;">E-mail ou telefone</label>
             <input type="text" name="email_ou_telefone" class="input_login" id="">
         </div>
 
         <div class="div_campo_login">
-            <label for="" class="label_login" style="width: 80%;">Senha</label>
+            <label for="" class="label_login login" style="width: 80%;">Senha</label>
             <input type="password" name="senha" class="input_login" id="">
         </div>
 

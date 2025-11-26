@@ -228,7 +228,7 @@ p {
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    gap: 20px;  
+    gap: 20px;
     cursor: pointer;
     box-shadow: #000 1px 1px 5px;
 }
@@ -356,9 +356,22 @@ html {
     gap: 15px;
 }
 
-.form_rifa{
+.form_rifa {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-grow: 1;
+    width: 50vw;
+    /* width: 600px; */
+    min-width: 600px;
+    gap: 40px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.div_duplo_container {
+    display: flex;
+    width: 100%;
+    gap: 20px;
 }
 
 .input_login {
@@ -369,7 +382,35 @@ html {
     text-align: center;
     font-size: 15pt;
     font-weight: 600;
-    width: 80%;
+    width: 100%;
+}
+
+.btn_carregar_imagem {
+    background-color: var(--azul-ceu);
+    /* width: 100px; */
+    width: 100%;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .3s;
+}
+
+#label_img, #label_privacidade{
+    text-align: center;
+}
+
+.div_campo_login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* gap: 10px; */
+    height: 120px;
+    /* max-width: 70vw; */
+    width: 100%;
 }
 
 .btn_form {
@@ -386,17 +427,6 @@ html {
     cursor: pointer;
     width: 80%;
     max-width: 70vw;
-}
-
-.div_campo_login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    height: 120px;
-    justify-content: space-around;
-    max-width: 70vw;
-    width: 100%;
 }
 
 .txt_left {
@@ -433,7 +463,7 @@ html {
     font-size: 21pt;
 }
 
-.espaco_compradores{
+.espaco_compradores {
     /* padding: 3%; */
     /* width: 80%; */
 }
@@ -455,7 +485,7 @@ html {
     min-height: 100px;
 }
 
-.espaco_vendas{
+.espaco_vendas {
     padding: 20px;
 }
 
@@ -604,8 +634,6 @@ html {
 
 .lista_privacidade {
     height: 60px;
-    margin-bottom: 15px;
-    margin-right: 100px;
 }
 
 .lista_privacidade li {
@@ -617,7 +645,7 @@ html {
 .div_duplo_input {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     gap: 60px;
     width: 100%;
 }
@@ -626,29 +654,18 @@ html {
     min-width: 300px;
 }
 
-.btn_carregar_imagem {
-    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
-    width: 200px;
-    margin-right: 100px;
-    height: 60px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--fonte-primaria);
-    color: #FFF;
-    font-size: 15pt;
-    font-weight: 700;
-    cursor: pointer;
-    transition: .3s;
-}
-
 .btn_carregar_imagem:hover {
     transform: scale(1.05);
 }
 
 .tipo_de_valor {
-    display: none;
+    /* display: none; */
+    height: 25px;
+    width: 25px;
+}
+
+.input_valor{
+    width: 80%;
 }
 
 .btn_radio {
@@ -861,6 +878,10 @@ html {
     overflow: hidden;
 }
 
+.label_login.login {
+    text-align: center;
+}
+
 .usuario_temp_container {
     display: flex;
     border-bottom: 1px solid var(--texto-secundario);
@@ -1033,7 +1054,7 @@ html {
     /* width: 100px; */
 }
 
-.actions_usuario_temp{
+.actions_usuario_temp {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1071,12 +1092,12 @@ html {
     height: 100%;
 }
 
-.btn_aside{
+.btn_aside {
     position: absolute;
     left: 30px;
     top: 17vh;
 }
 
-.btn_actions_rifa{
+.btn_actions_rifa {
     flex-grow: 1;
 }

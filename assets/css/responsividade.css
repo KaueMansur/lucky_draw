@@ -10,11 +10,19 @@
     .label_valor{
         font-size: 12pt;
     }
+
+    .input_login{
+        font-size: 1.2em;
+    }
 }
 
 @media screen and (max-width: 1110px){
     .qnt_numeros_prvacidade_container, .premio_imagem_container{
         flex-direction: column;
+    }
+
+    .input_login{
+        font-size: 1em;
     }
 
     .qnt_numeros_prvacidade_container label, .premio_imagem_container label{
@@ -24,14 +32,14 @@
     .btn_carregar_imagem{
         margin-right: 0;
     }
-
+/* 
     .lista_privacidade{
         display: flex;
         justify-content: space-around;
         width: 100%;
         margin-right: 0;
         align-items: center;
-    }
+    } */
 
     .label_login{
         text-align: center;
@@ -73,8 +81,12 @@
         font-size: .7em;
     }
 
-    .input_objetivo{
-        /* width: default; */
+    .form_rifa{
+        min-width: 500px;
+    }
+
+    .input_login{
+        font-size: .8em;
     }
 
     .btn_menu_hamburguer{
@@ -175,4 +187,18 @@
         padding: 15px 0;
         border-radius: 30px;
     }
+}
+
+@media screen and (max-width: 600px){
+ 
+    .form_rifa{
+        min-width: 400px;
+    }
+
+    .label_login{
+        font-size: .88em;
+    }
+    /* .input_login{
+        min-width: 80vw;
+    }        */
 }
