@@ -6,11 +6,13 @@ require "src/model/rifa.php";
 
 session_start();
 
+$idsRifas = null;
+
 if (isset($_SESSION["usuario"])) {
     $usuario = $_SESSION["usuario"];
+    $idsRifas = $usuario->listarRifasComNumerosDoUsuario($usuario->getIdUsuario());
 }
 
-$idsRifas = $usuario->listarRifasComNumerosDoUsuario($usuario->getIdUsuario());
 
 $rifa = new Rifa();
 
@@ -102,7 +104,7 @@ foreach ($listaDasRifas as $rifa) {
             </ul>
             <ul class="ul_nav">
                 <?php if (!isset($_SESSION["usuario"])) { ?>
-                    <li><a class="btn_nav" href="src/view/login.php">Login</a></li>
+                    <li><a class="btn_nav" href="src/view/login.html">Login</a></li>
                 <?php } else { ?>
                     <li><a class="btn_nav" href="src/controller/session_destroy.php">Sair da sessão</a></li>
                 <?php } ?>
@@ -181,7 +183,7 @@ foreach ($listaDasRifas as $rifa) {
                         <?php if ($rifa->getImagemIlustrativa() != null) { ?>
                             <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="150px" height="90px">
                         <?php } ?>
-                        <div class="rifas_infos">
+                        <div class="rifas_infos rifas_infos_index">
                             <p class="valor_rifa"><span class="premio_rifa">Objetivo:</span> <?= $rifa->getObjetivo() ?></p>
                             <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
                             <p class="valor_rifa">R$ <?= number_format($rifa->getValorCadaNumero(), 2, ',') ?></p>

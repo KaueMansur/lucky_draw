@@ -55,7 +55,7 @@ if (isset($_POST["nome"])) {
         </div>
         
         <input type="submit" value="Cadastrar" class="btn_form">
-        <p class="txt_secundario">Já tem conta? <a href="login.php" class="link">Faça login</a></p>
+        <p class="txt_secundario">Já tem conta? <a href="login.html " class="link">Faça login</a></p>
     </form>
     <script src="../../assets/js/mascaras.js"></script>
 </body>

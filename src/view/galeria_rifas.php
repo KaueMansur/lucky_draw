@@ -43,7 +43,7 @@ foreach ($listaDeRifas as $r) {
         <ul class="cards_rifa_container">
             <?php foreach ($listaDasRifas as $rifa) { ?>
                 <li class="rifas" onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">
-                    <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="img" width="100px">
+                    <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="img" width="150px" height="90px">
                     <!-- <p>Número Sorteado: <?= $rifa->getNumeroSorteado() ?></p> -->
                     <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                         <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)" class="btn_fechar">x</button>
@@ -256,14 +256,15 @@ foreach ($listaDeRifas as $r) {
                     <div class="rifas_infos">
                         <!-- <p><?= $rifa->getObjetivo() ?></p> -->
                         <div class="rifas_infos_p_container">
+                            <p class="valor_rifa">Objetivo:<span><?= $rifa->getObjetivo() ?></span></p>
                             <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
-                            <p class="valor_rifa"><?= number_format($rifa->getValorCadaNumero(), 2, ',') ?></p>
+                            <p class="valor_rifa">R$ <?= number_format($rifa->getValorCadaNumero(), 2, ',') ?></p>
                         </div>
                         <?php
                         if ($rifa->getQuantidadeNumerosVendidos($rifa->getIdRifa()) == 0) { ?>
-                            <form action="../controller/deletar_rifa_controller.php" method="post">
+                            <form action="../controller/deletar_rifa_controller.php" method="post" class="btn_deletar_form">
                                 <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
-                                <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir"></button>
+                                <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
                             </form>
                         <?php } ?>
                     </div>

@@ -235,8 +235,9 @@ p {
 
 .rifas_infos {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    align-items: center;
     width: fit-content;
     text-align: left;
     background-color: #fff;
@@ -245,6 +246,13 @@ p {
     height: 80px;
     overflow: hidden;
     padding-inline: 2vw;
+    padding: .8vw;
+}
+
+.rifas_infos_index{
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
 }
 
 .premio_rifa {
@@ -1145,7 +1153,7 @@ html {
     justify-content: center;
     align-items: center;
     gap: 50px;
-    flex-wrap: wrap;
+    flex-wrap: wrap ;
 }
 
 .lista_numeros_comprados{
@@ -1159,4 +1167,11 @@ html {
 .numeros_comprados{
     cursor: default;
     font-weight: 600;
+}
+
+.btn_deletar_form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
 }

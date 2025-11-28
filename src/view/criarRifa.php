@@ -57,7 +57,7 @@ $usuario = $_SESSION["usuario"];
             <div class="div_campo_login">
                 <input type="radio" name="tipo_de_valor" id="radio_valor_numeros" class="tipo_de_valor" checked>
                 <label for="valor_numeros" class="label_login label_valor" style="text-align: center;">Valor de cada número</label>
-                <input type="number" name="valor_numeros" id="valor_numeros" class="input_login input_valor" placeholder="Ex: 2.00">
+                <input type="number" name="valor_numeros" id="valor_numeros" class="input_login input_valor" placeholder="Ex: 2.00" step="0.01">
             </div>
 
             <div class="div_campo_login">

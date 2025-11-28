@@ -88,7 +88,7 @@ class usuario{
                     $this->idUsuario = $usuario->id_usuario;
                     $this->nome = $usuario->nome;
                     $this->telefone = $usuario->telefone;
-                    $this->idNumeros = $usuario->id_numeros;
+                    // $this->idNumeros = $usuario->id_numeros;
 
                     $key = true;
                 }
