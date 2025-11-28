@@ -30,27 +30,27 @@ if (isset($_POST["nome"])) {
         <P class="txt_secundario" style="margin-bottom: 25px;">Crie sua conta agora</P>
 
         <div class="div_campo_login">
-            <label for="" class="label_login">Nome</label>
+            <label for="" class="label_login login">Nome</label>
             <input type="text" name="nome" id="" class="input_login">
         </div>
 
         <div class="div_campo_login">
-            <label for="telefone" class="label_login">Telefone</label>
+            <label for="telefone" class="label_login login">Telefone</label>
             <input type="tel" name="telefone" id="telefone" class="input_login">
         </div>
 
         <div class="div_campo_login">
-            <label for="" class="label_login">Email</label>
+            <label for="" class="label_login login">Email</label>
             <input type="email" name="email" id="" class="input_login">
         </div>
 
         <div class="div_campo_login">
-            <label for="" class="label_login">Senha</label>
+            <label for="" class="label_login login">Senha</label>
             <input type="password" name="senha" id="" class="input_login">
         </div>
 
         <div class="div_campo_login">
-            <label for="" class="label_login">Confirme sua senha</label>
+            <label for="" class="label_login login">Confirme sua senha</label>
             <input type="password" name="senha_confirm" id="" class="input_login">
         </div>
         

@@ -257,7 +257,7 @@ foreach ($listaDeRifas as $r) {
                         <!-- <p><?= $rifa->getObjetivo() ?></p> -->
                         <div class="rifas_infos_p_container">
                             <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
-                            <p class="valor_rifa"><?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
+                            <p class="valor_rifa"><?= number_format($rifa->getValorCadaNumero(), 2, ',') ?></p>
                         </div>
                         <?php
                         if ($rifa->getQuantidadeNumerosVendidos($rifa->getIdRifa()) == 0) { ?>

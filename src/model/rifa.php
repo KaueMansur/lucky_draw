@@ -135,6 +135,14 @@ class Rifa{
 
     }
 
+    public function converterIdEmPremio($idRifa){
+        $db = new Database();
+
+        return $db->select(
+            "SELECT premio FROM rifas WHERE id_rifa = $idRifa"
+        );
+    }
+
     public function getIdRifa() {
         return $this->idRifa;
     }

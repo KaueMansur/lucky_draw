@@ -10,6 +10,8 @@ if (isset($_SESSION["usuario"])) {
     $usuario = $_SESSION["usuario"];
 }
 
+$idsRifas = $usuario->listarRifasComNumerosDoUsuario($usuario->getIdUsuario());
+
 $rifa = new Rifa();
 
 $listaDeRifas = $rifa->listarTodasAsRifas();
@@ -79,6 +81,23 @@ foreach ($listaDasRifas as $rifa) {
                 <li><a href="#footer" class="nav_links">Sobre</a></li>
                 <li><a href="#main" class="nav_links">Rifas</a></li>
                 <li><a href="#footer" class="nav_links">Contatos</a></li>
+                <?php if(isset($_SESSION["usuario"])) { ?>
+                    <li class="nav_links" onclick="abrirRifasCompradas()">Seus Números</li>
+                    <aside class="desativado" id="menu_rifas_compradas">
+                        <ul class="lista_rifas_compradas">
+                            <?php foreach($idsRifas as $rifasCompradas){ ?>
+                                <li class="nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)"><?= $rifa->converterIdEmPremio($rifasCompradas->id_rifa)[0]->premio ?></li>
+                                <aside class="desativado menu_numeros_comprados" id="menu_numeros_comprados<?= $rifasCompradas->id_rifa ?>">
+                                    <ul class="lista_numeros_comprados">
+                                        <?php foreach($usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario() ,$rifasCompradas->id_rifa) as $numero) { ?>
+                                            <li class="numero numeros_comprados"><?= $numero->numero ?></li>
+                                        <?php } ?>
+                                    </ul>
+                                </aside>
+                            <?php } ?>
+                        </ul>
+                    </aside>
+                <?php } ?>
                 <!-- <li><a href="#" class="nav_links">Results</a></li> -->
             </ul>
             <ul class="ul_nav">
@@ -160,12 +179,12 @@ foreach ($listaDasRifas as $rifa) {
                 <?php foreach ($listaDasRifas as $rifa) { ?>
                     <li class="rifas" onclick="abrirRifa('<?= $rifa->getIdRifa() ?>')">
                         <?php if ($rifa->getImagemIlustrativa() != null) { ?>
-                            <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="120px">
+                            <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="150px" height="90px">
                         <?php } ?>
                         <div class="rifas_infos">
-                            <!-- <p><?= $rifa->getObjetivo() ?></p> -->
+                            <p class="valor_rifa"><span class="premio_rifa">Objetivo:</span> <?= $rifa->getObjetivo() ?></p>
                             <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
-                            <p class="valor_rifa">R$ <?= number_format($rifa->getValorCadaNumero(), 2, '.') ?></p>
+                            <p class="valor_rifa">R$ <?= number_format($rifa->getValorCadaNumero(), 2, ',') ?></p>
                         </div>
                         <!-- <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button> -->
                     </li>

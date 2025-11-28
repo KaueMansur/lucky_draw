@@ -237,3 +237,23 @@ function expandirNumerosVendidos(idUsuario) {
         label.style.top = "0px";
     }
 }
+
+function abrirRifasCompradas(){
+    let menuRifas = document.getElementById("menu_rifas_compradas");
+
+    if(menuRifas.classList.contains("desativado")){
+        menuRifas.classList.remove("desativado");
+    } else{
+        menuRifas.classList.add("desativado");
+    }
+}
+
+function abrirNumerosComprados(idRifa){
+    let menuNumeros = document.getElementById("menu_numeros_comprados" + idRifa);
+
+    if(menuNumeros.classList.contains("desativado")){
+        menuNumeros.classList.remove("desativado");
+    } else{
+        menuNumeros.classList.add("desativado");
+    }
+}

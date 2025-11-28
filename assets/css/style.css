@@ -242,7 +242,7 @@ p {
     background-color: #fff;
     border-radius: 0 0 10px 10px;
     width: 100%;
-    height: 60px;
+    height: 80px;
     overflow: hidden;
     padding-inline: 2vw;
 }
@@ -383,6 +383,7 @@ html {
     font-size: 15pt;
     font-weight: 600;
     width: 100%;
+    max-width: 80vw;
 }
 
 .btn_carregar_imagem {
@@ -1113,4 +1114,49 @@ html {
 
 .btn_actions_rifa {
     flex-grow: 1;
+}
+
+#menu_rifas_compradas{
+    position: absolute;
+    top: 10vh;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 20px 0 20px 20px;
+    width: 35%;
+    height: 100px;
+    padding: 20px;
+}
+
+.menu_numeros_comprados{
+    position: absolute;
+    top: 16vh;
+    width: 25vw;
+    height: 200px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 2px solid #000;
+}
+
+.lista_rifas_compradas, .lista_numeros_comprados{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.lista_numeros_comprados{
+    gap: 20px;
+    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: scroll;
+}
+
+.numeros_comprados{
+    cursor: default;
+    font-weight: 600;
 }
