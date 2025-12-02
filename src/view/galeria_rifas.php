@@ -256,7 +256,7 @@ foreach ($listaDeRifas as $r) {
                     <div class="rifas_infos">
                         <!-- <p><?= $rifa->getObjetivo() ?></p> -->
                         <div class="rifas_infos_p_container">
-                            <p class="valor_rifa">Objetivo:<span><?= $rifa->getObjetivo() ?></span></p>
+                            <p class="valor_rifa">Objetivo: <span class="premio_rifa"><?= $rifa->getObjetivo() ?></span></p>
                             <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
                             <p class="valor_rifa">R$ <?= number_format($rifa->getValorCadaNumero(), 2, ',') ?></p>
                         </div>

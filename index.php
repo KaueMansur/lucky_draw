@@ -83,15 +83,37 @@ foreach ($listaDasRifas as $rifa) {
                 <li><a href="#footer" class="nav_links">Sobre</a></li>
                 <li><a href="#main" class="nav_links">Rifas</a></li>
                 <li><a href="#footer" class="nav_links">Contatos</a></li>
-                <?php if(isset($_SESSION["usuario"])) { ?>
+                <?php if (isset($_SESSION["usuario"])) { ?>
                     <li class="nav_links" onclick="abrirRifasCompradas()">Seus Números</li>
                     <aside class="desativado" id="menu_rifas_compradas">
                         <ul class="lista_rifas_compradas">
-                            <?php foreach($idsRifas as $rifasCompradas){ ?>
-                                <li class="nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)"><?= $rifa->converterIdEmPremio($rifasCompradas->id_rifa)[0]->premio ?></li>
+                            <?php foreach ($idsRifas as $rifasCompradas) {
+                                $numeroSorteado = $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->numero_sorteado;
+                                if (!isset($numeroSorteado)) { ?>
+                                    <li class="nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></li>
+                                <?php } else { ?>
+                                    <li class="rifas_compradas_li" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)">
+                                        <?php
+                                        $numerosCompradosDoUsuario = $usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifasCompradas->id_rifa);
+
+                                        $listaNumerosCompradosDoUsuario = [];
+
+                                        foreach($numerosCompradosDoUsuario as $numero){
+                                            array_push($listaNumerosCompradosDoUsuario, $numero->numero);
+                                        }
+                                        // var_dump($numerosCompradosDoUsuario);
+                                        if (in_array($numeroSorteado, $listaNumerosCompradosDoUsuario)) {
+                                        ?>
+                                            <span class="numero_sorteado vencedor"><?= $numeroSorteado ?></span>
+                                        <?php } else { ?>
+                                            <span class="numero_sorteado perdedor"><?= $numeroSorteado ?></span>
+                                            <?php } ?>
+                                        <span class="nav_links rifas_compradas rifas_compradas_sorteadas"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span>
+                                    </li>
+                                <?php } ?>
                                 <aside class="desativado menu_numeros_comprados" id="menu_numeros_comprados<?= $rifasCompradas->id_rifa ?>">
                                     <ul class="lista_numeros_comprados">
-                                        <?php foreach($usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario() ,$rifasCompradas->id_rifa) as $numero) { ?>
+                                        <?php foreach ($usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifasCompradas->id_rifa) as $numero) { ?>
                                             <li class="numero numeros_comprados"><?= $numero->numero ?></li>
                                         <?php } ?>
                                     </ul>

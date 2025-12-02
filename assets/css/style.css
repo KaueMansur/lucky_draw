@@ -1130,9 +1130,11 @@ html {
     background-color: #fff;
     border: 2px solid #000;
     border-radius: 20px 0 20px 20px;
-    width: 35%;
+    width: 40vw;
     height: 100px;
     padding: 20px;
+    overflow-x: scroll;
+    /* overflow-y: hidden; */
 }
 
 .menu_numeros_comprados{
@@ -1153,7 +1155,7 @@ html {
     justify-content: center;
     align-items: center;
     gap: 50px;
-    flex-wrap: wrap ;
+    /* flex-wrap: wrap; */
 }
 
 .lista_numeros_comprados{
@@ -1161,7 +1163,7 @@ html {
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     padding: 20px;
     border-radius: 10px;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 
 .numeros_comprados{
@@ -1174,4 +1176,36 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: end;
+}
+
+.rifas_compradas_sorteadas{
+    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.rifas_compradas_li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.numero_sorteado{
+    font-family: var(--fonte-primaria);
+    font-size: 1em;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.vencedor{
+    background-color: rgb(13, 190, 13);
+    color: #000;
+}
+
+.perdedor{
+    background-color: rgb(231, 24, 24);
+    color: #fff;
 }

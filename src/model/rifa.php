@@ -135,11 +135,11 @@ class Rifa{
 
     }
 
-    public function converterIdEmPremio($idRifa){
+    public function converterIdEmRifa($idRifa){
         $db = new Database();
 
         return $db->select(
-            "SELECT premio FROM rifas WHERE id_rifa = $idRifa"
+            "SELECT * FROM rifas WHERE id_rifa = $idRifa"
         );
     }
 
