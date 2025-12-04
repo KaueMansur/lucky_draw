@@ -1,18 +1,3 @@
-<?php
-require "../model/usuario.php";
-
-if (isset($_POST["nome"])) {
-    if (isset($_POST["telefone"]) || isset($_POST["email"]) && isset($_POST["senha"]) && isset($_POST["senha_confirm"])) {
-        if ($_POST["senha"] == $_POST["senha_confirm"]) {
-            $usuario = new Usuario();
-            $usuario->cadastrarUsuario($_POST["nome"], $_POST["telefone"], $_POST["email"], $_POST["senha"]);
-
-            header("Refresh:0; URL= login.php");
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,7 +10,7 @@ if (isset($_POST["nome"])) {
 
 <body id="body_login">
 
-    <form action="#" method="post" class="form_login">
+    <form action="../controller/cadastrar_usuario_controller.php" method="post" class="form_login">
         <h1 class="titulo txt_left">Cadastre-se</h1>
         <P class="txt_secundario" style="margin-bottom: 25px;">Crie sua conta agora</P>
 

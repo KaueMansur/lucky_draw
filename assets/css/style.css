@@ -43,10 +43,6 @@ html {
     scroll-behavior: smooth;
 }
 
-.desativado {
-    display: none;
-}
-
 #nav {
     background-color: var(--fundo-principal);
     width: 100%;
@@ -1132,17 +1128,17 @@ html {
     border-radius: 20px 0 20px 20px;
     width: 40vw;
     height: 100px;
-    padding: 20px;
-    overflow-x: scroll;
-    /* overflow-y: hidden; */
+    /* overflow-x: scroll;
+    overflow-y: hidden; */
+    display: block;
 }
 
 .menu_numeros_comprados{
     position: absolute;
     top: 16vh;
+    /* left: 50vw; */
     width: 25vw;
     height: 200px;
-    padding: 10px;
     background-color: #fff;
     border-radius: 10px;
     border: 2px solid #000;
@@ -1155,7 +1151,13 @@ html {
     justify-content: center;
     align-items: center;
     gap: 50px;
-    /* flex-wrap: wrap; */
+}
+
+
+.lista_rifas_compradas{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 0 20px 0 100px;
 }
 
 .lista_numeros_comprados{
@@ -1163,12 +1165,42 @@ html {
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     padding: 20px;
     border-radius: 10px;
+    flex-wrap: wrap;
+    overflow-y: scroll;
     /* overflow-x: scroll; */
 }
 
 .numeros_comprados{
     cursor: default;
     font-weight: 600;
+}
+
+.numero_sorteado_container{
+    position: absolute;
+    top: 16vh;
+    left: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5vw;
+    height: 5vw;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.numero_sorteado_div{
+    font-family:var(--fonte-primaria);
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+    background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
+    border-radius: 10px;
+    width: 70%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn_deletar_form{
@@ -1208,4 +1240,9 @@ html {
 .perdedor{
     background-color: rgb(231, 24, 24);
     color: #fff;
+}
+
+
+.desativado {
+    display: none !important;
 }

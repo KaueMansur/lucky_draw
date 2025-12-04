@@ -201,7 +201,7 @@ foreach ($listaDeRifas as $r) {
                         </form> <!--Fechamento form compra numeros-->
 
                         <?php if ($rifa->getStatusVendas() == 1) { ?>
-                            <form action="../controller/cadastrar_usuario_controller.php" method="post" class="card_cadastro" id="card_comprador<?= $rifa->getIdRifa() ?>">
+                            <form action="../controller/cadastrar_usuario_temp_controller.php" method="post" class="card_cadastro" id="card_comprador<?= $rifa->getIdRifa() ?>">
 
                                 <div class="container_container_cadastro_temp">
                                     <div class="container_cadastro_usuarios_temp">

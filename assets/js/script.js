@@ -250,10 +250,13 @@ function abrirRifasCompradas(){
 
 function abrirNumerosComprados(idRifa){
     let menuNumeros = document.getElementById("menu_numeros_comprados" + idRifa);
+    let menuNumeroSorteado = document.getElementById("numero_sorteado_container" + idRifa);
 
     if(menuNumeros.classList.contains("desativado")){
         menuNumeros.classList.remove("desativado");
+        menuNumeroSorteado.classList.remove("desativado");
     } else{
         menuNumeros.classList.add("desativado");
+        menuNumeroSorteado.classList.add("desativado");
     }
 }
