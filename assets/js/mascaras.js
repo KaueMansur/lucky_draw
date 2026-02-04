@@ -1,6 +1,7 @@
-const inputTelefone = document.getElementById('telefone');
+const inputTelefone = document.getElementById("telefone");
+const emailOuTelefone = document.getElementById("email_ou_telefone");
 
-inputTelefone.addEventListener('keyup', function(e) {
+inputTelefone.addEventListener('keyup', function (e) {
   // Remove todos os caracteres não numéricos
   let valor = e.target.value.replace(/\D/g, '');
 
@@ -12,16 +13,16 @@ inputTelefone.addEventListener('keyup', function(e) {
   // Aplica a máscara para 11 dígitos
   if (valor.length >= 11) {
     valor = valor.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
-  } 
+  }
   // Aplica a máscara para 10 dígitos (padrão antigo)
   else if (valor.length >= 10) {
     valor = valor.replace(/^(\d{2})(\d{4})(\d{4}).*/, '($1) $2-$3');
-  } 
+  }
   // Aplica a máscara para o DDD
   else if (valor.length >= 2) {
     valor = valor.replace(/^(\d{2})(\d*)/, '($1) $2');
   }
-  
+
   // Atualiza o valor do campo
   e.target.value = valor;
 });

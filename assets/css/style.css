@@ -416,6 +416,7 @@ html {
     height: 120px;
     /* max-width: 70vw; */
     width: 100%;
+    position: relative;
 }
 
 .btn_form {
@@ -1245,4 +1246,28 @@ html {
 
 .desativado {
     display: none !important;
+}
+
+.required_cadastro{
+    position: absolute; 
+    right: 6px;
+    top: 56px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.required_cadastro_login{
+    position: absolute; 
+    right: 10px;
+    top: 8px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.email_telefone_container{
+    background-color: #d3d3d3;
+    width: 100%;
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
 }

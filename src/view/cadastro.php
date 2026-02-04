@@ -16,27 +16,34 @@
 
         <div class="div_campo_login">
             <label for="" class="label_login login">Nome</label>
-            <input type="text" name="nome" id="" class="input_login">
+            <input type="text" name="nome" id="" class="input_login" required>
+            <div class="required_cadastro">*</div>
         </div>
-
-        <div class="div_campo_login">
-            <label for="telefone" class="label_login login">Telefone</label>
-            <input type="tel" name="telefone" id="telefone" class="input_login">
+        
+        <div class="email_telefone_container">
+            <div class="required_cadastro_login">*</div>
+            <div class="div_campo_login">
+                <label for="telefone" class="label_login login">Telefone</label>
+                <input type="tel" name="telefone" id="telefone" class="input_login">
+            </div>
+            
+            <div class="div_campo_login">
+                <label for="" class="label_login login">Email</label>
+                <input type="email" name="email" id="" class="input_login">
+            </div>
+            
         </div>
-
-        <div class="div_campo_login">
-            <label for="" class="label_login login">Email</label>
-            <input type="email" name="email" id="" class="input_login">
-        </div>
-
+        
         <div class="div_campo_login">
             <label for="" class="label_login login">Senha</label>
-            <input type="password" name="senha" id="" class="input_login">
+            <input type="password" name="senha" id="" class="input_login" required>
+            <div class="required_cadastro">*</div>
         </div>
-
+        
         <div class="div_campo_login">
             <label for="" class="label_login login">Confirme sua senha</label>
-            <input type="password" name="senha_confirm" id="" class="input_login">
+            <input type="password" name="senha_confirm" id="" class="input_login" required>
+            <div class="required_cadastro">*</div>
         </div>
         
         <input type="submit" value="Cadastrar" class="btn_form">

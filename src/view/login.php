@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION["erro"])){
+        echo $_SESSION["erro"];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -18,18 +26,19 @@
 
         <div class="div_campo_login">
             <label for="" class="label_login login" style="width: 80%;">E-mail ou telefone</label>
-            <input type="text" name="email_ou_telefone" class="input_login" id="">
+            <input type="text" name="email_ou_telefone" class="input_login" id="email_ou_telefone" required>
         </div>
 
         <div class="div_campo_login">
             <label for="" class="label_login login" style="width: 80%;">Senha</label>
-            <input type="password" name="senha" class="input_login" id="">
+            <input type="password" name="senha" class="input_login" id="" required>
         </div>
 
         <input type="submit" value="Entrar" class="btn_form">
-        <p class="txt_secundario">Não tem conta? <a href="cadastro.html" class="link">Cadastre-se aqui</a></p>
+        <p class="txt_secundario">Não tem conta? <a href="cadastro.php" class="link">Cadastre-se aqui</a></p>
 
     </form>
+    <script src="../../assets/js/mascaras.js"></script>
 </body>
 
 </html>

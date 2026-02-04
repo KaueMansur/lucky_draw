@@ -10,7 +10,7 @@ class Database {
            'mysql:'.
            'host=localhost;'.
            'port=3306;'.
-           'dbname=proj_rifas;'.
+           'dbname=proj_rifas_db;'.
            'charset=utf8',
            'root',
            '',
