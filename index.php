@@ -8,7 +8,10 @@ session_start();
 
 $idsRifas = null;
 
+$logado = false;
+
 if (isset($_SESSION["usuario"])) {
+    $logado = true;
     $usuario = $_SESSION["usuario"];
     $idsRifas = $usuario->listarRifasComNumerosDoUsuario($usuario->getIdUsuario());
 }
@@ -74,6 +77,10 @@ foreach ($listaDasRifas as $rifa) {
 </head>
 
 <body>
+    <div class="popup_login" id="popup_login">
+        <p class="legenda_popup">Para prosseguir, faça login!</p>
+        <a href="src/view/login.php" class="btn_nav">Fazer Login</a>
+    </div>
     <header id="header">
 
         <nav id="nav">
@@ -82,7 +89,6 @@ foreach ($listaDasRifas as $rifa) {
                 <li><a href="#header" class="nav_links">Início</a></li>
                 <li><a href="#footer" class="nav_links">Sobre</a></li>
                 <li><a href="#main" class="nav_links">Rifas</a></li>
-                <li><a href="#footer" class="nav_links">Contatos</a></li>
                 <?php if (isset($_SESSION["usuario"])) { ?>
                     <li class="nav_links" onclick="abrirRifasCompradas()">Seus Números</li>
                     <aside class="desativado" id="menu_rifas_compradas">
@@ -104,7 +110,7 @@ foreach ($listaDasRifas as $rifa) {
                                         // var_dump($numerosCompradosDoUsuario);
                                         if (in_array($numeroSorteado, $listaNumerosCompradosDoUsuario)) {
                                         ?>
-                                        <span class="nav_links numero_sorteado vencedor"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span>
+                                            <span class="nav_links numero_sorteado vencedor"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span>
                                         <?php } else { ?>
                                             <span class="nav_links numero_sorteado perdedor"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span>
                                         <?php } ?>
@@ -132,9 +138,9 @@ foreach ($listaDasRifas as $rifa) {
             </ul>
             <ul class="ul_nav">
                 <?php if (!isset($_SESSION["usuario"])) { ?>
-                    <li><a class="btn_nav" href="src/view/login.html">Login</a></li>
+                    <li><a class="btn_nav login_sessao" href="src/view/login.php">Login</a></li>
                 <?php } else { ?>
-                    <li><a class="btn_nav" href="src/controller/session_destroy.php">Sair da sessão</a></li>
+                    <li><a class="btn_nav login_sessao" href="src/controller/session_destroy.php">Sair da sessão</a></li>
                 <?php } ?>
             </ul>
         </nav>
@@ -154,8 +160,12 @@ foreach ($listaDasRifas as $rifa) {
                         <li><a href="#header" class="nav_links">Início</a></li>
                         <li><a href="#footer" class="nav_links">Sobre</a></li>
                         <li><a href="#main" class="nav_links">Rifas</a></li>
-                        <li><a href="#footer" class="nav_links">Contatos</a></li>
                         <li class="nav_links" onclick="abrirRifasCompradas()">Seus Números</li>
+                        <?php if (!isset($_SESSION["usuario"])) { ?>
+                            <li><a class="btn_nav" href="src/view/login.php">Login</a></li>
+                        <?php } else { ?>
+                            <li><a class="btn_nav" href="src/controller/session_destroy.php">Sair da sessão</a></li>
+                        <?php } ?>
                         <!-- <li><a href="#" class="nav_links">Results</a></li> -->
                     </ul>
                 </aside>
@@ -208,7 +218,7 @@ foreach ($listaDasRifas as $rifa) {
 
             <ul class="cards_rifa_container">
                 <?php foreach ($listaDasRifas as $rifa) { ?>
-                    <li class="rifas" onclick="abrirRifa('<?= $rifa->getIdRifa() ?>')">
+                    <li class="rifas" onclick="abrirRifa('<?= $rifa->getIdRifa() ?>', '<?= $logado ?>')">
                         <?php if ($rifa->getImagemIlustrativa() != null) { ?>
                             <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="150px" height="90px">
                         <?php } ?>

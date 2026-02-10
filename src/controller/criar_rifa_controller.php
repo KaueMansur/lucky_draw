@@ -85,7 +85,7 @@ if (isset($_POST["quantidade_numeros"])) {
         $rifa->criarRifa($objetivo, $_POST["quantidade_numeros"], $_POST["premio"], $target_database, $_POST["data_sorteio"], $_POST["local_sorteio"], $_POST["valor_numeros"], $_POST["valor_total"], $_POST["id_usuario"], $_POST["privacidade"]);
 
         // $_SESSION["usuario"] = $_POST["usuario"];
-        header("Refresh: 0; URL= ../../index.php");
+        header("Refresh: 0; URL= ../view/galeria_rifas.php");
     }
 } else {
     header("Refresh: 0; URL= ../view/criarRifa.php");

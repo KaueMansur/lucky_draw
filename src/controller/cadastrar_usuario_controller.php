@@ -1,6 +1,8 @@
 <?php
 require "../model/usuario.php";
 
+session_start();
+
 unset($_SESSION["erro"]);
 
 if (isset($_POST["nome"])) {
@@ -11,16 +13,20 @@ if (isset($_POST["nome"])) {
                 $usuario->cadastrarUsuario($_POST["nome"], $_POST["telefone"], $_POST["email"], $_POST["senha"]);
 
                 header("Refresh:0; URL= ../view/login.php");
+                exit;
             } else{
                 $_SESSION["erro"] = "As senhas devem ser iguais!";
+                header("Refresh: 0; URL = ../view/cadastro.php");
             }
+        } else{
+            $_SESSION["erro"] = "Preencha todos os campos obrigatórios!";
+            header("Refresh: 0; URL = ../view/cadastro.php");
         }
     } else{
         $_SESSION["erro"] = "Preencha o campo telefone ou usuário!";
+        header("Refresh: 0; URL = ../view/cadastro.php");
     }
+} else{
+    $_SESSION["erro"] = "Preencha todos os campos obrigatórios!";
+    header("Refresh: 0; URL = ../view/cadastro.php");
 }
-
-$_SESSION["erro"] = "";
-
-header("Refresh: 0; URL = ../view/cadastro.php");
-exit;

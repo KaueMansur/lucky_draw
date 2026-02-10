@@ -12,11 +12,15 @@ if (isset($_POST["email_ou_telefone"])) {
         if ($usuario->login($_POST["email_ou_telefone"], $_POST["senha"])) {
             $_SESSION["usuario"] = $usuario->getObject();
             header("Refresh: 0; URL = ../../index.php");
+        } else {
+            $_SESSION["erro"] = "login ou senha incorretos!";
+            header("Refresh:0; URL = ../view/login.php");
         }
+    } else {
+        $_SESSION["erro"] = "Preencha o campo senha!";
+        header("Refresh:0; URL = ../view/login.php");
     }
+} else {
+    $_SESSION["erro"] = "Preencha o campo login!";
+    header("Refresh:0; URL = ../view/login.php");
 }
-
-$_SESSION["erro"] = "login ou senha incorretos!";
-
-header("Refresh:0; URL = ../view/login.php");
-exit;

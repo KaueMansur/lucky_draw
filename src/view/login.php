@@ -1,9 +1,5 @@
 <?php
-    session_start();
-
-    if(isset($_SESSION["erro"])){
-        echo $_SESSION["erro"];
-    }
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +14,13 @@
 </head>
 
 <body id="body_login" style="height: 100vh;">
-    <!--<a href="./recuperar_senha.php">Esqueci minha senha</a> -->
-    
+
+    <?php if (isset($_SESSION["erro"])) { ?>
+        <div class="popup_erro"><?php echo "<p class='legenda_popup'>" . $_SESSION["erro"] . "</p>"; ?></div>
+    <?php
+        unset($_SESSION["erro"]);
+    } ?>
+
     <form action="../controller/login_controller.php" method="post" class="form_login">
         <h1 class="titulo txt_left">Login</h1>
         <P class="txt_secundario" style="margin-bottom: 25px;">Bem vindo de volta</P>

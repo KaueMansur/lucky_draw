@@ -1,19 +1,31 @@
-let checkBox = document.querySelectorAll(".criar_venda_checkbox");
-let menu = document.getElementById("menu_hamburguer");
-let btnMenu = document.getElementById("btn_menu_haburguer");
+const checkBox = document.querySelectorAll(".criar_venda_checkbox");
+const menu = document.getElementById("menu_hamburguer");
+const btnMenu = document.getElementById("btn_menu_haburguer");
+const popupLogin = document.getElementById("popup_login");
+const inputObjetivo = document.getElementById("input_objetivo");
+const numeroDeLetras = document.getElementById("numero_de_letras");
 
-function abrirMenu(){
-    if(menu.style.display == "block"){
+function abrirMenu() {
+    if (menu.style.display == "block") {
         menu.style.display = "none";
         btnMenu.src = "assets/img/icons/btn_menu_hamburguer.svg"
-    } else{
+    } else {
         menu.style.display = "block";
         btnMenu.src = "assets/img/icons/btn_fechar_menu.svg"
     }
 }
 
-function abrirRifa(idRifa) {
+function abrirRifa(idRifa, logado) {
+    // if(logado){
+    //     console.log("logado")
+    // }else{
+    //     console.log("não logado")
+    // }
+    // if(logado){
     document.getElementById("id" + idRifa).style.display = "flex";
+    // }else{
+    //     popupLogin.getElementById("popup_login").style.display = "flex";
+    // }
 }
 
 function fecharRifa(idRifa) {
@@ -238,25 +250,38 @@ function expandirNumerosVendidos(idUsuario) {
     }
 }
 
-function abrirRifasCompradas(){
+function abrirRifasCompradas() {
     let menuRifas = document.getElementById("menu_rifas_compradas");
 
-    if(menuRifas.classList.contains("desativado")){
+    if (menuRifas.classList.contains("desativado")) {
         menuRifas.classList.remove("desativado");
-    } else{
+    } else {
         menuRifas.classList.add("desativado");
     }
 }
 
-function abrirNumerosComprados(idRifa){
+function abrirNumerosComprados(idRifa) {
     let menuNumeros = document.getElementById("menu_numeros_comprados" + idRifa);
     let menuNumeroSorteado = document.getElementById("numero_sorteado_container" + idRifa);
 
-    if(menuNumeros.classList.contains("desativado")){
+    if (menuNumeros.classList.contains("desativado")) {
         menuNumeros.classList.remove("desativado");
         menuNumeroSorteado.classList.remove("desativado");
-    } else{
+    } else {
         menuNumeros.classList.add("desativado");
         menuNumeroSorteado.classList.add("desativado");
     }
 }
+
+
+inputObjetivo.addEventListener("input", () => {
+    // numeroDeLetras.value = inputObjetivo.value.length + "/15";
+    let qntAtual = inputObjetivo.value.length;
+    if(qntAtual < 16){
+        numeroDeLetras.textContent = qntAtual + "/15";
+        let txtAtual = inputObjetivo.value;
+    } else{
+        // inputObjetivo.value = txtAtual;
+    }
+    console.log(qntAtual)
+});

@@ -25,7 +25,8 @@ $usuario = $_SESSION["usuario"];
 
         <div class="div_campo_login">
             <label for="" class="label_login">Objetivo</label>
-            <input type="text" name="objetivo" id="" class="input_login input_objetivo" placeholder="Escreva o objetivo da rifa">
+            <input type="text" name="objetivo" id="input_objetivo" class="input_login input_objetivo" placeholder="Escreva o objetivo da rifa" maxlength="15">
+            <span id="numero_de_letras">0/15</span>
         </div>
 
         <section class="div_duplo_container">
