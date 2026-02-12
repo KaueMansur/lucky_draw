@@ -1,38 +1,42 @@
-@media screen and (max-width:1300px){
-    .local_data_container{
+@media screen and (max-width:1300px) {
+    .local_data_container {
         flex-direction: column;
     }
 
-    .local_data_container label{
+    .local_data_container label {
         text-align: center;
     }
 
-    .label_valor{
+    .label_valor {
         font-size: 12pt;
     }
 
-    .input_login{
+    .input_login {
         font-size: 1.2em;
     }
 }
 
-@media screen and (max-width: 1110px){
-    .qnt_numeros_prvacidade_container, .premio_imagem_container{
+@media screen and (max-width: 1110px) {
+
+    .qnt_numeros_prvacidade_container,
+    .premio_imagem_container {
         flex-direction: column;
     }
 
-    .input_login{
+    .input_login {
         font-size: 1em;
     }
 
-    .qnt_numeros_prvacidade_container label, .premio_imagem_container label{
+    .qnt_numeros_prvacidade_container label,
+    .premio_imagem_container label {
         text-align: center;
     }
 
-    .btn_carregar_imagem{
+    .btn_carregar_imagem {
         margin-right: 0;
     }
-/* 
+
+    /* 
     .lista_privacidade{
         display: flex;
         justify-content: space-around;
@@ -41,249 +45,283 @@
         align-items: center;
     } */
 
-    .label_login{
+    .label_login {
         text-align: center;
     }
 }
 
-@media screen and (max-width: 1050px){
-    .card_dourado{
+@media screen and (max-width: 1050px) {
+    .card_dourado {
         margin-right: 10%;
     }
 
-    h3{
+    h3 {
         font-size: 1em;
     }
 }
 
-@media screen and (max-width: 900px){
-    .label_valor{
+@media screen and (max-width: 900px) {
+    .label_valor {
         font-size: 9pt;
     }
 }
 
-@media screen and (max-width: 870px){
-    .ul_nav.nav{
+@media screen and (max-width: 870px) {
+    .ul_nav.nav {
         gap: 15px;
     }
 }
 
-@media screen and (max-width: 840px){
-    .legenda_footer{
+@media screen and (max-width: 840px) {
+    .legenda_footer {
         font-size: .7em;
     }
 
-    #footer_content{
+    #footer_content {
         gap: 10px;
     }
 }
 
-@media screen and (max-width: 820px){
-    .img_vantagens{
+@media screen and (max-width: 820px) {
+    .img_vantagens {
         height: 40px;
     }
-    
-    h3{
+
+    h3 {
         font-size: .9em;
     }
 
-    .legenda_diferencial{
+    .legenda_diferencial {
         font-size: 10px;
     }
 
-    .legenda_footer{
+    .legenda_footer {
         font-size: .6em;
         width: 70%;
     }
 }
 
-@media screen and (max-width: 790px){
-    .ul_nav.nav{
+@media screen and (max-width: 790px) {
+    .ul_nav.nav {
         gap: 10px;
     }
 
-    .nav_links{
+    .nav_links {
         font-size: 1em;
     }
 }
 
-@media screen and (max-width: 750px){
-    .article_footer p{
+@media screen and (max-width: 750px) {
+    .article_footer p {
         font-size: .7em;
     }
 
-    .form_rifa{
+    .form_rifa {
         min-width: 500px;
     }
 
-    .input_login{
+    .input_login {
         font-size: .8em;
     }
 
-    .btn_menu_hamburguer{
+    .btn_menu_hamburguer {
         top: 90px;
     }
 
-    .menu_hamburguer{
+    .menu_hamburguer {
         top: 120px;
     }
 
-    .cards_rifa_container{
+    .cards_rifa_container {
         width: 100%;
     }
 
-    #footer_content{
+    #footer_content {
         gap: 20px;
         align-items: center;
         justify-content: center;
     }
 
-    .legenda_footer{
+    .legenda_footer {
         font-size: 8pt;
         width: 80%;
     }
 
-    .rifas{
+    .rifas {
         width: 45vw;
     }
 
-    .btn_menu_hamburguer{
+    .btn_menu_hamburguer {
         display: block;
         top: 15px;
     }
 
-    .ul_nav.nav, .login_sessao{
+    .ul_nav.nav,
+    .login_sessao {
         display: none !important;
     }
 
-    .btn_nav{
+    .btn_nav {
         font-size: 12pt;
     }
 
-    .titulo{
+    .titulo {
         font-size: 20pt;
     }
 
-    .card_dourado{
+    .card_dourado {
         display: none;
     }
 
-    .titulo, .legenda_titulo{
+    .titulo,
+    .legenda_titulo {
         text-align: center;
     }
 
-    .card_diferencial{
+    .card_diferencial {
         width: 90%;
     }
 
-    #cards_diferencial_container{
+    #cards_diferencial_container {
         flex-direction: column;
         gap: 20px;
     }
 
-    #main{
+    #main {
         min-height: 40vh;
     }
 
-    .label_lista_numeros{
+    .label_lista_numeros {
         font-size: 16pt;
         text-align: center;
     }
 
-    .lista_numeros_container{
+    .lista_numeros_container {
         flex-direction: column;
         align-items: center;
         gap: 10px;
     }
 
-    .container_btn_rifa{
+    .container_btn_rifa {
         flex-direction: column;
         gap: 10px;
     }
 
-    .hero_content{
+    .hero_content {
         align-items: center;
         width: 100%;
     }
 
-    .legenda_titulo{
+    .legenda_titulo {
         max-width: 70%;
     }
 
-    .btn_hero{
+    .btn_hero {
         flex-direction: column;
         width: 80%;
         align-items: center;
     }
-    
-    .btn_hero .btn_nav{
+
+    .btn_hero .btn_nav {
         text-align: center;
         padding: 15px 0;
         border-radius: 30px;
         width: 100%;
     }
 
-    .valor_rifa{
+    .valor_rifa {
         font-size: .9em;
     }
 }
 
-@media screen and (max-width: 670px){
-    .valor_rifa{
+@media screen and (max-width: 670px) {
+    .valor_rifa {
         font-size: .8em;
     }
 }
 
-@media screen and (max-width: 600px){
-    .form_rifa{
+@media screen and (max-width: 600px) {
+    .form_rifa {
         min-width: 400px;
     }
 
-    label.label_login{
+    label.label_login {
         font-size: 1em;
     }
 
-    p.txt_secundario{
+    p.txt_secundario {
         font-size: .88em;
     }
 }
 
-@media screen and (max-width: 500px){
-    .legenda_footer{
+@media screen and (max-width: 500px) {
+    .legenda_footer {
         font-size: .5em;
     }
 
-    .li_footer{
+    .li_footer {
         width: fit-content;
     }
 
-    #footer_content{
+    #footer_content {
         gap: 0;
     }
 
-    input.input_login{
+    input.input_login {
         height: 50px;
         font-size: 12.5pt;
-    }   
+    }
 
-    div.required_cadastro{
+    div.required_cadastro {
         top: 63px;
+    }
+
+    .div_duplo_container {
+        flex-direction: column;
+    }
+
+    .lista_privacidade {
+        display: flex;
+        gap: 20px;
     }
 }
 
-@media screen and (max-width: 470px){
-    input.input_login{
+@media screen and (max-width: 470px) {
+    input.input_login {
         height: 40px;
         font-size: 10pt;
-    }   
+    }
 
-    div.required_cadastro{
+    div.required_cadastro {
         top: 70px;
     }
 
-    input.btn_form{
+    input.btn_form {
         width: 200px;
         font-size: 14pt;
         height: 50px;
+    }
+
+    #numero_de_letras {
+        font-size: .9em;
+        top: 75px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .input_valor_container {
+        gap: 0;
+    }
+
+    .label_login.label_valor {
+        font-size: .8em;
+    }
+
+    .input_valor_container {
+        width: 80%;
+    }
+
+    .valor_container {
+        width: 140px;
     }
 }

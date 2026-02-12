@@ -382,6 +382,7 @@ html {
 
 .div_duplo_container {
     display: flex;
+    align-items: center;
     width: 100%;
     gap: 20px;
 }
@@ -1336,4 +1337,13 @@ html {
     font-size: 1.8em;
     font-weight: 600;
     text-align: center;
+}
+
+#numero_de_letras{
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    color: var(--texto-secundario);
+    font-size: 1.3em;
+    font-family: var(--fonte-primaria);
 }

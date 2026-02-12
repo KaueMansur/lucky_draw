@@ -279,9 +279,6 @@ inputObjetivo.addEventListener("input", () => {
     let qntAtual = inputObjetivo.value.length;
     if(qntAtual < 16){
         numeroDeLetras.textContent = qntAtual + "/15";
-        let txtAtual = inputObjetivo.value;
-    } else{
-        // inputObjetivo.value = txtAtual;
     }
     console.log(qntAtual)
 });
