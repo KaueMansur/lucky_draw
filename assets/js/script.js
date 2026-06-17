@@ -15,17 +15,8 @@ function abrirMenu() {
     }
 }
 
-function abrirRifa(idRifa, logado) {
-    // if(logado){
-    //     console.log("logado")
-    // }else{
-    //     console.log("não logado")
-    // }
-    // if(logado){
+function abrirRifa(idRifa) {
     document.getElementById("id" + idRifa).style.display = "flex";
-    // }else{
-    //     popupLogin.getElementById("popup_login").style.display = "flex";
-    // }
 }
 
 function fecharRifa(idRifa) {
@@ -75,7 +66,7 @@ function ativarHiddens(idUsuario) {
 }
 
 function mostrarOpcoesDeSorteio(idRifa) {
-    document.getElementById("popup_sorteio" + idRifa).style.display = "block";
+    document.getElementById("popup_sorteio" + idRifa).style.display = "flex";
 }
 
 function cancelarOpcoesSorteio(idRifa) {
@@ -282,3 +273,8 @@ inputObjetivo.addEventListener("input", () => {
     }
     console.log(qntAtual)
 });
+
+function abrirPopupLogin(){
+    // popupLogin.style.display = "flex"   
+    alert("teste")
+}

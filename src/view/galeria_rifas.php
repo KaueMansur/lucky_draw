@@ -46,7 +46,7 @@ foreach ($listaDeRifas as $r) {
                     <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="img" width="150px" height="90px">
                     <!-- <p>Número Sorteado: <?= $rifa->getNumeroSorteado() ?></p> -->
                     <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
-                        <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)" class="btn_fechar">x</button>
+                        <button onclick="fecharRifa('<?= $rifa->getIdRifa() ?>')" class="btn_fechar">x</button>
 
 
                         <form action="../controller/comprar_numeros_controller.php" method="post" style="display: flex; flex-direction: column; align-items: center; gap: 30px">
@@ -233,14 +233,14 @@ foreach ($listaDeRifas as $r) {
                         <?php } elseif (!in_array($rifa->getNumeroSorteado(), $numerosConvertidos)) { ?>
                             <button onclick="mostrarOpcoesDeSorteio('<?= $rifa->getIdRifa() ?>')" class="btn_encerrar_venda" style="background-color: #F80;">Opções de sorteio</button>
                         <?php } ?>
-                        <!-- 
+                        
                             <div id="opcoes_de_sorteio<?= $rifa->getIdRifa() ?>" class="desativado">
                                 <button onclick="abrirSorteio('<?= $rifa->getIdRifa() ?>')">Sortear</button>
                                 <button onclick="cancelarOpcoesSorteio('<?= $rifa->getIdRifa() ?>')">Cancelar</button>
-                            </div> -->
+                            </div>
 
-                        <form id="popup_sorteio<?= $rifa->getIdRifa() ?>" method="post" action="../controller/sorteio_controller.php" class="desativado card_sorteio">
-                            <div class="sorteio_container">
+                        <form class="popup_sorteio" id="popup_sorteio<?= $rifa->getIdRifa() ?>" method="post" action="../controller/sorteio_controller.php" class="desativado card_sorteio">
+                              <div class="sorteio_container">
                                 <div>
                                     <input type="checkbox" name="numeros_comprados" id="numeros_comprados<?= $rifa->getIdRifa() ?>" value="true" checked>
                                     <label for="numeros_comprados<?= $rifa->getIdRifa() ?>" class="legenda_sorteio">Somente números comprados</label>
@@ -296,6 +296,7 @@ foreach ($listaDeRifas as $r) {
             </li>
         </ul>
     </footer>
+
     <script src="../../assets/js/script.js"></script>
 </body>
 

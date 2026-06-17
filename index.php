@@ -77,10 +77,10 @@ foreach ($listaDasRifas as $rifa) {
 </head>
 
 <body>
-    <div class="popup_login" id="popup_login">
-        <p class="legenda_popup">Para prosseguir, faça login!</p>
-        <a href="src/view/login.php" class="btn_nav">Fazer Login</a>
-    </div>
+    <article id="popup_login">
+        <p class="legenda_popup">Para realizar esta ação, você precisa fazer login!</p>
+        <a class="btn_nav login_popup" href="src/view/login.php">Fazer Login</a>
+    </article>
     <header id="header">
 
         <nav id="nav">
@@ -89,55 +89,57 @@ foreach ($listaDasRifas as $rifa) {
                 <li><a href="#header" class="nav_links">Início</a></li>
                 <li><a href="#footer" class="nav_links">Sobre</a></li>
                 <li><a href="#main" class="nav_links">Rifas</a></li>
-                <?php if (isset($_SESSION["usuario"])) { ?>
+                <?php if ($logado) { ?>
                     <li class="nav_links" onclick="abrirRifasCompradas()">Seus Números</li>
-                    <aside class="desativado" id="menu_rifas_compradas">
-                        <ul class="lista_rifas_compradas">
-                            <?php foreach ($idsRifas as $rifasCompradas) {
-                                $numeroSorteado = $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->numero_sorteado;
-                                if (!isset($numeroSorteado)) { ?>
-                                    <li class="nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></li>
-                                <?php } else { ?>
-                                    <li class="rifas_compradas_li" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)">
-                                        <?php
-                                        $numerosCompradosDoUsuario = $usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifasCompradas->id_rifa);
+                    <article class="desativado" id="menu_rifas_compradas">
+                        <aside class="scroll_rifas_compradas">
+                            <ul class="lista_rifas_compradas">
+                                <?php foreach ($idsRifas as $rifasCompradas) {
+                                    $numeroSorteado = $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->numero_sorteado;
+                                    if (!isset($numeroSorteado)) { ?>
+                                        <li class="nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></li>
+                                    <?php } else { ?>
+                                        <li class=" vencedor nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)">
+                                            <?php
+                                            $numerosCompradosDoUsuario = $usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifasCompradas->id_rifa);
 
-                                        $listaNumerosCompradosDoUsuario = [];
+                                            $listaNumerosCompradosDoUsuario = [];
 
-                                        foreach ($numerosCompradosDoUsuario as $numero) {
-                                            array_push($listaNumerosCompradosDoUsuario, $numero->numero);
-                                        }
-                                        // var_dump($numerosCompradosDoUsuario);
-                                        if (in_array($numeroSorteado, $listaNumerosCompradosDoUsuario)) {
-                                        ?>
-                                            <span class="nav_links numero_sorteado vencedor"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span>
-                                        <?php } else { ?>
-                                            <span class="nav_links numero_sorteado perdedor"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span>
-                                        <?php } ?>
-                                        <!-- <span class="nav_links numero_sorteado perdedor"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span> -->
-                                        <!-- rifas_compradas rifas_compradas_sorteadas -->
-                                    </li>
-                                    <aside class="desativado numero_sorteado_container" id="numero_sorteado_container<?= $rifasCompradas->id_rifa ?>">
-                                        <span class="numero_sorteado_div"><?= $numeroSorteado ?></span>
+                                            foreach ($numerosCompradosDoUsuario as $numero) {
+                                                array_push($listaNumerosCompradosDoUsuario, $numero->numero);
+                                            }
+                                            // var_dump($numerosCompradosDoUsuario);
+                                            if (in_array($numeroSorteado, $listaNumerosCompradosDoUsuario)) {
+                                            ?>
+                                                <span class="nav_links numero_sorteado vencedor"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span>
+                                            <?php } else { ?>
+                                                <span class="nav_links numero_sorteado perdedor"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span>
+                                            <?php } ?>
+                                            <!-- <span class="nav_links numero_sorteado perdedor"><?= $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0]->premio ?></span> -->
+                                            <!-- rifas_compradas rifas_compradas_sorteadas -->
+                                        </li>
+                                        <aside class="desativado numero_sorteado_container" id="numero_sorteado_container<?= $rifasCompradas->id_rifa ?>">
+                                            <span class="numero_sorteado_div"><?= $numeroSorteado ?></span>
+                                        </aside>
+                                    <?php } ?>
+                                    <aside class="desativado menu_numeros_comprados" id="menu_numeros_comprados<?= $rifasCompradas->id_rifa ?>">
+                                        <ul class="lista_numeros_comprados">
+                                            <?php foreach ($usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifasCompradas->id_rifa) as $numero) { ?>
+                                                <li class="numero numeros_comprados"><?= $numero->numero ?></li>
+                                            <?php } ?>
+                                        </ul>
                                     </aside>
-                                <?php } ?>
-                                <aside class="desativado menu_numeros_comprados" id="menu_numeros_comprados<?= $rifasCompradas->id_rifa ?>">
-                                    <ul class="lista_numeros_comprados">
-                                        <?php foreach ($usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifasCompradas->id_rifa) as $numero) { ?>
-                                            <li class="numero numeros_comprados"><?= $numero->numero ?></li>
-                                        <?php } ?>
-                                    </ul>
-                                </aside>
-                            <?php }
-                            ?>
-                        </ul>
-                    </aside>
+                                <?php }
+                                ?>
+                            </ul>
+                        </aside>
+                    </article>
                 <?php }
                 ?>
                 <!-- <li><a href="#" class="nav_links">Results</a></li> -->
             </ul>
             <ul class="ul_nav">
-                <?php if (!isset($_SESSION["usuario"])) { ?>
+                <?php if (!$logado) { ?>
                     <li><a class="btn_nav login_sessao" href="src/view/login.php">Login</a></li>
                 <?php } else { ?>
                     <li><a class="btn_nav login_sessao" href="src/controller/session_destroy.php">Sair da sessão</a></li>
@@ -161,7 +163,7 @@ foreach ($listaDasRifas as $rifa) {
                         <li><a href="#footer" class="nav_links">Sobre</a></li>
                         <li><a href="#main" class="nav_links">Rifas</a></li>
                         <li class="nav_links" onclick="abrirRifasCompradas()">Seus Números</li>
-                        <?php if (!isset($_SESSION["usuario"])) { ?>
+                        <?php if (!$logado) { ?>
                             <li><a class="btn_nav" href="src/view/login.php">Login</a></li>
                         <?php } else { ?>
                             <li><a class="btn_nav" href="src/controller/session_destroy.php">Sair da sessão</a></li>
@@ -175,7 +177,11 @@ foreach ($listaDasRifas as $rifa) {
                 <div class="btn_hero">
                     <a href="#main" class="btn_nav">Comprar números</a>
                     <!-- <a class="btn_nav" href="src/view/criarRifa.php">Criar Rifa</a> -->
-                    <a class="btn_nav white" href="src/view/galeria_rifas.php">Galeria de rifas</a>
+                    <?php if ($logado) { ?>
+                        <a class="btn_nav white" href="src/view/galeria_rifas.php">Galeria de rifas</a>
+                    <?php } else { ?>
+                        <a class="btn_nav white" onclick="abrirPopupLogin()">Galeria de rifas</a>
+                    <?php } ?>
                     <!-- <a class="btn_nav" href="#">View Prizes</a> -->
                     <!-- <a class="btn_nav white" href="#">Buy Tickets</a> -->
                 </div>
@@ -321,8 +327,6 @@ foreach ($listaDasRifas as $rifa) {
             </li>
         </ul>
     </footer>
-
-
     <script src="assets/js/script.js"></script>
 </body>
 

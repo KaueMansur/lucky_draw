@@ -208,19 +208,26 @@ p {
 
 .cards_rifa_container {
     display: flex;
-    /* justify-content: space-around; */
     justify-content: flex-start;
+    /* justify-content: flex-start; */
     gap: 30px;
     flex-wrap: wrap;
-    padding-inline: 1vw;
-    width: 100%;
-    padding: 10px 40px 10px 70px;
+    padding: 10px 4vw 10px;
+    width: 100vw;
+    /* width: 59.5vw; */
+    /* width: fit-content; */
+    /* padding-inline: 1vw; */
+    /* width: 100%; */
+    /* width: fit-content; */
+    /* align-content: center; */
 }
 
 .rifas {
     /* margin-bottom: 25px; */
-    /* width: 380px; */
-    width: calc(33.333% - 30px);
+    /* width: calc(33.333% - 30px); */
+    /* min-width: 380px; */
+    min-width: 290px;
+    width: 29vw;
     height: 200px;
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     border-radius: 10px;
@@ -481,7 +488,7 @@ html {
 
 .espaco_compradores {
     /* padding: 3%; */
-    /* width: 80%; */
+    width: 80%;
 }
 
 .espaco_numeros {
@@ -957,10 +964,12 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 5px;
 }
 
 .lista_expandida {
     height: 110px;
+    width: 100%;
     z-index: 1;
     position: absolute;
     top: 110px;
@@ -1134,16 +1143,29 @@ html {
 #menu_rifas_compradas{
     position: absolute;
     top: 10vh;
-    left: 20vw;
+    left: 25vw;
     background-color: #fff;
     border: 2px solid #000;
-    border-radius: 20px 0 20px 20px;
-    width: 40vw;
-    height: 100px;
-    /* overflow-x: scroll;
-    overflow-y: hidden; */
-    display: block;
-       overflow-x: scroll;
+    border-radius: 10px;
+    width: 50vw;
+    height: 130px;
+    overflow-x: auto;
+    display: flex;
+    padding: 30px;
+    /* overflow-x: scroll; */
+}
+
+#menu_rifas_compradas::-webkit-scrollbar{
+    border-radius: 5px;
+    background-color: #edeff1;
+    height: 8px;    
+    margin: 2px;
+}
+
+#menu_rifas_compradas::-webkit-scrollbar-thumb{
+    background-color: #4b4d50;
+    border-radius: 10px;
+    height: 10px;
 }
 
 .menu_numeros_comprados{
@@ -1159,22 +1181,11 @@ html {
 
 .lista_rifas_compradas, .lista_numeros_comprados{
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 50px;
-}
-
-.lista_rifas_compradas::-webkit-scrollbar{
-    border-radius: 10px;
-}
-
-
-.lista_rifas_compradas{
-    overflow-x: scroll;
-    overflow-y: hidden;
-    padding: 0 20px 0 100px;
 }
 
 .lista_numeros_comprados{
@@ -1242,9 +1253,19 @@ html {
 }
 
 .rifas_compradas{
-    background-color: #c7ccd1;
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 5px;
+    font-size: 1em;
+    max-width: 200px;
+    min-width: 200px;
+}
+
+.nav_links.rifas_compradas{
+    height: 40px;
+    background-color: #c7ccd1;
+
 }
 
 .numero_sorteado{
@@ -1256,7 +1277,7 @@ html {
 }
 
 .vencedor{
-    background-color: rgb(13, 190, 13);
+    background-color: rgb(13, 190, 13)!important;
     color: #000;
 }
 
@@ -1298,26 +1319,6 @@ html {
     max-width: 80vw;
 }
 
-.popup_login{
-    position: fixed;
-    top: 30%;
-    left: 30%;
-    height: 40%;
-    width: 40%;
-    background-color: #fff;
-    border-radius: 20px;
-    border: 4px solid var(--vermelho-primario);
-    z-index: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30%;
-}
-
-#popup_login{
-    display: none;
-}
-
 .popup_erro{
     border-bottom: 5px solid var(--vermelho-primario);
     border-radius: 20px;
@@ -1346,4 +1347,41 @@ html {
     color: var(--texto-secundario);
     font-size: 1.3em;
     font-family: var(--fonte-primaria);
+}
+
+#popup_login{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 2px 0 4px #000;
+    width: 50vw;
+    height: 40vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    left: 25vw;
+    top: 30vh;
+    z-index: 1;
+}
+
+.login_popup{
+    height: 50px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_sorteio{
+    display: none;
+    width: 50vw;
+    height: 50vh;
+    position: fixed;
+    left: 25vw;
+    top: 25vh;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 2px 0 4px #000;
+    z-index: 2;
 }

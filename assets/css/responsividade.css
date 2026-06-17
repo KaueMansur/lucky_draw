@@ -16,6 +16,14 @@
     }
 }
 
+@media screen and (max-width: 1199px) {
+    .cards_rifa_container {
+        width: calc(58vw + 30px);
+        min-width: 610px;
+        padding: 0;
+    }
+}
+
 @media screen and (max-width: 1110px) {
 
     .qnt_numeros_prvacidade_container,
@@ -99,6 +107,15 @@
         font-size: .6em;
         width: 70%;
     }
+
+    .espaco_compradores {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .rifa_aberta {
+        /* padding: 0; */
+    }
 }
 
 @media screen and (max-width: 790px) {
@@ -132,9 +149,9 @@
         top: 120px;
     }
 
-    .cards_rifa_container {
+    /* .cards_rifa_container {
         width: 100%;
-    }
+    } */
 
     #footer_content {
         gap: 20px;
@@ -145,10 +162,6 @@
     .legenda_footer {
         font-size: 8pt;
         width: 80%;
-    }
-
-    .rifas {
-        width: 45vw;
     }
 
     .btn_menu_hamburguer {
@@ -232,11 +245,36 @@
     .valor_rifa {
         font-size: .9em;
     }
+
+    .espaco_compradores {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    /* .card_vendas{
+
+    } */
 }
 
 @media screen and (max-width: 670px) {
     .valor_rifa {
         font-size: .8em;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .cards_rifa_container {
+        min-width: 290px;
+        width: 80%;
+    }
+
+    .rifas {
+        width: 100%;
+    }
+
+    .btn_deletar {
+        margin: 0 5px 5px 0;
     }
 }
 
@@ -251,6 +289,14 @@
 
     p.txt_secundario {
         font-size: .88em;
+    }
+}
+
+@media screen and (max-width: 590px) {
+    .btn_add_usuario {
+        width: 40px;
+        left: 10px;
+        top: 10px;
     }
 }
 
@@ -323,5 +369,16 @@
 
     .valor_container {
         width: 140px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .espaco_compradores {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .card_vendas{
+        padding-inline: 2%  ;
     }
 }
