@@ -1152,26 +1152,28 @@ html {
     overflow-x: auto;
     display: flex;
     padding: 30px;
+    overflow-y: visible;
     /* overflow-x: scroll; */
 }
 
-#menu_rifas_compradas::-webkit-scrollbar{
+#menu_rifas_compradas::-webkit-scrollbar, .lista_numeros_comprados::-webkit-scrollbar{
     border-radius: 5px;
     background-color: #edeff1;
     height: 8px;    
     margin: 2px;
 }
 
-#menu_rifas_compradas::-webkit-scrollbar-thumb{
-    background-color: #4b4d50;
+#menu_rifas_compradas::-webkit-scrollbar-thumb, .lista_numeros_comprados::-webkit-scrollbar-thumb{
+    background-color: #797a7a;
     border-radius: 10px;
     height: 10px;
 }
 
 .menu_numeros_comprados{
-    position: absolute;
-    top: 16vh;
-    /* left: 50vw; */
+    position: fixed;
+    top: 28vh;
+    /* left: 40vw; */
+    left: 37.5vw;
     width: 25vw;
     height: 200px;
     background-color: #fff;
@@ -1204,15 +1206,15 @@ html {
 }
 
 .numero_sorteado_container{
-    position: absolute;
-    top: 16vh;
-    left: 1vw;
+    position: fixed;
+    top: 28vh;
+    left: 30vw;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 5vw;
     height: 5vw;
-    background-color: #fff;
+    background-color: #f00;
     border: 1px solid #000;
     border-radius: 10px;
 }
