@@ -246,8 +246,7 @@ p {
     /* flex-direction: column; */
     justify-content: space-between;
     align-items: center;
-    width: fit-content;
-    text-align: left;
+    /* width: fit-content; */
     background-color: #fff;
     border-radius: 0 0 10px 10px;
     width: 100%;
@@ -257,10 +256,19 @@ p {
     padding: .8vw;
 }
 
-.rifas_infos_index{
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: start;
+.rifas_infos_container {
+    /* width: 50%; */
+    text-align: left;
+}
+
+.data_container{
+    width: 25%;
+    font-weight: 600;
+    display: flex;
+    gap: 5px;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .premio_rifa {
@@ -420,7 +428,8 @@ html {
     transition: .3s;
 }
 
-#label_img, #label_privacidade{
+#label_img,
+#label_privacidade {
     text-align: center;
 }
 
@@ -673,7 +682,7 @@ html {
     width: 100%;
 }
 
-.btn_sorteio{
+.btn_sorteio {
     width: 40%;
 }
 
@@ -691,7 +700,7 @@ html {
     width: 25px;
 }
 
-.input_valor{
+.input_valor {
     width: 80%;
 }
 
@@ -746,7 +755,7 @@ html {
     padding-right: 24.5px;
 }
 
-#label_cadastro_telefone{
+#label_cadastro_telefone {
     padding-right: 0;
 }
 
@@ -1041,6 +1050,7 @@ html {
     border-radius: 5px;
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 
 #card-1,
@@ -1140,7 +1150,7 @@ html {
     flex-grow: 1;
 }
 
-#menu_rifas_compradas{
+#menu_rifas_compradas {
     position: absolute;
     top: 10vh;
     left: 25vw;
@@ -1156,20 +1166,22 @@ html {
     /* overflow-x: scroll; */
 }
 
-#menu_rifas_compradas::-webkit-scrollbar, .lista_numeros_comprados::-webkit-scrollbar{
+#menu_rifas_compradas::-webkit-scrollbar,
+.lista_numeros_comprados::-webkit-scrollbar {
     border-radius: 5px;
     background-color: #edeff1;
-    height: 8px;    
+    height: 8px;
     margin: 2px;
 }
 
-#menu_rifas_compradas::-webkit-scrollbar-thumb, .lista_numeros_comprados::-webkit-scrollbar-thumb{
+#menu_rifas_compradas::-webkit-scrollbar-thumb,
+.lista_numeros_comprados::-webkit-scrollbar-thumb {
     background-color: #797a7a;
     border-radius: 10px;
     height: 10px;
 }
 
-.menu_numeros_comprados{
+.menu_numeros_comprados {
     position: fixed;
     top: 28vh;
     /* left: 40vw; */
@@ -1181,7 +1193,8 @@ html {
     border: 2px solid #000;
 }
 
-.lista_rifas_compradas, .lista_numeros_comprados{
+.lista_rifas_compradas,
+.lista_numeros_comprados {
     height: 100%;
     /* width: 100%; */
     display: flex;
@@ -1190,7 +1203,7 @@ html {
     gap: 50px;
 }
 
-.lista_numeros_comprados{
+.lista_numeros_comprados {
     gap: 20px;
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     padding: 20px;
@@ -1200,12 +1213,12 @@ html {
     /* overflow-x: scroll; */
 }
 
-.numeros_comprados{
+.numeros_comprados {
     cursor: default;
     font-weight: 600;
 }
 
-.numero_sorteado_container{
+.numero_sorteado_container {
     position: fixed;
     top: 28vh;
     left: 30vw;
@@ -1219,8 +1232,8 @@ html {
     border-radius: 10px;
 }
 
-.numero_sorteado_div{
-    font-family:var(--fonte-primaria);
+.numero_sorteado_div {
+    font-family: var(--fonte-primaria);
     font-size: 1.5em;
     font-weight: 700;
     color: #fff;
@@ -1233,28 +1246,43 @@ html {
     justify-content: center;
 }
 
-.btn_deletar_form{
+.btn_deletar_form {
     height: 100%;
-    display: flex;
+    display: flex;  
     flex-direction: column;
-    justify-content: end;
+    transition: .8s;
 }
 
-.rifas_compradas_sorteadas{
+.btn_deletar:hover{
+    transform: scale(1.05);
+    background-color: #555353;
+}
+
+.data_deletar_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 80%;
+    padding-right: 1vw;
+    align-items: end;
+}
+
+.rifas_compradas_sorteadas {
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     color: #fff;
     border-radius: 5px;
     padding: 5px;
 }
 
-.rifas_compradas_li{
+.rifas_compradas_li {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-.rifas_compradas{
+.rifas_compradas {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1264,13 +1292,13 @@ html {
     min-width: 200px;
 }
 
-.nav_links.rifas_compradas{
+.nav_links.rifas_compradas {
     height: 40px;
     background-color: #c7ccd1;
 
 }
 
-.numero_sorteado{
+.numero_sorteado {
     font-family: var(--fonte-primaria);
     font-size: 1em;
     padding: 5px;
@@ -1278,13 +1306,13 @@ html {
     font-weight: 700;
 }
 
-.vencedor{
-    background-color: rgb(13, 190, 13)!important;
+.vencedor {
+    background-color: rgb(13, 190, 13) !important;
     color: #000;
 }
 
-.perdedor{
-    background-color: rgb(231, 24, 24)!important;
+.perdedor {
+    background-color: rgb(231, 24, 24) !important;
     color: #fff;
 }
 
@@ -1293,23 +1321,23 @@ html {
     display: none !important;
 }
 
-.required_cadastro{
-    position: absolute; 
+.required_cadastro {
+    position: absolute;
     right: 6px;
     top: 56px;
     font-size: 18px;
     font-weight: bold;
 }
 
-.required_cadastro_login{
-    position: absolute; 
+.required_cadastro_login {
+    position: absolute;
     right: 10px;
     top: 8px;
     font-size: 18px;
     font-weight: bold;
 }
 
-.email_telefone_container{
+.email_telefone_container {
     background-color: #d3d3d3;
     width: 100%;
     padding: 30px;
@@ -1321,7 +1349,7 @@ html {
     max-width: 80vw;
 }
 
-.popup_erro{
+.popup_erro {
     border-bottom: 5px solid var(--vermelho-primario);
     border-radius: 20px;
     box-shadow: 2px 0 4px #000;
@@ -1336,13 +1364,13 @@ html {
     justify-content: center;
 }
 
-.legenda_popup{
+.legenda_popup {
     font-size: 1.8em;
     font-weight: 600;
     text-align: center;
 }
 
-#numero_de_letras{
+#numero_de_letras {
     position: absolute;
     right: 10px;
     top: 70px;
@@ -1351,7 +1379,7 @@ html {
     font-family: var(--fonte-primaria);
 }
 
-#popup_login{
+#popup_login {
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 2px 0 4px #000;
@@ -1367,7 +1395,7 @@ html {
     z-index: 1;
 }
 
-.login_popup{
+.login_popup {
     height: 50px;
     width: 300px;
     display: flex;
@@ -1375,7 +1403,7 @@ html {
     align-items: center;
 }
 
-.popup_sorteio{
+.popup_sorteio {
     display: none;
     width: 50vw;
     height: 50vh;

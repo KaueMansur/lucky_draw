@@ -238,11 +238,20 @@ foreach ($listaDasRifas as $rifa) {
                         <?php if ($rifa->getImagemIlustrativa() != null) { ?>
                             <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="150px" height="90px">
                         <?php } ?>
-                        <div class="rifas_infos rifas_infos_index">
-                            <p class="valor_rifa"><span class="premio_rifa">Objetivo:</span> <?= $rifa->getObjetivo() ?></p>
-                            <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
-                            <p class="valor_rifa">R$ <?= number_format($rifa->getValorCadaNumero(), 2, ',') ?></p>
-                        </div>
+                        <article class="rifas_infos">
+                            <div class="rifas_infos_container">
+                                <p class="valor_rifa"><span class="premio_rifa">Objetivo:</span> <?= $rifa->getObjetivo() ?></p>
+                                <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
+                                <p class="valor_rifa">R$ <?= number_format($rifa->getValorCadaNumero(), 2, ',') ?></p>
+                            </div>
+                            <div class="rifas_infos_container data_container">
+                                <img src="assets/img/icons/calendario.png" alt="Ícone de data">
+                                <p><?php
+                                    $data = new DateTime($rifa->getDataDoSorteio());
+                                    echo $data->format("d/m/y");
+                                    ?></p>
+                            </div>
+                        </article>
                         <!-- <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button> -->
                     </li>
                     <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">

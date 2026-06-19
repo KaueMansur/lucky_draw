@@ -233,14 +233,14 @@ foreach ($listaDeRifas as $r) {
                         <?php } elseif (!in_array($rifa->getNumeroSorteado(), $numerosConvertidos)) { ?>
                             <button onclick="mostrarOpcoesDeSorteio('<?= $rifa->getIdRifa() ?>')" class="btn_encerrar_venda" style="background-color: #F80;">Opções de sorteio</button>
                         <?php } ?>
-                        
-                            <div id="opcoes_de_sorteio<?= $rifa->getIdRifa() ?>" class="desativado">
-                                <button onclick="abrirSorteio('<?= $rifa->getIdRifa() ?>')">Sortear</button>
-                                <button onclick="cancelarOpcoesSorteio('<?= $rifa->getIdRifa() ?>')">Cancelar</button>
-                            </div>
+
+                        <div id="opcoes_de_sorteio<?= $rifa->getIdRifa() ?>" class="desativado">
+                            <button onclick="abrirSorteio('<?= $rifa->getIdRifa() ?>')">Sortear</button>
+                            <button onclick="cancelarOpcoesSorteio('<?= $rifa->getIdRifa() ?>')">Cancelar</button>
+                        </div>
 
                         <form class="popup_sorteio" id="popup_sorteio<?= $rifa->getIdRifa() ?>" method="post" action="../controller/sorteio_controller.php" class="desativado card_sorteio">
-                              <div class="sorteio_container">
+                            <div class="sorteio_container">
                                 <div>
                                     <input type="checkbox" name="numeros_comprados" id="numeros_comprados<?= $rifa->getIdRifa() ?>" value="true" checked>
                                     <label for="numeros_comprados<?= $rifa->getIdRifa() ?>" class="legenda_sorteio">Somente números comprados</label>
@@ -253,21 +253,37 @@ foreach ($listaDeRifas as $r) {
                             </div>
                         </form>
                     </div>
-                    <div class="rifas_infos">
-                        <!-- <p><?= $rifa->getObjetivo() ?></p> -->
-                        <div class="rifas_infos_p_container">
-                            <p class="valor_rifa">Objetivo: <span class="premio_rifa"><?= $rifa->getObjetivo() ?></span></p>
+                    <article class="rifas_infos">
+                        <div class="rifas_infos_container">
+                            <p class="valor_rifa"><span class="premio_rifa">Objetivo:</span> <?= $rifa->getObjetivo() ?></p>
                             <p class="premio_rifa"><?= $rifa->getPremio() ?></p>
                             <p class="valor_rifa">R$ <?= number_format($rifa->getValorCadaNumero(), 2, ',') ?></p>
                         </div>
                         <?php
                         if ($rifa->getQuantidadeNumerosVendidos($rifa->getIdRifa()) == 0) { ?>
-                            <form action="../controller/deletar_rifa_controller.php" method="post" class="btn_deletar_form">
-                                <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
-                                <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
-                            </form>
+                            <div class="data_deletar_container">
+                                <form action="../controller/deletar_rifa_controller.php" method="post" class="btn_deletar_form">
+                                    <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
+                                    <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
+                                </form>
+                                <div class="rifas_infos_container data_container">
+                                    <img src="../../assets/img/icons/calendario.png" alt="Ícone de data">
+                                    <p><?php
+                                        $data = new DateTime($rifa->getDataDoSorteio());
+                                        echo $data->format("d/m/y");
+                                        ?></p>
+                                </div>
+                            </div>
+                        <?php } else { ?>
+                            <div class="rifas_infos_container data_container">
+                                <img src="../../assets/img/icons/calendario.png" alt="Ícone de data">
+                                <p><?php
+                                    $data = new DateTime($rifa->getDataDoSorteio());
+                                    echo $data->format("d/m/y");
+                                    ?></p>
+                            </div>
                         <?php } ?>
-                    </div>
+                    </article>
 
                     <?php
                     $numerosDaRifa = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
