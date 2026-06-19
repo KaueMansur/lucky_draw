@@ -254,7 +254,7 @@ foreach ($listaDasRifas as $rifa) {
                         </article>
                         <!-- <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button> -->
                     </li>
-                    <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
+                    <article class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                         <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)" class="btn_fechar">x</button>
                         <form action="src/controller/comprar_numeros_controller.php" method="post">
                             <ul class="espaco_numeros">
@@ -326,7 +326,21 @@ foreach ($listaDasRifas as $rifa) {
                                 </ul>
                             </div>
                         <?php } ?>
-                    </div>
+                        <div class="infos_local_data_container">
+                            <div class="infos_local_data">
+                                <img src="assets/img/icons/calendario32.png" alt="Ícone de calendário">
+                                <p><?php 
+                                    $data = new DateTime($rifa->getDataDoSorteio());
+                                    echo $data->format("d/m/y");
+                                
+                                ?></p>
+                            </div>
+                            <div class="infos_local_data">
+                                <img src="assets/img/icons/local.png" alt="Ícone de local">
+                                <p><?= $rifa->getLocalDoSorteio() ?></p>
+                            </div>
+                        </div>
+                    </article>
                 <?php }
                 ?>
             </ul>

@@ -45,7 +45,7 @@ foreach ($listaDeRifas as $r) {
                 <li class="rifas" onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">
                     <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="img" width="150px" height="90px">
                     <!-- <p>Número Sorteado: <?= $rifa->getNumeroSorteado() ?></p> -->
-                    <div class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
+                    <article class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                         <button onclick="fecharRifa('<?= $rifa->getIdRifa() ?>')" class="btn_fechar">x</button>
 
 
@@ -252,7 +252,21 @@ foreach ($listaDeRifas as $r) {
                                 </div>
                             </div>
                         </form>
-                    </div>
+                        <div class="infos_local_data_container" style="bottom: -10vh;">
+                            <div class="infos_local_data">
+                                <img src="../../assets/img/icons/calendario32.png" alt="Ícone de calendário">
+                                <p><?php 
+                                    $data = new DateTime($rifa->getDataDoSorteio());
+                                    echo $data->format("d/m/y");
+                                
+                                ?></p>
+                            </div>
+                            <div class="infos_local_data">
+                                <img src="../../assets/img/icons/local.png" alt="Ícone de local">
+                                <p><?= $rifa->getLocalDoSorteio() ?></p>
+                            </div>
+                        </div>
+                    </article>
                     <article class="rifas_infos">
                         <div class="rifas_infos_container">
                             <p class="valor_rifa"><span class="premio_rifa">Objetivo:</span> <?= $rifa->getObjetivo() ?></p>
