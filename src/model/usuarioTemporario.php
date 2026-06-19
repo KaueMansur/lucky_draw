@@ -9,7 +9,8 @@ class UsuarioTemporario
     private $idRifa;
     private $numeros;
 
-    public function __construct($nome = 0, $telefone = 0, $idRifa = 0, $idUsuario = 0, $numeros = []) {
+    public function __construct($nome = 0, $telefone = 0, $idRifa = 0, $idUsuario = 0, $numeros = [])
+    {
         $this->nome = $nome;
         $this->telefone = $telefone;
         $this->idRifa = $idRifa;
@@ -26,7 +27,17 @@ class UsuarioTemporario
         );
     }
 
-    public function listarNumerosDoUsuario($idUsuario){
+    public function contarUsuariosDaRifa($idRifa)
+    {
+        $db = new Database();
+
+        return $db->select(
+            "SELECT COUNT(*) FROM usuarios_temp WHERE id_rifa = $idRifa"
+        );
+    }
+
+    public function listarNumerosDoUsuario($idUsuario)
+    {
         $db = new Database();
 
         return $db->select(
@@ -34,7 +45,8 @@ class UsuarioTemporario
         );
     }
 
-    public function cadastrarUsuarioTemporario($nome, $telefone, $idRifa){
+    public function cadastrarUsuarioTemporario($nome, $telefone, $idRifa)
+    {
         $db = new Database();
 
         $db->insert(
@@ -42,7 +54,8 @@ class UsuarioTemporario
         );
     }
 
-    public function editarUsuarioTemporario($idUsuario, $novoNome, $novoTelefone){
+    public function editarUsuarioTemporario($idUsuario, $novoNome, $novoTelefone)
+    {
         $db = new Database();
 
         $db->update(
@@ -50,7 +63,8 @@ class UsuarioTemporario
         );
     }
 
-    public function excluirUsuarioTemp($idUsuario){
+    public function excluirUsuarioTemp($idUsuario)
+    {
         $db = new Database();
 
         $db->delete(
@@ -88,23 +102,28 @@ class UsuarioTemporario
         $this->telefone = $telefone;
     }
 
-    public function getIdRifa(){
+    public function getIdRifa()
+    {
         return $this->idRifa;
     }
 
-    public function setIdRifa($idRifa){
+    public function setIdRifa($idRifa)
+    {
         $this->idRifa = $idRifa;
     }
 
-    public function getNumeros(){
+    public function getNumeros()
+    {
         return $this->numeros;
     }
 
-    public function setNumeros($numeros){
+    public function setNumeros($numeros)
+    {
         $this->numeros = $numeros;
     }
 
-    public function getQuantidadeNumeros($idUsuario){
+    public function getQuantidadeNumeros($idUsuario)
+    {
         // return count($this->numeros);
 
         $db = new Database();

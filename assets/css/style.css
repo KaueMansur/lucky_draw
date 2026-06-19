@@ -498,6 +498,7 @@ html {
 .espaco_compradores {
     /* padding: 3%; */
     width: 80%;
+    margin-bottom: 10vh;
 }
 
 .espaco_numeros {

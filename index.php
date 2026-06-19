@@ -99,7 +99,7 @@ foreach ($listaDasRifas as $rifa) {
 
 
                                 if (!isset($numeroSorteado)) { ?>
-                                    <li class="nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)"><?= $rifaPorid->premio ?></li>
+                                    <li class="nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)" title="Mostrar números comprados"><?= $rifaPorid->premio ?></li>
                                 <?php } else {
                                 ?>
                                     <aside class="desativado numero_sorteado_container" id="numero_sorteado_container<?= $rifasCompradas->id_rifa ?>">
@@ -116,10 +116,10 @@ foreach ($listaDasRifas as $rifa) {
 
                                     if (in_array($numeroSorteado, $listaNumerosCompradosDoUsuario)) { ?>
 
-                                        <li class=" vencedor nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)"><?= $rifaPorid->premio ?></li>
+                                        <li class=" vencedor nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)" title="Mostrar números comprados"><?= $rifaPorid->premio ?></li>
 
                                     <?php } else { ?>
-                                        <li class="perdedor nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)"><?= $rifaPorid->premio ?></li>
+                                        <li class="perdedor nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)" title="Mostrar números comprados"><?= $rifaPorid->premio ?></li>
                                     <?php
                                     } ?>
 

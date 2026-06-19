@@ -11,6 +11,8 @@ $usuario = $_SESSION["usuario"];
 
 $numeroComprado = new NumeroComprado();
 
+$usuarioTemp = new UsuarioTemporario();
+
 $listaDeRifas = $rifa->listarTodasAsRifas($usuario->getIdUsuario());
 
 $listaDasRifas = [];
@@ -34,7 +36,7 @@ foreach ($listaDeRifas as $r) {
 <body>
     <header id="header_galeria">
         <h1 class="titulo">Galeria de rifas</h1>
-        <a href="../../index.php" class="btn_voltar"><img src="../../assets/img/icons/casa_voltar.png" alt="Voltar à página inicial"></a>
+        <a href="../../index.php" class="btn_voltar" title="Voltar à página inicial"><img src="../../assets/img/icons/casa_voltar.png" alt="Voltar à página inicial"></a>
     </header>
 
     <main id="main">
@@ -46,7 +48,7 @@ foreach ($listaDeRifas as $r) {
                     <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="img" width="150px" height="90px">
                     <!-- <p>Número Sorteado: <?= $rifa->getNumeroSorteado() ?></p> -->
                     <article class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
-                        <button onclick="fecharRifa('<?= $rifa->getIdRifa() ?>')" class="btn_fechar">x</button>
+                        <button onclick="fecharRifa('<?= $rifa->getIdRifa() ?>')" class="btn_fechar" title="Fechar rifa">x</button>
 
 
                         <form action="../controller/comprar_numeros_controller.php" method="post" style="display: flex; flex-direction: column; align-items: center; gap: 30px">
@@ -101,7 +103,7 @@ foreach ($listaDeRifas as $r) {
 
                             <section class="espaco_numeros espaco_compradores">
                                 <?php if ($rifa->getStatusVendas() == 1) { ?>
-                                    <img src="../../assets/img/icons/adicionar-usuario.png" onclick="criarVenda('<?= $rifa->getIdRifa() ?>')" id="btn_criar_venda<?= $rifa->getIdRifa() ?>" class="btn_add_usuario">
+                                    <img src="../../assets/img/icons/adicionar-usuario.png" onclick="criarVenda('<?= $rifa->getIdRifa() ?>')" id="btn_criar_venda<?= $rifa->getIdRifa() ?>" class="btn_add_usuario" title="Adicionar comprador">
                                 <?php } ?>
                                 <ul class="card_comprados">
                                     <?php
@@ -161,7 +163,7 @@ foreach ($listaDeRifas as $r) {
                                                         foreach ($usuario->getNumeros() as $n) {
                                                             if ($key == 3) {
                                                         ?>
-                                                                <li class="numero_usuario_temp" style="padding: 3px; padding-inline: 10px; font-size: 18pt; cursor:pointer;" onclick="expandirNumerosVendidos(<?= $usuario->getIdUsuario() ?>)" id="btn_mostrar_numeros<?= $usuario->getIdUsuario() ?>">+</li>
+                                                                <li class="numero_usuario_temp" style="padding: 3px; padding-inline: 10px; font-size: 18pt; cursor:pointer;" onclick="expandirNumerosVendidos(<?= $usuario->getIdUsuario() ?>)" id="btn_mostrar_numeros<?= $usuario->getIdUsuario() ?>" title="Expandir">+</li>
                                                             <?php }
                                                             $key++; ?>
                                                             <li class="numero_usuario_temp"><?= $n ?></li>
@@ -185,11 +187,11 @@ foreach ($listaDeRifas as $r) {
                                                         ?>
                                                             <form action="../controller/excluir_usuario_temp_controller.php" method="post">
                                                                 <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
-                                                                <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
+                                                                <button class="btn_deletar" title="Excluir comprador"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
                                                             </form>
                                                         <?php }
                                                         ?>
-                                                        <button type="button" id="btn_editar_usuario<?= $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="20px"></button>
+                                                        <button type="button" id="btn_editar_usuario<?= $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp" title="Editar comprador"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="20px"></button>
                                                     </div>
                                                 </div>
                                             <?php } ?>
@@ -252,20 +254,38 @@ foreach ($listaDeRifas as $r) {
                                 </div>
                             </div>
                         </form>
-                        <div class="infos_local_data_container" style="bottom: -10vh;">
-                            <div class="infos_local_data">
-                                <img src="../../assets/img/icons/calendario32.png" alt="Ícone de calendário">
-                                <p><?php 
-                                    $data = new DateTime($rifa->getDataDoSorteio());
-                                    echo $data->format("d/m/y");
-                                
-                                ?></p>
+                        <?php
+                        if ($usuarioTemp->contarUsuariosDaRifa($rifa->getIdRifa()) > 0) { ?>
+                            <div class="infos_local_data_container" style="bottom: -37vh;">
+                                <div class="infos_local_data">
+                                    <img src="../../assets/img/icons/calendario32.png" alt="Ícone de calendário">
+                                    <p><?php
+                                        $data = new DateTime($rifa->getDataDoSorteio());
+                                        echo $data->format("d/m/y");
+                                        ?></p>
+                                </div>
+                                <div class="infos_local_data">
+                                    <img src="../../assets/img/icons/local.png" alt="Ícone de local">
+                                    <p><?= $rifa->getLocalDoSorteio() ?></p>
+                                </div>
                             </div>
-                            <div class="infos_local_data">
-                                <img src="../../assets/img/icons/local.png" alt="Ícone de local">
-                                <p><?= $rifa->getLocalDoSorteio() ?></p>
+                        <?php } else { ?>
+                            <div class="infos_local_data_container" style="bottom: -10vh;">
+                                <div class="infos_local_data">
+                                    <img src="../../assets/img/icons/calendario32.png" alt="Ícone de calendário">
+                                    <p><?php
+                                        $data = new DateTime($rifa->getDataDoSorteio());
+                                        echo $data->format("d/m/y");
+                                        ?></p>
+                                </div>
+                                <div class="infos_local_data">
+                                    <img src="../../assets/img/icons/local.png" alt="Ícone de local">
+                                    <p><?= $rifa->getLocalDoSorteio() ?></p>
+                                </div>
                             </div>
-                        </div>
+
+                        <?php } ?>
+
                     </article>
                     <article class="rifas_infos">
                         <div class="rifas_infos_container">
@@ -278,7 +298,7 @@ foreach ($listaDeRifas as $r) {
                             <div class="data_deletar_container">
                                 <form action="../controller/deletar_rifa_controller.php" method="post" class="btn_deletar_form">
                                     <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
-                                    <button class="btn_deletar"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
+                                    <button class="btn_deletar" title="Excluir rifa"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
                                 </form>
                                 <div class="rifas_infos_container data_container">
                                     <img src="../../assets/img/icons/calendario.png" alt="Ícone de data">

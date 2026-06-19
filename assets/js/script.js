@@ -223,6 +223,7 @@ function expandirNumerosVendidos(idUsuario) {
     if (!div.classList.contains("lista_expandida")) {
         div.classList.add("lista_expandida");
         btnMostrarNumeros.innerHTML = "-";
+        btnMostrarNumeros.title = "Esconder"
         ul.style.height = "fit-content";
         // div.style.alignItems = "baseline";
         // ul.style.padding = "15px 0";
