@@ -72,6 +72,7 @@ foreach ($listaDasRifas as $rifa) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>página principal</title>
+    <link rel="shortcut icon" href="assets/img/icons/Favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsividade.css">
 </head>
