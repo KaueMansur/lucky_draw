@@ -58,6 +58,7 @@ class Rifa{
             $this->idUsuario = $rifa->id_usuario;
             $this->privacidade = $rifa->privacidade;
             $this->numeroSorteado = $rifa->numero_sorteado;
+            $this->statusVendas = $rifa->status_vendas;
 
             $list = [$this];
         }
@@ -142,6 +143,14 @@ class Rifa{
             "SELECT * FROM rifas WHERE id_rifa = $idRifa"
         );
     }
+
+    public function listarRifasComNumerosDoUsuario($idUsuario){
+        $db = new Database();
+
+        return $db->select(
+            "SELECT id_rifa FROM `numeros_comprados` WHERE id_usuario = $idUsuario GROUP BY id_rifa;"
+        );
+    } 
 
     public function getIdRifa() {
         return $this->idRifa;

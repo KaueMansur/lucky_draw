@@ -1214,7 +1214,7 @@ html {
     align-items: center;
     width: 5vw;
     height: 5vw;
-    background-color: #f00;
+    background-color: #fff;
     border: 1px solid #000;
     border-radius: 10px;
 }
@@ -1284,7 +1284,7 @@ html {
 }
 
 .perdedor{
-    background-color: rgb(231, 24, 24);
+    background-color: rgb(231, 24, 24)!important;
     color: #fff;
 }
 

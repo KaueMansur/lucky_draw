@@ -55,13 +55,13 @@ class usuario{
         );
     }
 
-    public function listarRifasComNumerosDoUsuario($idUsuario){
-        $db = new Database();
+    // public function listarRifasComNumerosDoUsuario($idUsuario){
+    //     $db = new Database();
 
-        return $db->select(
-            "SELECT id_rifa FROM `numeros_comprados` WHERE id_usuario = $idUsuario GROUP BY id_rifa;"
-        );
-    }
+    //     return $db->select(
+    //         "SELECT id_rifa FROM `numeros_comprados` WHERE id_usuario = $idUsuario GROUP BY id_rifa;"
+    //     );
+    // }
 
     public function login($emailOuTelefone, $senha){
         $db = new Database();
