@@ -257,7 +257,7 @@ foreach ($listaDeRifas as $r) {
                         </form>
                         <?php
                         if ($usuarioTemp->contarUsuariosDaRifa($rifa->getIdRifa()) > 0) { ?>
-                            <div class="infos_local_data_container" style="bottom: -40vh;">
+                            <div class="infos_local_data_container" style="bottom: -41vh;">
                                 <div class="infos_local_data">
                                     <img src="../../assets/img/icons/calendario32.png" alt="Ícone de calendário">
                                     <p><?php
@@ -271,7 +271,16 @@ foreach ($listaDeRifas as $r) {
                                 </div>
                                 <div class="infos_local_data">
                                     <img src="../../assets/img/icons/estrela.png" alt="Ícone de local">
-                                    <p>Número sorteado: <?= $rifa->getNumeroSorteado() ?></p>
+                                    <p>Número sorteado:
+                                        <?php if ($rifa->getStatusVendas() == 0) {
+                                            if ($numeroComprado->verificaNumeroComprado($rifa->getIdRifa(), $rifa->getNumeroSorteado())) {
+                                        ?>
+                                                <span class="numero_sorteado_div resultado"><?= $rifa->getNumeroSorteado() ?></span>
+                                    </p>
+                                <?php } else { ?>
+                                    <span><?= $rifa->getNumeroSorteado() ?></span>
+                            <?php }
+                                        } ?>
                                 </div>
                             </div>
                         <?php } else { ?>
@@ -289,7 +298,16 @@ foreach ($listaDeRifas as $r) {
                                 </div>
                                 <div class="infos_local_data">
                                     <img src="../../assets/img/icons/estrela.png" alt="Ícone de local">
-                                    <p>Número sorteado: <?= $rifa->getNumeroSorteado() ?></p>
+                                    <p>Número sorteado:
+                                        <?php if ($rifa->getStatusVendas() == 0) {
+                                            if ($numeroComprado->verificaNumeroComprado($rifa->getIdRifa(), $rifa->getNumeroSorteado())) {
+                                        ?>
+                                                <span class="numero_sorteado_div resultado"><?= $rifa->getNumeroSorteado() ?></span>
+                                    </p>
+                                <?php } else { ?>
+                                    <span><?= $rifa->getNumeroSorteado() ?></span>
+                            <?php }
+                                        } ?>
                                 </div>
                             </div>
 

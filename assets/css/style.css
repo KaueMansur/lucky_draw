@@ -1440,4 +1440,11 @@ html {
     position: absolute;
     left: 1vw;
     bottom: 1vw;
+    padding-bottom: 10px;
+}
+
+.resultado{
+    display: inline;
+    padding: .4vw;
+    font-size: 1em;
 }

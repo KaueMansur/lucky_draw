@@ -2,7 +2,8 @@
 
 require "usuarioTemporario.php";
 
-class NumeroComprado{
+class NumeroComprado
+{
 
     private $idNumero;
     private $numero;
@@ -11,7 +12,8 @@ class NumeroComprado{
     private $nomeUsuario;
     private $telefoneUsuario;
 
-    public function __construct($idNumero = 0, $numero = 0, $idRifa = 0, $idUsuario = 0, $nomeUsuario = 0, $telefoneUsuario = 0) {
+    public function __construct($idNumero = 0, $numero = 0, $idRifa = 0, $idUsuario = 0, $nomeUsuario = 0, $telefoneUsuario = 0)
+    {
         $this->idNumero = $idNumero;
         $this->numero = $numero;
         $this->idRifa = $idRifa;
@@ -20,55 +22,85 @@ class NumeroComprado{
         $this->telefoneUsuario = $telefoneUsuario;
     }
 
-    public function getIdNumero(){
+    public function verificaNumeroComprado($idRifa, $numero)
+    {
+        $db = new Database();
+
+        $verificador = $db->select(
+            "SELECT COUNT(*) FROM numeros_comprados WHERE id_rifa = $idRifa AND numero = $numero"
+        );
+
+        // return var_dump($verificador[0]->{"COUNT(*)"});
+
+        if($verificador[0]->{"COUNT(*)"}){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public function getIdNumero()
+    {
         return $this->idNumero;
     }
 
-    public function setIdNumero($id){
+    public function setIdNumero($id)
+    {
         $this->idNumero = $id;
     }
 
-    public function getNumero(){
+    public function getNumero()
+    {
         return $this->numero;
     }
 
-    public function setNumero($numero){
+    public function setNumero($numero)
+    {
         $this->numero = $numero;
     }
 
-    public function getIdRifa(){
+    public function getIdRifa()
+    {
         return $this->idRifa;
     }
 
-    public function setIdRifa($id){
+    public function setIdRifa($id)
+    {
         $this->idRifa = $id;
     }
 
-    public function getIdUsuario(){
+    public function getIdUsuario()
+    {
         return $this->idUsuario;
     }
 
-    public function setIdUsuario($id){
+    public function setIdUsuario($id)
+    {
         $this->idUsuario = $id;
     }
 
-    public function getNomeUsuario(){
+    public function getNomeUsuario()
+    {
         return $this->nomeUsuario;
     }
 
-    public function setNomeUsuario($nome){
+    public function setNomeUsuario($nome)
+    {
         $this->nomeUsuario = $nome;
     }
 
-    public function getTelefoneUsuario(){
+    public function getTelefoneUsuario()
+    {
         return $this->telefoneUsuario;
     }
 
-    public function setTelefoneUsuario($telefone){
+    public function setTelefoneUsuario($telefone)
+    {
         $this->telefoneUsuario = $telefone;
     }
 
-    public function listarTodosOsNumerosDaRifa($idRifa){
+    public function listarTodosOsNumerosDaRifa($idRifa)
+    {
         $db = new Database();
 
         return $db->select(
@@ -76,16 +108,17 @@ class NumeroComprado{
         );
     }
 
-    public function listarNumerosCompradosDaRifa($idRifa){
+    public function listarNumerosCompradosDaRifa($idRifa)
+    {
         $db = new Database();
-        
+
         return $db->select(
             "SELECT numero FROM numeros_comprados WHERE id_rifa = $idRifa"
         );
-
     }
 
-    public function listarNumerosprivados($idRifa){
+    public function listarNumerosprivados($idRifa)
+    {
         $db = new Database();
 
         return $db->select(
@@ -93,14 +126,12 @@ class NumeroComprado{
         );
     }
 
-    public function countUsuarioRepetido($nomeUsuario){
+    public function countUsuarioRepetido($nomeUsuario)
+    {
         $db = new Database();
 
         return $db->select(
             "SELECT COUNT(*) FROM numeros_comprados WHERE nome_usuario = '$nomeUsuario' "
         );
     }
-
 }
-
-?>
