@@ -236,9 +236,14 @@ p {
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     cursor: pointer;
     box-shadow: #000 1px 1px 5px;
+}
+
+.rifas_img{
+    max-width: 28vw;
+    height: 100px;
 }
 
 .rifas_infos {
@@ -498,7 +503,7 @@ html {
 .espaco_compradores {
     /* padding: 3%; */
     width: 80%;
-    margin-bottom: 10vh;
+    margin-bottom: 14vh;
 }
 
 .espaco_numeros {
@@ -597,7 +602,7 @@ html {
     padding: 20px;
     border-radius: 10px;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 120px;
     max-width: 85%;
     /* width: 70%; */
 }

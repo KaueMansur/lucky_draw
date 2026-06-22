@@ -117,7 +117,7 @@ foreach ($listaDasRifas as $rifa) {
 
                                     if (in_array($numeroSorteado, $listaNumerosCompradosDoUsuario)) { ?>
 
-                                        <li class=" vencedor nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)" title="Mostrar números comprados"><?= $rifaPorid->premio ?></li>
+                                        <li class="vencedor nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)" title="Mostrar números comprados"><?= $rifaPorid->premio ?></li>
 
                                     <?php } else { ?>
                                         <li class="perdedor nav_links rifas_compradas" onclick="abrirNumerosComprados(<?= $rifasCompradas->id_rifa ?>)" title="Mostrar números comprados"><?= $rifaPorid->premio ?></li>
@@ -237,7 +237,7 @@ foreach ($listaDasRifas as $rifa) {
                 <?php foreach ($listaDasRifas as $rifa) { ?>
                     <li class="rifas" onclick="abrirRifa('<?= $rifa->getIdRifa() ?>', '<?= $logado ?>')">
                         <?php if ($rifa->getImagemIlustrativa() != null) { ?>
-                            <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="img_ilustrativa" width="150px" height="90px">
+                            <img src="<?= $rifa->getImagemIlustrativa() ?>" alt="imagem ilustrativa" class="rifas_img">
                         <?php } ?>
                         <article class="rifas_infos">
                             <div class="rifas_infos_container">
@@ -333,12 +333,16 @@ foreach ($listaDasRifas as $rifa) {
                                 <p><?php 
                                     $data = new DateTime($rifa->getDataDoSorteio());
                                     echo $data->format("d/m/y");
-                                
-                                ?></p>
+                                    
+                                    ?></p>
                             </div>
                             <div class="infos_local_data">
                                 <img src="assets/img/icons/local.png" alt="Ícone de local">
                                 <p><?= $rifa->getLocalDoSorteio() ?></p>
+                            </div>
+                            <div class="infos_local_data">
+                                <img src="assets/img/icons/estrela.png" alt="Ícone de local">
+                                <p>Número sorteado: <?= $rifa->getNumeroSorteado() ?></p>
                             </div>
                         </div>
                     </article>

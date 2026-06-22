@@ -46,7 +46,7 @@ foreach ($listaDeRifas as $r) {
         <ul class="cards_rifa_container">
             <?php foreach ($listaDasRifas as $rifa) { ?>
                 <li class="rifas" onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">
-                    <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="img" width="150px" height="90px">
+                    <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="imagem ilustrativa" class="rifas_img">
                     <!-- <p>Número Sorteado: <?= $rifa->getNumeroSorteado() ?></p> -->
                     <article class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                         <button onclick="fecharRifa('<?= $rifa->getIdRifa() ?>')" class="btn_fechar" title="Fechar rifa">x</button>
@@ -257,7 +257,7 @@ foreach ($listaDeRifas as $r) {
                         </form>
                         <?php
                         if ($usuarioTemp->contarUsuariosDaRifa($rifa->getIdRifa()) > 0) { ?>
-                            <div class="infos_local_data_container" style="bottom: -37vh;">
+                            <div class="infos_local_data_container" style="bottom: -40vh;">
                                 <div class="infos_local_data">
                                     <img src="../../assets/img/icons/calendario32.png" alt="Ícone de calendário">
                                     <p><?php
@@ -268,6 +268,10 @@ foreach ($listaDeRifas as $r) {
                                 <div class="infos_local_data">
                                     <img src="../../assets/img/icons/local.png" alt="Ícone de local">
                                     <p><?= $rifa->getLocalDoSorteio() ?></p>
+                                </div>
+                                <div class="infos_local_data">
+                                    <img src="../../assets/img/icons/estrela.png" alt="Ícone de local">
+                                    <p>Número sorteado: <?= $rifa->getNumeroSorteado() ?></p>
                                 </div>
                             </div>
                         <?php } else { ?>
@@ -282,6 +286,10 @@ foreach ($listaDeRifas as $r) {
                                 <div class="infos_local_data">
                                     <img src="../../assets/img/icons/local.png" alt="Ícone de local">
                                     <p><?= $rifa->getLocalDoSorteio() ?></p>
+                                </div>
+                                <div class="infos_local_data">
+                                    <img src="../../assets/img/icons/estrela.png" alt="Ícone de local">
+                                    <p>Número sorteado: <?= $rifa->getNumeroSorteado() ?></p>
                                 </div>
                             </div>
 
