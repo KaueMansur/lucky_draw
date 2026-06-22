@@ -117,7 +117,6 @@ class Rifa{
             // var_dump($numerosParaSortear[0]->numero);
 
             $numeroSorteado = $numerosParaSortear[$chaveSorteada]->numero;
-
         } else{
             $tamRifa = $db->select(
                 "SELECT quantidade_numeros FROM rifas WHERE id_rifa = $idRifa"

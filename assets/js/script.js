@@ -18,10 +18,12 @@ function abrirMenu() {
 function abrirRifa(idRifa) {
     document.getElementById("id" + idRifa).style.display = "flex";
 }
-
 function fecharRifa(idRifa) {
-    document.getElementById("id" + idRifa).style.display = "none";
+    const rifa = document.getElementById("id" + idRifa)
     limparSelecao();
+    console.log(rifa)
+    
+    rifa.style.setProperty("display", "none", "important");
 }
 
 function criarVenda(idRifa) {
