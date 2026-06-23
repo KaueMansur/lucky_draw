@@ -242,7 +242,7 @@ p {
 }
 
 .rifas_img{
-    max-width: 28vw;
+    max-width: 90%;
     height: 100px;
 }
 
@@ -603,11 +603,14 @@ html {
     border-radius: 10px;
     align-items: center;
     margin-bottom: 120px;
-    max-width: 85%;
+    width: 85%;
+    max-height: 180px;
     /* width: 70%; */
 }
 
 .lista_numeros_usuario {
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     justify-content: space-around;
     gap: 10px;
@@ -740,7 +743,8 @@ html {
 
 .btn_voltar {
     position: absolute;
-    left: 40px;
+    /* left: 40px; */
+    left: 5%;
 }
 
 .btn_encerrar_venda {
@@ -1118,7 +1122,7 @@ html {
 .btn_menu_hamburguer {
     position: fixed;
     right: 30px;
-    top: 110px;
+    top: 140px;
     z-index: 2;
     cursor: pointer;
     display: none;
@@ -1129,7 +1133,7 @@ html {
     height: 300px;
     position: fixed;
     right: 20px;
-    top: 20vh;
+    top: 30px;
     width: 200px;
     background-color: #fff;
     display: none;
@@ -1439,7 +1443,7 @@ html {
     gap: 10px;
     position: absolute;
     left: 1vw;
-    bottom: 1vw;
+    bottom: -5%;
     padding-bottom: 10px;
 }
 

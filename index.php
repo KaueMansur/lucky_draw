@@ -317,23 +317,25 @@ foreach ($listaDasRifas as $rifa) {
                         ?>
                             <div class="lista_numeros_container">
                                 <p class="label_lista_numeros">Seus números:</p>
-                                <ul class="lista_numeros_usuario">
-                                    <?php
+                                <div class="lista_numeros_usuario_container">
+                                    <ul class="lista_numeros_usuario">
+                                        <?php
 
-                                    foreach ($numerosDoUsuario as $numero) {
-                                    ?>
-                                        <li class="numeros_usuario"><?= $numero->numero ?></li>
-                                    <?php } ?>
-                                </ul>
+                                        foreach ($numerosDoUsuario as $numero) {
+                                        ?>
+                                            <li class="numeros_usuario"><?= $numero->numero ?></li>
+                                        <?php } ?>
+                                    </ul>
+                                </div>
                             </div>
                         <?php } ?>
                         <div class="infos_local_data_container">
                             <div class="infos_local_data">
                                 <img src="assets/img/icons/calendario32.png" alt="Ícone de calendário">
-                                <p><?php 
+                                <p><?php
                                     $data = new DateTime($rifa->getDataDoSorteio());
                                     echo $data->format("d/m/y");
-                                    
+
                                     ?></p>
                             </div>
                             <div class="infos_local_data">

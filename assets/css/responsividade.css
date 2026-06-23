@@ -78,6 +78,19 @@
     .ul_nav.nav {
         gap: 15px;
     }
+
+    .infos_local_data_container{
+        gap: 3px;
+        padding: 0;
+    }
+
+    .infos_local_data p{
+        font-size: .8em;
+    }
+
+    /* .lista_numeros_container{
+        min-height: 100px;
+    } */
 }
 
 @media screen and (max-width: 840px) {
@@ -112,10 +125,6 @@
         width: 100%;
         border-radius: 10px;
     }
-
-    .rifa_aberta {
-        /* padding: 0; */
-    }
 }
 
 @media screen and (max-width: 790px) {
@@ -136,10 +145,10 @@
     .form_rifa {
         min-width: 500px;
     }
-
+/* 
     .input_login {
         font-size: .8em;
-    }
+    } */
 
     .btn_menu_hamburguer {
         top: 90px;
@@ -208,15 +217,16 @@
         font-size: 16pt;
         text-align: center;
     }
-
+/* 
     .lista_numeros_container {
         flex-direction: column;
         align-items: center;
         gap: 10px;
-    }
+        max-width: 166px;
+    } */
 
     .container_btn_rifa {
-        flex-direction: column;
+        /* flex-direction: column; */
         gap: 10px;
     }
 
@@ -249,12 +259,10 @@
     .espaco_compradores {
         width: 95%;
     }
-}
 
-@media screen and (max-width: 700px) {
-    /* .card_vendas{
-
-    } */
+    .espaco_numeros{
+        height: 300px;
+    }
 }
 
 @media screen and (max-width: 670px) {
@@ -297,6 +305,10 @@
         width: 40px;
         left: 10px;
         top: 10px;
+    }
+
+    .lista_numeros_container{
+        flex-direction: column;
     }
 }
 
@@ -352,19 +364,29 @@
         font-size: .9em;
         top: 75px;
     }
+
+    .div_duplo_input{
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .container_btn_rifa{
+        flex-direction: column;
+    }
+
+    .lista_numeros_usuario{
+        min-height: 200px;
+    }
 }
 
 @media screen and (max-width: 440px) {
     .input_valor_container {
         gap: 0;
+        width: 80%;
     }
 
     .label_login.label_valor {
         font-size: .8em;
-    }
-
-    .input_valor_container {
-        width: 80%;
     }
 
     .valor_container {
@@ -380,5 +402,29 @@
 
     .card_vendas{
         padding-inline: 2%  ;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    #footer_content{
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .li_footer{
+        width: 80%;
+        text-align: center;
+    }
+
+    .legenda_footer{
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 340px){
+    .input_valor_container{
+        width: 290px;
     }
 }
