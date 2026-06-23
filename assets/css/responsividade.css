@@ -34,7 +34,7 @@
         padding: 10px;
     }
 
-    .infos_local_data_container{
+    .infos_local_data_container {
         bottom: -20%;
     }
 }
@@ -273,12 +273,13 @@
         font-size: .9em;
     }
 
-    .espaco_compradores {
-        width: 95%;
-    }
-
     .espaco_numeros {
         height: 300px;
+    }
+
+    .espaco_compradores {
+        width: 95%;
+        height: 100px;
     }
 }
 
@@ -394,6 +395,20 @@
     .lista_numeros_usuario {
         min-height: 200px;
     }
+
+    .btns_cadastrar_comprador {
+        flex-direction: column-reverse;
+        padding-inline: 10%;
+    }
+
+    .btn_cadastro {
+        width: 100%;
+    }
+
+    .card_cadastro {
+        width: 95vw;
+        min-width: 310px;
+    }
 }
 
 @media screen and (max-width: 440px) {
@@ -438,6 +453,10 @@
         text-align: center;
         width: 100%;
     }
+
+    .input_usuario_temp {
+        width: 50vw;
+    }
 }
 
 @media screen and (max-width: 340px) {
@@ -447,7 +466,7 @@
 }
 
 @media screen and (max-width: 321px) {
-    .lista_numeros_usuario{
+    .lista_numeros_usuario {
         gap: 5px;
     }
 }

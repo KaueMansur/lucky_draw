@@ -19,11 +19,8 @@ function abrirRifa(idRifa) {
     document.getElementById("id" + idRifa).style.display = "flex";
 }
 function fecharRifa(idRifa) {
-    const rifa = document.getElementById("id" + idRifa)
-    limparSelecao();
-    console.log(rifa)
-    
-    rifa.style.setProperty("display", "none", "important");
+    document.getElementById("id" + idRifa).style.display = "none";
+    limparSelecao();   
 }
 
 function criarVenda(idRifa) {

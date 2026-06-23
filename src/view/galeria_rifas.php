@@ -97,107 +97,109 @@ foreach ($listaDeRifas as $r) {
                                 </div> -->
                         <?php if ($rifa->getStatusVendas() == 1) { ?>
                             <button type="button" class="btn_limpar_selecao btn_nav" disabled>Limpar Seleções</button>
-                        <?php } ?>
+                        <?php }
+                        if ($usuarioTemp->contarUsuariosDaRifa($rifa->getIdRifa())[0]->{"COUNT(*)"} > 0 || $rifa->getStatusVendas() == 1) {
+                        ?>
+                            <section class="espaco_numeros espaco_compradores">
+                                <?php if ($rifa->getStatusVendas() == 1) { ?>
+                                    <img src="../../assets/img/icons/adicionar-usuario.png" onclick="criarVenda('<?= $rifa->getIdRifa() ?>')" id="btn_criar_venda<?= $rifa->getIdRifa() ?>" class="btn_add_usuario" title="Adicionar comprador">
+                                <?php } ?>
+                                <ul class="card_comprados">
+                                    <?php
 
-                        <section class="espaco_numeros espaco_compradores">
-                            <?php if ($rifa->getStatusVendas() == 1) { ?>
-                                <img src="../../assets/img/icons/adicionar-usuario.png" onclick="criarVenda('<?= $rifa->getIdRifa() ?>')" id="btn_criar_venda<?= $rifa->getIdRifa() ?>" class="btn_add_usuario" title="Adicionar comprador">
-                            <?php } ?>
-                            <ul class="card_comprados">
-                                <?php
+                                    $usuarioTemporario = new UsuarioTemporario();
 
-                                $usuarioTemporario = new UsuarioTemporario();
+                                    $listaUsuarios = $usuarioTemporario->listarUsuariosDaRifa($rifa->getIdRifa());
 
-                                $listaUsuarios = $usuarioTemporario->listarUsuariosDaRifa($rifa->getIdRifa());
+                                    $listaUsuariosObj = [];
 
-                                $listaUsuariosObj = [];
+                                    $listaFinalNumeros = [];
 
-                                $listaFinalNumeros = [];
+                                    $usuarioFake = new UsuarioTemporario(null, null, $rifa->getIdRifa(), -1, null);
 
-                                $usuarioFake = new UsuarioTemporario(null, null, $rifa->getIdRifa(), -1, null);
+                                    array_push($listaUsuariosObj, $usuarioFake);
 
-                                array_push($listaUsuariosObj, $usuarioFake);
+                                    foreach ($listaUsuarios as $u) {
 
-                                foreach ($listaUsuarios as $u) {
+                                        $listaDeNumeros = $usuarioTemporario->listarNumerosDoUsuario($u->id_usuario);
 
-                                    $listaDeNumeros = $usuarioTemporario->listarNumerosDoUsuario($u->id_usuario);
+                                        foreach ($listaDeNumeros as $numero) {
+                                            array_push($listaFinalNumeros, $numero->numero);
+                                        }
 
-                                    foreach ($listaDeNumeros as $numero) {
-                                        array_push($listaFinalNumeros, $numero->numero);
+                                        $usuarioTemporario = new UsuarioTemporario($u->nome, $u->telefone, $u->id_rifa, $u->id_usuario, $listaFinalNumeros);
+                                        array_push($listaUsuariosObj, $usuarioTemporario);
+                                        $listaFinalNumeros = [];
                                     }
 
-                                    $usuarioTemporario = new UsuarioTemporario($u->nome, $u->telefone, $u->id_rifa, $u->id_usuario, $listaFinalNumeros);
-                                    array_push($listaUsuariosObj, $usuarioTemporario);
-                                    $listaFinalNumeros = [];
-                                }
+                                    foreach ($listaUsuariosObj as $usuario) {
+                                    ?>
 
-                                foreach ($listaUsuariosObj as $usuario) {
-                                ?>
+                                        <li class="card_vendas" id="card<?= $usuario->getIdUsuario() ?>">
 
-                                    <li class="card_vendas" id="card<?= $usuario->getIdUsuario() ?>">
-
-                                        <input type="hidden" id="id_hidden<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
-                                        <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
-
-                                        <form action="../controller/editar_usuario_temp_controller.php" method="post" class="form_container" id="editar_usuario<?= $usuario->getIdUsuario() ?>">
-                                            <input type="hidden" id="id_usuario<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
+                                            <input type="hidden" id="id_hidden<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
                                             <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
 
-                                            <div class="usuario_temp_container">
-                                                <label class="label_usuario_temp">Nome:</label>
-                                                <input type="text" name="nome_usuario_temp" class="nome_usuario_temp" id="nome_usuario_temp<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getNome() ?>" disabled>
-                                            </div>
+                                            <form action="../controller/editar_usuario_temp_controller.php" method="post" class="form_container" id="editar_usuario<?= $usuario->getIdUsuario() ?>">
+                                                <input type="hidden" id="id_usuario<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getIdUsuario() ?>">
+                                                <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
 
-                                            <div class="usuario_temp_container">
-                                                <label class="label_usuario_temp">Telefone:</label>
-                                                <input type="tel" name="tel_usuario_temp" class="infos_usuario_temp" id="telefone_usuario_temp<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getTelefone() ?>" disabled>
-                                            </div>
+                                                <div class="usuario_temp_container">
+                                                    <label class="label_usuario_temp">Nome:</label>
+                                                    <input type="text" name="nome_usuario_temp" class="nome_usuario_temp" id="nome_usuario_temp<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getNome() ?>" disabled>
+                                                </div>
 
-                                            <div class="usuario_temp_container numeros_usuario_temp_container" id="lista_numeros<?= $usuario->getIdUsuario() ?>">
-                                                <label class="label_usuario_temp label_numero_usuario_temp" id="label_numeros<?= $usuario->getIdUsuario() ?>">Números:</label>
-                                                <ul class="numeros_usuario_temp_ul" id="ul_numeros_usuario_temp<?= $usuario->getIdUsuario() ?>">
-                                                    <?php
-                                                    $key = 1;
-                                                    foreach ($usuario->getNumeros() as $n) {
-                                                        if ($key == 3) {
-                                                    ?>
-                                                            <li class="numero_usuario_temp" style="padding: 3px; padding-inline: 10px; font-size: 18pt; cursor:pointer;" onclick="expandirNumerosVendidos(<?= $usuario->getIdUsuario() ?>)" id="btn_mostrar_numeros<?= $usuario->getIdUsuario() ?>" title="Expandir">+</li>
-                                                        <?php }
-                                                        $key++; ?>
-                                                        <li class="numero_usuario_temp"><?= $n ?></li>
-                                                    <?php } ?>
-                                                </ul>
-                                            </div>
+                                                <div class="usuario_temp_container">
+                                                    <label class="label_usuario_temp">Telefone:</label>
+                                                    <input type="tel" name="tel_usuario_temp" class="infos_usuario_temp" id="telefone_usuario_temp<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getTelefone() ?>" disabled>
+                                                </div>
+
+                                                <div class="usuario_temp_container numeros_usuario_temp_container" id="lista_numeros<?= $usuario->getIdUsuario() ?>">
+                                                    <label class="label_usuario_temp label_numero_usuario_temp" id="label_numeros<?= $usuario->getIdUsuario() ?>">Números:</label>
+                                                    <ul class="numeros_usuario_temp_ul" id="ul_numeros_usuario_temp<?= $usuario->getIdUsuario() ?>">
+                                                        <?php
+                                                        $key = 1;
+                                                        foreach ($usuario->getNumeros() as $n) {
+                                                            if ($key == 3) {
+                                                        ?>
+                                                                <li class="numero_usuario_temp" style="padding: 3px; padding-inline: 10px; font-size: 18pt; cursor:pointer;" onclick="expandirNumerosVendidos(<?= $usuario->getIdUsuario() ?>)" id="btn_mostrar_numeros<?= $usuario->getIdUsuario() ?>" title="Expandir">+</li>
+                                                            <?php }
+                                                            $key++; ?>
+                                                            <li class="numero_usuario_temp"><?= $n ?></li>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </div>
+                                                <?php if ($rifa->getStatusVendas() == 1) { ?>
+                                                    <div class="div_duplo_input" style="display: none;" id="btns_confirmar<?= $usuario->getIdUsuario() ?>">
+                                                        <button type="submit" class="btns_confirm" onclick="ativarHiddens(<?= $usuario->getIdUsuario() ?>)" style="background-color: rgba(7, 148, 7, 1);">Salvar</button>
+                                                        <button type="button" class="btns_confirm" style="background-color: #F00;" onclick="cancelarEdicao(<?= $usuario->getIdUsuario() ?>)">Cancelar</button>
+                                                    </div>
+                                                <?php } ?>
+                                            </form>
                                             <?php if ($rifa->getStatusVendas() == 1) { ?>
-                                                <div class="div_duplo_input" style="display: none;" id="btns_confirmar<?= $usuario->getIdUsuario() ?>">
-                                                    <button type="submit" class="btns_confirm" onclick="ativarHiddens(<?= $usuario->getIdUsuario() ?>)" style="background-color: rgba(7, 148, 7, 1);">Salvar</button>
-                                                    <button type="button" class="btns_confirm" style="background-color: #F00;" onclick="cancelarEdicao(<?= $usuario->getIdUsuario() ?>)">Cancelar</button>
+                                                <div class="actions_usuario_temp" id="btns_padrao<?= $usuario->getIdUsuario() ?>">
+                                                    <input type="submit" id="btn_comprar_numeros<?= $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="btn_add_numeros" value="Adicionar Números" disabled>
+                                                    <div class="delete_edit">
+                                                        <?php
+                                                        $qnt = $usuario->getQuantidadeNumeros($usuario->getIdUsuario());
+                                                        if ($qnt == 0) {
+                                                        ?>
+                                                            <form action="../controller/excluir_usuario_temp_controller.php" method="post">
+                                                                <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
+                                                                <button class="btn_deletar" title="Excluir comprador"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
+                                                            </form>
+                                                        <?php }
+                                                        ?>
+                                                        <button type="button" id="btn_editar_usuario<?= $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp" title="Editar comprador"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="20px"></button>
+                                                    </div>
                                                 </div>
                                             <?php } ?>
-                                        </form>
-                                        <?php if ($rifa->getStatusVendas() == 1) { ?>
-                                            <div class="actions_usuario_temp" id="btns_padrao<?= $usuario->getIdUsuario() ?>">
-                                                <input type="submit" id="btn_comprar_numeros<?= $usuario->getIdUsuario() ?>" onclick="ativarHiddens('<?= $usuario->getIdUsuario() ?>')" class="btn_add_numeros" value="Adicionar Números" disabled>
-                                                <div class="delete_edit">
-                                                    <?php
-                                                    $qnt = $usuario->getQuantidadeNumeros($usuario->getIdUsuario());
-                                                    if ($qnt == 0) {
-                                                    ?>
-                                                        <form action="../controller/excluir_usuario_temp_controller.php" method="post">
-                                                            <input type="hidden" name="id_usuario" value="<?= $usuario->getIdUsuario() ?>">
-                                                            <button class="btn_deletar" title="Excluir comprador"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
-                                                        </form>
-                                                    <?php }
-                                                    ?>
-                                                    <button type="button" id="btn_editar_usuario<?= $usuario->getIdUsuario() ?>" onclick="editarUsuarioTemp('<?= $usuario->getIdUsuario() ?>')" class="btn_editar_usuario_temp" title="Editar comprador"><img src="../../assets/img/icons/lapis-editar.png" alt="Editar Usuário" height="20px"></button>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                    </li>
-                                <?php }
-                                ?>
-                            </ul>
-                        </section>
+                                        </li>
+                                    <?php }
+                                    ?>
+                                </ul>
+                            </section>
+                        <?php } ?>
                     </form> <!--Fechamento form compra numeros-->
 
                     <?php if ($rifa->getStatusVendas() == 1) { ?>
@@ -218,8 +220,8 @@ foreach ($listaDeRifas as $r) {
 
                             <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
 
-                            <div class="div_duplo_input">
-                                <button onclick="cancelarVenda('<?= $rifa->getIdRifa() ?>')" type="button" class="btn_nav white btn_cadastro" id="btn_cancelar_venda<?= $usuario->getIdUsuario() ?>">Cancelar Venda</button>
+                            <div class="div_duplo_input btns_cadastrar_comprador">
+                                <button onclick="cancelarVenda('<?= $rifa->getIdRifa() ?>')" type="button" class="btn_nav white btn_cadastro" id="btn_cancelar_venda<?= $usuario->getIdUsuario() ?>">Cancelar</button>
                                 <button type="submit" class="btn_nav btn_cadastro">Cadastrar Comprador</button>
                             </div>
 
@@ -253,7 +255,7 @@ foreach ($listaDeRifas as $r) {
                         </div>
                     </form>
                     <?php
-                    if ($usuarioTemp->contarUsuariosDaRifa($rifa->getIdRifa()) > 0) { ?>
+                    if ($usuarioTemp->contarUsuariosDaRifa($rifa->getIdRifa())[0]->{"COUNT(*)"} > 0) { ?>
                         <div class="infos_local_data_container" style="bottom: -41vh;">
                             <div class="infos_local_data">
                                 <img src="../../assets/img/icons/calendario32.png" alt="Ícone de calendário">
