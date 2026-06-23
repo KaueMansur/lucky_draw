@@ -24,6 +24,21 @@
     }
 }
 
+@media screen and (max-width: 1170px) {
+    .lista_numeros_container {
+        flex-direction: column;
+        min-height: 169px;
+    }
+
+    .lista_numeros_label_container {
+        padding: 10px;
+    }
+
+    .infos_local_data_container{
+        bottom: -20%;
+    }
+}
+
 @media screen and (max-width: 1110px) {
 
     .qnt_numeros_prvacidade_container,
@@ -79,12 +94,12 @@
         gap: 15px;
     }
 
-    .infos_local_data_container{
+    .infos_local_data_container {
         gap: 3px;
         padding: 0;
     }
 
-    .infos_local_data p{
+    .infos_local_data p {
         font-size: .8em;
     }
 
@@ -145,7 +160,8 @@
     .form_rifa {
         min-width: 500px;
     }
-/* 
+
+    /* 
     .input_login {
         font-size: .8em;
     } */
@@ -217,7 +233,8 @@
         font-size: 16pt;
         text-align: center;
     }
-/* 
+
+    /* 
     .lista_numeros_container {
         flex-direction: column;
         align-items: center;
@@ -260,7 +277,7 @@
         width: 95%;
     }
 
-    .espaco_numeros{
+    .espaco_numeros {
         height: 300px;
     }
 }
@@ -307,7 +324,7 @@
         top: 10px;
     }
 
-    .lista_numeros_container{
+    .lista_numeros_container {
         flex-direction: column;
     }
 }
@@ -365,16 +382,16 @@
         top: 75px;
     }
 
-    .div_duplo_input{
+    .div_duplo_input {
         flex-direction: column;
         gap: 15px;
     }
 
-    .container_btn_rifa{
+    .container_btn_rifa {
         flex-direction: column;
     }
 
-    .lista_numeros_usuario{
+    .lista_numeros_usuario {
         min-height: 200px;
     }
 }
@@ -400,31 +417,37 @@
         padding: 10px;
     }
 
-    .card_vendas{
-        padding-inline: 2%  ;
+    .card_vendas {
+        padding-inline: 2%;
     }
 }
 
 @media screen and (max-width: 370px) {
-    #footer_content{
+    #footer_content {
         flex-direction: column;
         align-items: center;
         gap: 15px;
     }
 
-    .li_footer{
+    .li_footer {
         width: 80%;
         text-align: center;
     }
 
-    .legenda_footer{
+    .legenda_footer {
         text-align: center;
         width: 100%;
     }
 }
 
-@media screen and (max-width: 340px){
-    .input_valor_container{
+@media screen and (max-width: 340px) {
+    .input_valor_container {
         width: 290px;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .lista_numeros_usuario{
+        gap: 5px;
     }
 }

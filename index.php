@@ -315,8 +315,18 @@ foreach ($listaDasRifas as $rifa) {
                         // var_dump($numerosDoUsuario);
                         if (count($numerosDoUsuario) > 0) {
                         ?>
-                            <div class="lista_numeros_container">
-                                <p class="label_lista_numeros">Seus números:</p>
+
+
+
+
+
+
+
+
+                            <article class="lista_numeros_container">
+                                <div class="lista_numeros_label_container">
+                                    <p class="label_lista_numeros">Seus números:</p>
+                                </div>
                                 <div class="lista_numeros_usuario_container">
                                     <ul class="lista_numeros_usuario">
                                         <?php
@@ -327,7 +337,14 @@ foreach ($listaDasRifas as $rifa) {
                                         <?php } ?>
                                     </ul>
                                 </div>
-                            </div>
+                            </article>
+
+
+
+
+
+
+
                         <?php } ?>
                         <div class="infos_local_data_container">
                             <div class="infos_local_data">

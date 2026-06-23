@@ -597,25 +597,46 @@ html {
 
 .lista_numeros_container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     align-items: center;
     margin-bottom: 120px;
     width: 85%;
-    max-height: 180px;
+    min-height: 110px;
+    overflow: hidden;
+    /* max-height: 180px; */
     /* width: 70%; */
 }
 
+.lista_numeros_label_container{
+    min-width: 30%;
+    /* background-color: #4A90E2; */
+}
+
+.label_lista_numeros {
+    font-weight: 600;
+    font-size: 18pt;
+    color: var(--cinza-escuro);
+    text-transform: uppercase;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+
+.lista_numeros_usuario_container{
+    overflow-y: scroll;
+    height: 100%;
+}
+
 .lista_numeros_usuario {
-    overflow-y: auto;
-    overflow-x: hidden;
     display: flex;
     justify-content: space-around;
     gap: 10px;
     flex-wrap: wrap;
-    /* justify-content: center; */
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .numeros_usuario {
@@ -634,13 +655,6 @@ html {
     border-radius: 5px;
 }
 
-.label_lista_numeros {
-    font-weight: 600;
-    font-size: 18pt;
-    color: var(--cinza-escuro);
-    text-transform: uppercase;
-    color: #fff;
-}
 
 .container_btn_rifa {
     display: flex;
