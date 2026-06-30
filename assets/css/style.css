@@ -267,7 +267,7 @@ p {
 }
 
 .data_container{
-    width: 25%;
+    width: 30%;
     font-weight: 600;
     display: flex;
     gap: 5px;
@@ -1136,7 +1136,6 @@ html {
 .btn_menu_hamburguer {
     position: fixed;
     right: 30px;
-    top: 140px;
     z-index: 2;
     cursor: pointer;
     display: none;
@@ -1147,8 +1146,8 @@ html {
     height: 300px;
     position: fixed;
     right: 20px;
-    top: 30px;
     width: 200px;
+    top: 80px;
     background-color: #fff;
     display: none;
     z-index: 2;
@@ -1174,20 +1173,24 @@ html {
     flex-grow: 1;
 }
 
-#menu_rifas_compradas {
-    position: absolute;
+ #menu_rifas_compradas {
+    position: fixed;
     top: 10vh;
-    left: 25vw;
+    left: 50%; /* Joga o início do elemento no meio da tela */
+    transform: translateX(-50%); /* Puxa o elemento de volta metade do próprio tamanho, centralizando-o */
     background-color: #fff;
     border: 2px solid #000;
     border-radius: 10px;
-    width: 50vw;
+    
+    /* Responsividade inteligente */
+    width: 90vw; /* Ocupa quase a tela toda em celulares */
+    max-width: 500px; /* Não passa de 500px em telas grandes */
+    
     height: 130px;
-    overflow-x: auto;
     display: flex;
     padding: 30px;
+    overflow-x: auto;
     overflow-y: visible;
-    /* overflow-x: scroll; */
 }
 
 #menu_rifas_compradas::-webkit-scrollbar,
@@ -1215,6 +1218,7 @@ html {
     background-color: #fff;
     border-radius: 10px;
     border: 2px solid #000;
+    min-width: 250px;
 }
 
 .lista_rifas_compradas,
@@ -1249,8 +1253,10 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 5vw;
-    height: 5vw;
+    /* width: 5vw;
+    height: 5vw; */
+    width: 72px;
+    height: 72px;
     background-color: #fff;
     border: 1px solid #000;
     border-radius: 10px;
@@ -1263,8 +1269,10 @@ html {
     color: #fff;
     background-image: linear-gradient(135deg, var(--vermelho-primario), var(--amarelo-primario));
     border-radius: 10px;
-    width: 70%;
-    height: 70%;
+    /* width: 70%;
+    height: 70%; */
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1388,12 +1396,6 @@ html {
     justify-content: center;
 }
 
-.legenda_popup {
-    font-size: 1.8em;
-    font-weight: 600;
-    text-align: center;
-}
-
 #numero_de_letras {
     position: absolute;
     right: 10px;
@@ -1403,11 +1405,19 @@ html {
     font-family: var(--fonte-primaria);
 }
 
+.legenda_popup {
+    font-size: 1.6em;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+}
+
 #popup_login {
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 2px 0 4px #000;
     width: 50vw;
+    min-width: 350px;
     height: 40vh;
     display: none;
     flex-direction: column;
@@ -1417,11 +1427,12 @@ html {
     left: 25vw;
     top: 30vh;
     z-index: 1;
+    padding: 20px;
 }
 
 .login_popup {
     height: 50px;
-    width: 300px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

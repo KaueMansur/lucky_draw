@@ -31,10 +31,11 @@ class NumeroComprado
         );
 
         // return var_dump($verificador[0]->{"COUNT(*)"});
+        // return var_dump($verificador);
 
-        if($verificador[0]->{"COUNT(*)"}){
+        if ($verificador[0]->{"COUNT(*)"}) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }

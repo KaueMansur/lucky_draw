@@ -8,19 +8,38 @@ const numeroDeLetras = document.getElementById("numero_de_letras");
 function abrirMenu() {
     if (menu.style.display == "block") {
         menu.style.display = "none";
-        btnMenu.src = "assets/img/icons/btn_menu_hamburguer.svg"
+        // btnMenu.src = "assets/img/icons/btn_menu_hamburguer.svg"
+        document.querySelectorAll(".menu_numeros_comprados").forEach((menu) => {
+            menu.classList.add("desativado");
+        })
+        document.querySelectorAll(".numero_sorteado_container").forEach((numero) => {
+            numero.classList.add("desativado");
+        })
+        document.getElementById("menu_rifas_compradas").classList.add("desativado");
     } else {
         menu.style.display = "block";
-        btnMenu.src = "assets/img/icons/btn_fechar_menu.svg"
+        // btnMenu.src = "assets/img/icons/btn_fechar_menu.svg"
     }
 }
 
-function abrirRifa(idRifa) {
-    document.getElementById("id" + idRifa).style.display = "flex";
+function abrirRifa(idRifa, logado) {
+    if(logado){
+        document.getElementById("id" + idRifa).style.display = "flex";
+    } else{
+        abrirPopupLogin();
+    }
 }
 function fecharRifa(idRifa) {
     document.getElementById("id" + idRifa).style.display = "none";
-    limparSelecao();   
+    limparSelecao();
+}
+
+function fecharPopupLogin() {
+    document.getElementById("popup_login").style.display = "none";
+}
+
+function abrirPopupLogin() {
+    popupLogin.style.display = "flex";
 }
 
 function criarVenda(idRifa) {
@@ -248,6 +267,12 @@ function abrirRifasCompradas() {
         menuRifas.classList.remove("desativado");
     } else {
         menuRifas.classList.add("desativado");
+        document.querySelectorAll(".menu_numeros_comprados").forEach((menu) => {
+            menu.classList.add("desativado");
+        })
+        document.querySelectorAll(".numero_sorteado_container").forEach((numero) => {
+            numero.classList.add("desativado");
+        })
     }
 }
 
@@ -262,19 +287,29 @@ function abrirNumerosComprados(idRifa) {
         menuNumeros.classList.add("desativado");
         menuNumeroSorteado.classList.add("desativado");
     }
+
+}
+
+function priorizarLiRifa(idRifa) {
+    const mediaQuery = window.matchMedia("(max-width: 650px)");
+    const rifaLi = document.getElementById("rifa_comprada" + idRifa);
+    const rifasCompradas = document.querySelectorAll(".rifas_compradas");
+
+    if (mediaQuery.matches) {
+        rifasCompradas.forEach((rifa) => {
+            rifa.style.order = "0";
+        })
+        rifaLi.style.order = "-1";
+    }
+    abrirNumerosComprados(idRifa);
 }
 
 
 inputObjetivo.addEventListener("input", () => {
     // numeroDeLetras.value = inputObjetivo.value.length + "/15";
     let qntAtual = inputObjetivo.value.length;
-    if(qntAtual < 16){
+    if (qntAtual < 16) {
         numeroDeLetras.textContent = qntAtual + "/15";
     }
     console.log(qntAtual)
 });
-
-function abrirPopupLogin(){
-    // popupLogin.style.display = "flex"   
-    alert("teste")
-}
