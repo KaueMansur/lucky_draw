@@ -10,7 +10,7 @@
 
 > Uma plataforma completa de gerenciamento de rifas onde é possível criar, vender, comprar, sortear e acompanhar os resultados das ações de forma simples e intuitiva.
 
-🎯 **[Clique aqui para jogar/testar a versão online!](https://lucky-draw.vercel.app)**
+🎯 **[Clique aqui para testar a versão online!](https://lucky-draw.vercel.app)**
 ---
 
 ## 💻 Sobre o Projeto
