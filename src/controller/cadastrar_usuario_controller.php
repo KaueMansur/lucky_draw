@@ -1,7 +1,7 @@
 <?php
 require "../model/usuario.php";
 
-session_start();
+require_once "../../config.php";
 
 unset($_SESSION["erro"]);
 
@@ -10,6 +10,7 @@ if (isset($_POST["nome"])) {
         if (isset($_POST["senha"]) && isset($_POST["senha_confirm"])) {
             if ($_POST["senha"] == $_POST["senha_confirm"]) {
                 $usuario = new Usuario();
+                // $senhaSegura = $_POST["senha"];
                 $usuario->cadastrarUsuario($_POST["nome"], $_POST["telefone"], $_POST["email"], $_POST["senha"]);
 
                 header("Refresh:0; URL= ../view/login.php");

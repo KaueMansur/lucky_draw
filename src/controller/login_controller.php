@@ -1,5 +1,6 @@
 <?php
 
+require_once "../../config.php";
 require "../model/usuario.php";
 require "../controller/session_on.php";
 
@@ -11,6 +12,7 @@ if (isset($_POST["email_ou_telefone"])) {
         $usuario = new Usuario();
         if ($usuario->login($_POST["email_ou_telefone"], $_POST["senha"])) {
             $_SESSION["usuario"] = $usuario->getObject();
+            session_regenerate_id(true);
             header("Refresh: 0; URL = ../../index.php");
         } else {
             $_SESSION["erro"] = "login ou senha incorretos!";

@@ -2,6 +2,8 @@
 
 require "../model/usuario.php";
 
+require_once "../../config.php";
+
 if(isset($_POST["nome"])){
     if(isset($_POST["telefone"]) && $_POST["id_rifa"]){
         $usuarioTemp = new UsuarioTemporario();

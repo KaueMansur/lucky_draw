@@ -1,5 +1,7 @@
 <?php
 
+require_once "../../config.php";
+
 require "../model/usuarioTemporario.php";
 
 if(isset($_POST["nome_usuario_temp"])){

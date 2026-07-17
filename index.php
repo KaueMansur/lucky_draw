@@ -4,7 +4,7 @@
 
 require "src/model/rifa.php";
 
-session_start();
+require_once __DIR__ . "/config.php";
 
 $idsRifas = null;
 

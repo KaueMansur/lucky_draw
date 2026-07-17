@@ -1,5 +1,7 @@
 <?php
 
+require_once "../../config.php";
+
 require "../model/database.php";
 
 if(isset($_POST["id_rifa"])){

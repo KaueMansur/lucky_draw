@@ -33,8 +33,15 @@ class usuario{
                 "INSERT INTO usuarios(nome, telefone, id_rifa) VALUES('$nome', '$telefone', $idRifa)"
             );
         } else{
+            $senhaSegura = password_hash($senha, PASSWORD_DEFAULT);
             $db->insert(
-                "INSERT INTO usuarios(nome, telefone, email, senha) VALUES('$nome', '$telefone', '$email', '$senha')"
+                "INSERT INTO usuarios(nome, telefone, email, senha) VALUES(:nome, :telefone, :email, :senha)",
+                [
+                    'nome' => $nome,
+                    'telefone' => $telefone,
+                    'email' => $email,
+                    'senha' => $senhaSegura
+                ]
             );
         }
     }
@@ -81,10 +88,11 @@ class usuario{
         }
 
         $this->senha = $senha;
-
+        
         foreach($listaUsuarios as $usuario){
             if($usuario->email == $this->email){
-                if($usuario->senha == $this->senha){
+                // $usuario->senha == $this->senha
+                if(password_verify($this->senha, $usuario->senha)){
                     $this->idUsuario = $usuario->id_usuario;
                     $this->nome = $usuario->nome;
                     $this->telefone = $usuario->telefone;

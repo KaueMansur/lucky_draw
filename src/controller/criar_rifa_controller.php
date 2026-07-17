@@ -1,5 +1,6 @@
 <?php
 
+require_once "../../config.php";
 require "../controller/session_off.php";
 require "../model/rifa.php";
 

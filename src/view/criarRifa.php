@@ -1,5 +1,7 @@
 <?php
 
+require_once "../../config.php";
+
 require "../model/usuario.php";
 
 require "../controller/session_off.php";

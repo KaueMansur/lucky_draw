@@ -1,6 +1,6 @@
 <?php
 
-// require "../model/usuario.php";
+require_once "../../config.php";
 // require "../model/database.php";
 require "../model/usuario.php";
 // require "../model/usuario.php";

@@ -1,9 +1,23 @@
 <?php
+require_once "../../config.php";
+$_SESSION = array();
 
-session_start();
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(
+        session_name(),
+        '',
+        time() - 42000,
+        $params["path"],
+        $params["domain"],
+        $params["secure"],
+        $params["httponly"]
+    );
+}
 
 session_destroy();
 
-header("Refresh: 0; URL = ../../index.php");
+session_start();
+session_regenerate_id(true);
 
-?>
+header("Refresh: 0; URL = ../../index.php");

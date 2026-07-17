@@ -1,5 +1,4 @@
 <?php
-
 require "usuarioTemporario.php";
 
 class NumeroComprado
