@@ -2,7 +2,8 @@
 
 require "numeroComprado.php";
 
-class usuario{
+class usuario
+{
 
     private $idUsuario;
     private $nome;
@@ -13,7 +14,8 @@ class usuario{
     private $numeros;
     private $idRifa;
 
-    public function __construct($nome = 0, $telefone = 0, $idRifa = 0, $idUsuario = 0, $numeros = []) {
+    public function __construct($nome = 0, $telefone = 0, $idRifa = 0, $idUsuario = 0, $numeros = [])
+    {
         $this->nome = $nome;
         $this->telefone = $telefone;
         $this->idRifa = $idRifa;
@@ -21,18 +23,20 @@ class usuario{
         $this->numeros = $numeros;
     }
 
-    public function getObject(){
+    public function getObject()
+    {
         return $this;
     }
 
-    public function cadastrarUsuario($nome, $telefone, $email = null, $senha = null, $idRifa = null){
+    public function cadastrarUsuario($nome, $telefone, $email = null, $senha = null, $idRifa = null)
+    {
         $db = new Database();
-        
-        if($senha == null){
+
+        if ($senha == null) {
             $db->insert(
                 "INSERT INTO usuarios(nome, telefone, id_rifa) VALUES('$nome', '$telefone', $idRifa)"
             );
-        } else{
+        } else {
             $senhaSegura = password_hash($senha, PASSWORD_DEFAULT);
             $db->insert(
                 "INSERT INTO usuarios(nome, telefone, email, senha) VALUES(:nome, :telefone, :email, :senha)",
@@ -46,7 +50,8 @@ class usuario{
         }
     }
 
-    public function listarNumerosDoUsuarioDaRifa($idUsuario, $idRifa){
+    public function listarNumerosDoUsuarioDaRifa($idUsuario, $idRifa)
+    {
         $db = new Database();
 
         return $db->select(
@@ -54,7 +59,8 @@ class usuario{
         );
     }
 
-    public function listarNumerosDoUsuario($idUsuario){
+    public function listarNumerosDoUsuario($idUsuario)
+    {
         $db = new Database();
 
         return $db->select(
@@ -62,6 +68,29 @@ class usuario{
         );
     }
 
+    public function formatarTelefone($numeroTelefone)
+    {
+        $limpo = preg_replace("/[^0-9]/", "", $numeroTelefone);
+        $qtd = strlen($limpo);
+
+        if ($qtd === 11) {
+            return sprintf(
+                "(%s) %s-%s",
+                substr($limpo, 0, 2),
+                substr($limpo, 2, 5),
+                substr($limpo, 7, 4)
+            );
+        } else if ($qtd === 10) {
+            return sprintf(
+                "(%s) %s-%s",
+                substr($limpo, 0, 2),
+                substr($limpo, 2, 4),
+                substr($limpo, 6, 4)
+            );
+        }
+
+        return $numeroTelefone;
+    }
     // public function listarRifasComNumerosDoUsuario($idUsuario){
     //     $db = new Database();
 
@@ -70,7 +99,8 @@ class usuario{
     //     );
     // }
 
-    public function login($emailOuTelefone, $senha){
+    public function login($emailOuTelefone, $senha)
+    {
         $db = new Database();
 
         $key = false;
@@ -79,20 +109,20 @@ class usuario{
             "SELECT * FROM usuarios"
         );
 
-        if(strpos($emailOuTelefone, "@") !== false){
+        if (strpos($emailOuTelefone, "@") !== false) {
             //email
             $this->email = $emailOuTelefone;
-        } else{
+        } else {
             //telefone
-            $this->telefone = $emailOuTelefone;
+            $this->telefone = $this->formatarTelefone($emailOuTelefone);
         }
 
         $this->senha = $senha;
-        
-        foreach($listaUsuarios as $usuario){
-            if($usuario->email == $this->email){
+
+        foreach ($listaUsuarios as $usuario) {
+            if ($usuario->email == $this->email) {
                 // $usuario->senha == $this->senha
-                if(password_verify($this->senha, $usuario->senha)){
+                if (password_verify($this->senha, $usuario->senha)) {
                     $this->idUsuario = $usuario->id_usuario;
                     $this->nome = $usuario->nome;
                     $this->telefone = $usuario->telefone;
@@ -100,9 +130,9 @@ class usuario{
 
                     $key = true;
                 }
-            } else{
-                if($usuario->telefone == $this->telefone){
-                    if($usuario->senha == $this->senha){
+            } else {
+                if ($usuario->telefone == $this->telefone) {
+                    if ($usuario->senha == $this->senha) {
                         $this->idUsuario = $usuario->id_usuario;
                         $this->nome = $usuario->nome;
                         $this->email = $usuario->email;
@@ -115,72 +145,85 @@ class usuario{
         }
 
         return $key;
-        
     }
 
-    public function getIdUsuario(){
+    public function getIdUsuario()
+    {
         return $this->idUsuario;
     }
 
-    public function setIdUsuario($id){
+    public function setIdUsuario($id)
+    {
         $this->idUsuario = $id;
     }
 
-    public function getNome(){
+    public function getNome()
+    {
         return $this->nome;
     }
 
-    public function setNome($nome){
+    public function setNome($nome)
+    {
         $this->nome = $nome;
-    } 
+    }
 
-    public function getTelefone(){
+    public function getTelefone()
+    {
         return $this->telefone;
     }
 
-    public function setTelefone($telefone){
+    public function setTelefone($telefone)
+    {
         $this->telefone = $telefone;
     }
 
-    public function getEmail(){
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function setEmail($email){
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
 
-    public function getSenha(){
+    public function getSenha()
+    {
         return $this->senha;
     }
 
-    public function setSenha($senha){
+    public function setSenha($senha)
+    {
         $this->senha = $senha;
     }
 
-    public function getIdNumeros(){
+    public function getIdNumeros()
+    {
         return $this->idNumeros;
     }
 
-    public function setIdNumeros($id){
+    public function setIdNumeros($id)
+    {
         $this->idNumeros = $id;
     }
 
-    public function getIdRifa(){
+    public function getIdRifa()
+    {
         return $this->idRifa;
     }
 
-    public function setIdRifa($idRifa){
+    public function setIdRifa($idRifa)
+    {
         $this->idRifa = $idRifa;
     }
 
-    public function getNumeros(){
+    public function getNumeros()
+    {
         return $this->numeros;
     }
 
-    public function setNumeros($numeros){
+    public function setNumeros($numeros)
+    {
         $this->numeros = $numeros;
     }
 }
-
-?>
