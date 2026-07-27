@@ -1,9 +1,12 @@
 <?php
 
+// header("Refresh: 0; URL = ../../index.php");
+// header("Refresh:0; URL= ./../../index.php");
 require "usuario.php";
 // require "database.php";
 
-class Rifa{
+class Rifa
+{
 
     private $idRifa;
     private $objetivo;
@@ -19,7 +22,8 @@ class Rifa{
     private $numeroSorteado;
     private $statusVendas;
 
-    public function __construct($idRifa = 0, $objetivo = null, $quantidadeDeNumeros = 0, $premio = null, $imagemIlustrativa = null, $dataDoSorteio = null, $localDoSorteio = null, $valorCadaNumero = 0, $valorTotal = 0, $idUsuario = 0, $privacidade = 0, $numeroSorteado = 0, $statusVendas = 0) {
+    public function __construct($idRifa = 0, $objetivo = null, $quantidadeDeNumeros = 0, $premio = null, $imagemIlustrativa = null, $dataDoSorteio = null, $localDoSorteio = null, $valorCadaNumero = 0, $valorTotal = 0, $idUsuario = 0, $privacidade = 0, $numeroSorteado = 0, $statusVendas = 0)
+    {
         $this->idRifa = $idRifa;
         $this->objetivo = $objetivo;
         $this->quantidadeDeNumeros = $quantidadeDeNumeros;
@@ -35,7 +39,8 @@ class Rifa{
         $this->statusVendas = $statusVendas;
     }
 
-    public function converterSqlEmObjeto(){
+    public function converterSqlEmObjeto()
+    {
 
         $db = new Database();
 
@@ -45,7 +50,7 @@ class Rifa{
 
         $list = [];
 
-        foreach($listSql as $rifa){
+        foreach ($listSql as $rifa) {
             $this->idRifa = $rifa->id_rifa;
             $this->objetivo = $rifa->objetivo;
             $this->quantidadeDeNumeros = $rifa->quantidade_numeros;
@@ -64,20 +69,19 @@ class Rifa{
         }
 
         return $list;
-
-        
     }
 
-    public function criarRifa($objetivo, $quantidadeDeNumeros, $premio, $imagemIlustrativa, $dataDoSorteio, $localDoSorteio, $valorCadaNumero, $valorTotal, $idUsuario, $privacidade){
+    public function criarRifa($objetivo, $quantidadeDeNumeros, $premio, $imagemIlustrativa, $dataDoSorteio, $localDoSorteio, $valorCadaNumero, $valorTotal, $idUsuario, $privacidade)
+    {
         $db = new Database();
         // $usuario = new Usuario();
 
         // $idUsuario = $usuario->getIdUsuario();
         // $idUsuario = 1;
 
-        if($valorCadaNumero > 0){
+        if ($valorCadaNumero > 0) {
             $valorTotal = $valorCadaNumero * $quantidadeDeNumeros;
-        } else{
+        } else {
             $valorCadaNumero = $valorTotal / $quantidadeDeNumeros;
         }
 
@@ -87,27 +91,40 @@ class Rifa{
         );
     }
 
-    public function listarTodasAsRifas($id = 0){
+    public function listarTodasAsRifas($id = 0)
+    {
         $db = new Database();
 
-        if($id != 0){
+        if ($id != 0) {
             return $db->select(
                 "SELECT * FROM rifas WHERE id_usuario = $id"
             );
-        } else{
+        } else {
             return $db->select(
                 "SELECT * FROM rifas WHERE privacidade = 0"
             );
         }
-
     }
 
-    public function sortearNumero($idRifa, $somenteNumerosComprados){
+    public function deletarRifa($idRifa)
+    {
+        $db = new Database();
+
+        $db->delete(
+            "DELETE FROM rifas WHERE id_rifa = :idRifa",
+            [
+                ":idRifa" => $idRifa
+            ]
+        );
+    }
+
+    public function sortearNumero($idRifa, $somenteNumerosComprados)
+    {
         $db = new Database();
 
         $numerosParaSortear = [];
 
-        if($somenteNumerosComprados){
+        if ($somenteNumerosComprados) {
             $numerosParaSortear = $db->select(
                 "SELECT numero FROM numeros_comprados WHERE id_rifa = $idRifa"
             );
@@ -117,7 +134,7 @@ class Rifa{
             // var_dump($numerosParaSortear[0]->numero);
 
             $numeroSorteado = $numerosParaSortear[$chaveSorteada]->numero;
-        } else{
+        } else {
             $tamRifa = $db->select(
                 "SELECT quantidade_numeros FROM rifas WHERE id_rifa = $idRifa"
             );
@@ -129,13 +146,13 @@ class Rifa{
 
         // var_dump($numeroSorteado);
 
-            $db->update(
-                "UPDATE rifas SET numero_sorteado = $numeroSorteado WHERE id_rifa = $idRifa"
-            );
-
+        $db->update(
+            "UPDATE rifas SET numero_sorteado = $numeroSorteado WHERE id_rifa = $idRifa"
+        );
     }
 
-    public function converterIdEmRifa($idRifa){
+    public function converterIdEmRifa($idRifa)
+    {
         $db = new Database();
 
         return $db->select(
@@ -143,103 +160,127 @@ class Rifa{
         );
     }
 
-    public function listarRifasComNumerosDoUsuario($idUsuario){
+    public function listarRifasComNumerosDoUsuario($idUsuario)
+    {
         $db = new Database();
 
         return $db->select(
             "SELECT id_rifa FROM `numeros_comprados` WHERE id_usuario = $idUsuario GROUP BY id_rifa;"
         );
-    } 
+    }
 
-    public function getIdRifa() {
+    public function getIdRifa()
+    {
         return $this->idRifa;
     }
 
-    public function setIdRifa($idRifa) {
+    public function setIdRifa($idRifa)
+    {
         $this->idRifa = $idRifa;
     }
 
-    public function getObjetivo() {
+    public function getObjetivo()
+    {
         return $this->objetivo;
     }
 
-    public function setObjetivo($objetivo) {
+    public function setObjetivo($objetivo)
+    {
         $this->objetivo = $objetivo;
     }
 
-    public function getQuantidadeDeNumeros() {
+    public function getQuantidadeDeNumeros()
+    {
         return $this->quantidadeDeNumeros;
     }
 
-    public function setQuantidadeDeNumeros($quantidadeDeNumeros) {
+    public function setQuantidadeDeNumeros($quantidadeDeNumeros)
+    {
         $this->quantidadeDeNumeros = $quantidadeDeNumeros;
     }
 
-    public function getPremio() {
+    public function getPremio()
+    {
         return $this->premio;
     }
 
-    public function setPremio($premio) {
+    public function setPremio($premio)
+    {
         $this->premio = $premio;
     }
 
-    public function getImagemIlustrativa() {
+    public function getImagemIlustrativa()
+    {
         return $this->imagemIlustrativa;
     }
 
-    public function setImagemIlustrativa($imagemIlustrativa) {
+    public function setImagemIlustrativa($imagemIlustrativa)
+    {
         $this->imagemIlustrativa = $imagemIlustrativa;
     }
 
-    public function getDataDoSorteio() {
+    public function getDataDoSorteio()
+    {
         return $this->dataDoSorteio;
     }
 
-    public function setDataDoSorteio($dataDoSorteio) {
+    public function setDataDoSorteio($dataDoSorteio)
+    {
         $this->dataDoSorteio = $dataDoSorteio;
     }
 
-    public function getLocalDoSorteio() {
+    public function getLocalDoSorteio()
+    {
         return $this->localDoSorteio;
     }
 
-    public function setLocalDoSorteio($localDoSorteio) {
+    public function setLocalDoSorteio($localDoSorteio)
+    {
         $this->localDoSorteio = $localDoSorteio;
     }
 
-    public function getValorCadaNumero() {
+    public function getValorCadaNumero()
+    {
         return $this->valorCadaNumero;
     }
 
-    public function setValorCadaNumero($valorCadaNumero) {
+    public function setValorCadaNumero($valorCadaNumero)
+    {
         $this->valorCadaNumero = $valorCadaNumero;
     }
 
-    public function getValorTotal() {
+    public function getValorTotal()
+    {
         return $this->valorTotal;
     }
 
-    public function setValorTotal($valorTotal) {
+    public function setValorTotal($valorTotal)
+    {
         $this->valorTotal = $valorTotal;
-    }    
+    }
 
-    public function getNumeroSorteado(){
+    public function getNumeroSorteado()
+    {
         return $this->numeroSorteado;
     }
 
-    public function setNumeroSorteado($numero){
+    public function setNumeroSorteado($numero)
+    {
         $this->numeroSorteado = $numero;
     }
 
-    public function getStatusVendas(){
+    public function getStatusVendas()
+    {
         return $this->statusVendas;
     }
 
-    public function setStatusVendas($status){
+    public function setStatusVendas($status)
+    {
         $this->statusVendas = $status;
     }
 
-    public function getQuantidadeNumerosVendidos($idRifa){
+    public function getQuantidadeNumerosVendidos($idRifa)
+    {
         $db = new Database();
 
         $qntNumeros = $db->select(
@@ -249,5 +290,3 @@ class Rifa{
         return $qntNumeros[0]->{'COUNT(*)'};
     }
 }
-
-?>

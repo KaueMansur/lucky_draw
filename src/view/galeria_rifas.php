@@ -2,8 +2,8 @@
 
 require "../model/rifa.php";
 require_once "../../config.php";
-
 require "../controller/session_off.php";
+
 
 $rifa = new Rifa();
 
@@ -315,7 +315,7 @@ foreach ($listaDeRifas as $r) {
                     <?php } ?>
 
                 </article>
-                <li class="rifas" onclick="abrirRifa(<?= $rifa->getIdRifa() ?>, <?= $logado ?>)">
+                <li class="rifas" onclick="abrirRifa(<?= $rifa->getIdRifa() ?>, <?= true ?>)">
                     <img src="../../<?= $rifa->getImagemIlustrativa() ?>" alt="imagem ilustrativa" class="rifas_img">
                     <!-- <p>Número Sorteado: <?= $rifa->getNumeroSorteado() ?></p> -->
 
@@ -341,12 +341,14 @@ foreach ($listaDeRifas as $r) {
                                 </div>
                             </div>
                         <?php } else { ?>
-                            <div class="rifas_infos_container data_container">
-                                <img src="../../assets/img/icons/calendario.png" alt="Ícone de data">
-                                <p><?php
-                                    $data = new DateTime($rifa->getDataDoSorteio());
-                                    echo $data->format("d/m/y");
-                                    ?></p>
+                            <div class="data_deletar_container">
+                                <div class="rifas_infos_container data_container">
+                                    <img src="../../assets/img/icons/calendario.png" alt="Ícone de data">
+                                    <p><?php
+                                        $data = new DateTime($rifa->getDataDoSorteio());
+                                        echo $data->format("d/m/y");
+                                        ?></p>
+                                </div>
                             </div>
                         <?php } ?>
                     </article>

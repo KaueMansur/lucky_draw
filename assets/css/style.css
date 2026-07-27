@@ -266,16 +266,6 @@ p {
     text-align: left;
 }
 
-.data_container{
-    width: 30%;
-    font-weight: 600;
-    display: flex;
-    gap: 5px;
-    height: 100%;
-    align-items: flex-end;
-    justify-content: center;
-}
-
 .premio_rifa {
     font-weight: 700;
     color: var(--cinza-escuro);
@@ -1290,14 +1280,26 @@ html {
     background-color: #555353;
 }
 
+.data_container{
+    width: 30%;
+    height: 100%;
+    font-weight: 600;
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+    justify-content: center;
+    padding-right: 1vw;
+    transform: translateX(-30px);
+}
+
 .data_deletar_container{
+    width: 30%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    width: 80%;
-    padding-right: 1vw;
-    align-items: end;
+    /* justify-content: space-between; */
+    /* padding-right: 1vw; */
+    align-items: flex-end;
 }
 
 .rifas_compradas_sorteadas {

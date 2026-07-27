@@ -1,5 +1,6 @@
 <?php
 require_once "../../config.php";
+require "../controller/session_on.php";
 ?>
 
 <!DOCTYPE html>

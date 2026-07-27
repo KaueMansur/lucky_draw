@@ -1,9 +1,7 @@
 <?php
 
-require_once "../../config.php";
-
 require "../model/usuario.php";
-
+require_once "../../config.php";
 require "../controller/session_off.php";
 
 $usuario = $_SESSION["usuario"];

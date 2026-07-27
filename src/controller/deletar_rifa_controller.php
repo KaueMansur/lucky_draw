@@ -1,15 +1,14 @@
 <?php
 
+require "../model/rifa.php";
 require_once "../../config.php";
 
-require "../model/database.php";
-
 if(isset($_POST["id_rifa"])){
-    $db = new Database();
+    $rifa = new Rifa();
+    $usuarioTemp = new UsuarioTemporario();
 
-    $db->delete(
-        "DELETE FROM rifas WHERE id_rifa = {$_POST['id_rifa']}"
-    );
+    $usuarioTemp->excluirTodosUsuariosTempDaRifa($_POST["id_rifa"]);
+    $rifa->deletarRifa($_POST["id_rifa"]);
 }
 
 header("Refresh:0, URL= ../view/galeria_rifas.php");

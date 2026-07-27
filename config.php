@@ -1,6 +1,7 @@
 <?php
 // config.php
 
+// define('MINHA_APLICACAO', true);
 // 1. Configura a segurança dos cookies de sessão
 session_set_cookie_params([
     'lifetime' => 0,

@@ -1,8 +1,8 @@
 <?php
 
-require_once "../../config.php";
 require "../model/usuario.php";
 require "../controller/session_on.php";
+require_once "../../config.php";
 
 unset($_SESSION["erro"]);
 

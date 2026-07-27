@@ -1,7 +1,7 @@
 <?php
 
-require_once "../../config.php";
 require "../model/rifa.php";
+require_once "../../config.php";
 
 // if (isset($_POST["id_rifa"])) {
     // var_dump($_POST["id_rifa"]);

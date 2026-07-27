@@ -63,6 +63,17 @@ class UsuarioTemporario
         );
     }
 
+    public function excluirTodosUsuariosTempDaRifa($idRifa){
+        $db = new Database();
+
+        $db->delete(
+            "DELETE FROM usuarios_temp WHERE id_rifa = :idRifa",
+            [
+                ":idRifa" => $idRifa
+            ]
+        );
+    }
+
     public function excluirUsuarioTemp($idUsuario)
     {
         $db = new Database();

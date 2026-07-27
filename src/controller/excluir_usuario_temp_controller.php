@@ -1,7 +1,7 @@
 <?php
 
-require_once "../../config.php";
 require "../model/usuarioTemporario.php";
+require_once "../../config.php";
 
 if (isset($_POST["id_usuario"])) {
     $usuarioTemp = new UsuarioTemporario();

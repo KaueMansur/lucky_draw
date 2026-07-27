@@ -1,6 +1,5 @@
 <?php
 require "../model/usuario.php";
-
 require_once "../../config.php";
 
 unset($_SESSION["erro"]);

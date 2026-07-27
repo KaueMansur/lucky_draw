@@ -1,6 +1,11 @@
 <?php
 
 require "numeroComprado.php";
+// if (!defined('MINHA_APLICACAO')) {
+//     // Se tentarem acessar direto pela URL, essa constante não existirá
+//     header('HTTP/1.0 403 Forbidden');
+//     die('Acesso direto não permitido.');
+// } 
 
 class usuario
 {

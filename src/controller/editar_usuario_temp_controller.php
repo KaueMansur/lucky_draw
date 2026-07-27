@@ -1,8 +1,7 @@
 <?php
 
-require_once "../../config.php";
-
 require "../model/usuarioTemporario.php";
+require_once "../../config.php";
 
 if(isset($_POST["nome_usuario_temp"])){
     if(isset($_POST["tel_usuario_temp"]) && isset($_POST["id_usuarios_temp"])){
