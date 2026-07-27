@@ -33,7 +33,7 @@ class usuario
         return $this;
     }
 
-    public function cadastrarUsuario($nome, $telefone, $email = null, $senha = null, $idRifa = null)
+    public function cadastrarUsuario($nome, $telefone = null, $email = null, $senha = null, $idRifa = null)
     {
         $db = new Database();
 
@@ -137,7 +137,7 @@ class usuario
                 }
             } else {
                 if ($usuario->telefone == $this->telefone) {
-                    if ($usuario->senha == $this->senha) {
+                    if (password_verify($this->senha, $usuario->senha)) {
                         $this->idUsuario = $usuario->id_usuario;
                         $this->nome = $usuario->nome;
                         $this->email = $usuario->email;
