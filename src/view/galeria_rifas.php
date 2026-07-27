@@ -330,7 +330,7 @@ foreach ($listaDeRifas as $r) {
                             <div class="data_deletar_container">
                                 <form action="../controller/deletar_rifa_controller.php" method="post" class="btn_deletar_form">
                                     <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
-                                    <button class="btn_deletar" title="Excluir rifa"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
+                                    <button class="btn_deletar" onclick="event.stopPropagation()" title="Excluir rifa"><img src="../../assets/img/icons/lixeira.png" alt="Excluir" height="20px"></button>
                                 </form>
                                 <div class="rifas_infos_container data_container">
                                     <img src="../../assets/img/icons/calendario.png" alt="Ícone de data">
