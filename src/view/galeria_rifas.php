@@ -146,12 +146,12 @@ foreach ($listaDeRifas as $r) {
 
                                                 <div class="usuario_temp_container">
                                                     <label class="label_usuario_temp">Nome:</label>
-                                                    <input type="text" name="nome_usuario_temp" class="nome_usuario_temp" id="nome_usuario_temp<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getNome() ?>" disabled>
+                                                    <input type="text" name="nome_usuario_temp" class="nome_usuario_temp" id="nome_usuario_temp<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getNome() ?>" autocomplete="off" disabled>
                                                 </div>
 
                                                 <div class="usuario_temp_container">
                                                     <label class="label_usuario_temp">Telefone:</label>
-                                                    <input type="tel" name="tel_usuario_temp" class="infos_usuario_temp" id="telefone_usuario_temp<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getTelefone() ?>" disabled>
+                                                    <input type="tel" name="tel_usuario_temp" class="infos_usuario_temp" id="telefone_usuario_temp<?= $usuario->getIdUsuario() ?>" value="<?= $usuario->getTelefone() ?>" autocomplete="off" disabled>
                                                 </div>
 
                                                 <div class="usuario_temp_container numeros_usuario_temp_container" id="lista_numeros<?= $usuario->getIdUsuario() ?>">
@@ -208,12 +208,12 @@ foreach ($listaDeRifas as $r) {
                             <div class="container_container_cadastro_temp">
                                 <div class="container_cadastro_usuarios_temp">
                                     <label class="label_cadastro_rifa">Nome:</label>
-                                    <input type="text" name="nome" id="" class="input_usuario_temp">
+                                    <input type="text" name="nome" class="input_usuario_temp" autocomplete="off">
                                 </div>
 
                                 <div class="container_cadastro_usuarios_temp">
                                     <label class="label_cadastro_rifa" id="label_cadastro_telefone">Telefone:</label>
-                                    <input type="tel" name="telefone" id="" class="input_usuario_temp">
+                                    <input type="tel" name="telefone" class="input_usuario_temp" autocomplete="off">
                                 </div>
 
                             </div>
@@ -376,7 +376,7 @@ foreach ($listaDeRifas as $r) {
             </li>
             <li class="li_footer">
                 <h4 class="titulo_footer">Contatos</h4>
-                <p class="legenda_footer">Email: kaueantoniomansursantos@gmail.com</p>
+                <p class="legenda_footer">Email: contato@kauemansur.dev.br</p>
             </li>
         </ul>
     </footer>

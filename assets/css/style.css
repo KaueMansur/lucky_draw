@@ -167,11 +167,12 @@ p {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    /* gap: 20px; */
 }
 
 .card_diferencial {
     background-color: var(--azul-claro);
-    width: 24%;
+    /* width: 24%; */
     height: 150px;
     border-radius: 10px;
     display: flex;
@@ -180,6 +181,8 @@ p {
     justify-content: space-around;
     padding: 10px 0;
     box-shadow: 1px 1px 2px #000;
+    /* flex-grow: 1; */
+    width: 32%;
 }
 
 .card_diferencial h3 {

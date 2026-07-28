@@ -29,12 +29,12 @@ require "../controller/session_on.php";
 
         <div class="div_campo_login">
             <label for="" class="label_login login" style="width: 80%;">E-mail ou telefone</label>
-            <input type="text" name="email_ou_telefone" class="input_login" id="email_ou_telefone" required>
+            <input type="text" name="email_ou_telefone" class="input_login" id="email_ou_telefone" autocomplete="off" required>
         </div>
 
         <div class="div_campo_login">
             <label for="" class="label_login login" style="width: 80%;">Senha</label>
-            <input type="password" name="senha" class="input_login" id="" required>
+            <input type="password" name="senha" class="input_login" autocomplete="off" required>
         </div>
 
         <input type="submit" value="Entrar" class="btn_form">

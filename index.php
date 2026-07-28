@@ -1,7 +1,5 @@
 <?php
 
-// require "src/model/usuario.php";
-
 require "src/model/rifa.php";
 
 require_once __DIR__ . "/config.php";
@@ -9,7 +7,6 @@ require_once __DIR__ . "/config.php";
 $idsRifas = null;
 
 $logado = false;
-// $logado = true;
 
 $rifa = new Rifa();
 if (isset($_SESSION["usuario"])) {
@@ -28,42 +25,13 @@ foreach ($listaDeRifas as $r) {
     array_push($listaDasRifas, $rifa = new Rifa($r->id_rifa, $r->objetivo, $r->quantidade_numeros, $r->premio, $r->imagem_ilustrativa, $r->data_sorteio, $r->local_sorteio, $r->valor_cada_numero, $r->valor_total, $r->id_usuario, $r->privacidade, $r->numero_sorteado, $r->status_vendas));
 }
 
-// var_dump($listaDasRifas);
 $numeroComprado = new NumeroComprado();
 
-
-
 foreach ($listaDasRifas as $rifa) {
-
     $listaDeNumerosComprados = $numeroComprado->listarNumerosCompradosDaRifa($rifa->getIdRifa());
 
     $listaNumeros = $numeroComprado->listarTodosOsNumerosDaRifa($rifa->getIdRifa());
-
-
-    // foreach($listaNumeros as $numero){
-    //     foreach($listaDeNumerosComprados as $numeroV){
-    //         if($numero == $numeroV){
-    //             //Número foi vendido
-    //             $numerosDaRifa = [$numero => "vendido"];
-    //         } else{
-    //             //Número está disponível
-    //             $numerosDaRifa = [$numero => "disponivel"];
-    //         }
-    //     }
-    // }
-
-
-    // $listaFinal = $numeroComprado->criarArrayAssociativo($listaNumeros, $listaDeNumerosComprados);
-
-    // var_dump($listaFinal);             
-    // var_dump($listaNumeros);               
-    // var_dump($listaNumeros);
 }
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -127,22 +95,16 @@ foreach ($listaDasRifas as $rifa) {
                         <rect y="10" width="40" height="5" rx="3" fill="#564141" id="bar2" />
                         <rect y="20" width="40" height="5" rx="3" fill="#564141" id="bar3" />
                     </svg>
-
-                    <!-- <img src="assets/img/icons/btn_menu_hamburguer.svg" id="btn_menu_haburguer" height="25px" alt="" > -->
                 </button>
                 <h1 class="titulo">Ganhe Grandes Prêmios!</h1>
                 <p class="legenda_titulo">Compre números e tenha a chance de ganhar prêmios incríveis! ou Crie Suas próprias Rifas!</p>
-                <!-- <p>Crie suas próprias rifas!</p> -->
                 <div class="btn_hero">
                     <a href="#main" class="btn_nav">Comprar números</a>
-                    <!-- <a class="btn_nav" href="src/view/criarRifa.php">Criar Rifa</a> -->
                     <?php if ($logado) { ?>
                         <a class="btn_nav white" href="src/view/galeria_rifas.php">Galeria de rifas</a>
                     <?php } else { ?>
                         <a class="btn_nav white" onclick="abrirPopupLogin()">Galeria de rifas</a>
                     <?php } ?>
-                    <!-- <a class="btn_nav" href="#">View Prizes</a> -->
-                    <!-- <a class="btn_nav white" href="#">Buy Tickets</a> -->
                 </div>
             </li>
             <div class="card_dourado">
@@ -166,11 +128,6 @@ foreach ($listaDasRifas as $rifa) {
                     <img src="assets/img/icons/velocidade.png" alt="Ícone de velocidade" class="img_vantagens">
                     <h3>Velocidade</h3>
                     <p class="legenda_diferencial">A plataforma é bem otimizada, e opera muito rápida</p>
-                </li>
-                <li class="card_diferencial">
-                    <img src="assets/img/icons/seguranca.png" alt="ícone de segurança" class="img_vantagens">
-                    <h3>Segurança No Pagamento</h3>
-                    <p class="legenda_diferencial">Seus pagamentos são protegidos com tecnologia de ponta!</p>
                 </li>
             </ul>
         </section>
@@ -208,7 +165,6 @@ foreach ($listaDasRifas as $rifa) {
                 $rifaPorid = $rifa->converterIdEmRifa($rifasCompradas->id_rifa)[0];
                 $numeroSorteado = $rifaPorid->numero_sorteado;
 
-                // Se a rifa já foi sorteada, renderiza o container do número sorteado no mesmo nível
                 if (isset($numeroSorteado)) { ?>
                     <aside class="desativado numero_sorteado_container" id="numero_sorteado_container<?= $rifasCompradas->id_rifa ?>">
                         <span class="numero_sorteado_div"><?= $numeroSorteado ?></span>
@@ -224,18 +180,10 @@ foreach ($listaDasRifas as $rifa) {
                 </aside>
         <?php }
         } ?>
-
-        <?php
-        // }
-
-        ?>
     </header>
 
     <main id="main">
         <h2 class="subtitulo">Rifas</h3>
-
-            <!-- <section class="cards_rifa_container_container"> -->
-
             <ul class="cards_rifa_container">
                 <?php foreach ($listaDasRifas as $rifa) { ?>
                     <li class="rifas" onclick="abrirRifa('<?= $rifa->getIdRifa() ?>', '<?= $logado ?>')">
@@ -256,7 +204,6 @@ foreach ($listaDasRifas as $rifa) {
                                     ?></p>
                             </div>
                         </article>
-                        <!-- <button onclick="abrirRifa(<?= $rifa->getIdRifa() ?>)">Abrir Rifa</button> -->
                     </li>
                     <article class="rifa_aberta" id="id<?= $rifa->getIdRifa() ?>">
                         <button onclick="fecharRifa(<?= $rifa->getIdRifa() ?>)" class="btn_fechar">x</button>
@@ -271,14 +218,12 @@ foreach ($listaDasRifas as $rifa) {
 
 
                                 for ($i = 0; $i < count($numerosDaRifa); $i++) {
-                                    // $numerosConvertidos = [$numerosDaRifa[$i]];
                                     array_push($numerosConvertidos, $numerosDaRifa[$i]->numero);
                                 }
 
 
                                 for ($i = 1; $i < $rifa->getQuantidadeDeNumeros() + 1; $i++) {
                                     if (in_array($i, $numerosConvertidos)) {
-                                        //Número vendido
                                 ?>
 
                                         <label>
@@ -316,7 +261,6 @@ foreach ($listaDasRifas as $rifa) {
                         </form>
                         <?php if ($logado && isset($usuario)) {
                             $numerosDoUsuario = $usuario->listarNumerosDoUsuarioDaRifa($usuario->getIdUsuario(), $rifa->getIdRifa());
-                            // var_dump($numerosDoUsuario);
                             if (count($numerosDoUsuario) > 0) {
                         ?>
                                 <article class="lista_numeros_container">
@@ -358,8 +302,6 @@ foreach ($listaDasRifas as $rifa) {
                 <?php }
                 ?>
             </ul>
-
-            <!-- </section> -->
     </main>
 
     <footer id="footer">
@@ -370,7 +312,7 @@ foreach ($listaDasRifas as $rifa) {
             </li>
             <li class="li_footer">
                 <h4 class="titulo_footer">Contatos</h4>
-                <p class="legenda_footer">Email: kaueantoniomansursantos@gmail.com</p>
+                <p class="legenda_footer">Email: contato@kauemansur.dev.br</p>
             </li>
         </ul>
     </footer>

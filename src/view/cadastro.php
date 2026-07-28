@@ -29,7 +29,7 @@ require "../controller/session_on.php";
 
         <div class="div_campo_login">
             <label for="" class="label_login login">Nome</label>
-            <input type="text" name="nome" id="" class="input_login" required>
+            <input type="text" name="nome" class="input_login" autocomplete="off" required>
             <div class="required_cadastro">*</div>
         </div>
 
@@ -37,25 +37,24 @@ require "../controller/session_on.php";
             <div class="required_cadastro_login">*</div>
             <div class="div_campo_login">
                 <label for="telefone" class="label_login login">Telefone</label>
-                <input type="tel" name="telefone" id="telefone" class="input_login">
+                <input type="tel" name="telefone" id="telefone" class="input_login" autocomplete="off">
             </div>
 
             <div class="div_campo_login">
                 <label for="" class="label_login login">Email</label>
-                <input type="email" name="email" id="" class="input_login">
+                <input type="email" name="email" class="input_login" autocomplete="off">
             </div>
-
         </div>
 
         <div class="div_campo_login">
             <label for="" class="label_login login">Senha</label>
-            <input type="password" name="senha" id="" class="input_login" required>
+            <input type="password" name="senha" class="input_login" autocomplete="off" required>
             <div class="required_cadastro">*</div>
         </div>
 
         <div class="div_campo_login">
             <label for="" class="label_login login">Confirme sua senha</label>
-            <input type="password" name="senha_confirm" id="" class="input_login" required>
+            <input type="password" name="senha_confirm" class="input_login" autocomplete="off" required>
             <div class="required_cadastro">*</div>
         </div>
 
