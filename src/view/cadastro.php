@@ -29,7 +29,7 @@ require "../controller/session_on.php";
 
         <div class="div_campo_login">
             <label for="" class="label_login login">Nome</label>
-            <input type="text" name="nome" class="input_login" autocomplete="off" required>
+            <input type="text" name="nome" class="input_login" required>
             <div class="required_cadastro">*</div>
         </div>
 
