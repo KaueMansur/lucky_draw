@@ -74,10 +74,6 @@ class Rifa
     public function criarRifa($objetivo, $quantidadeDeNumeros, $premio, $imagemIlustrativa, $dataDoSorteio, $localDoSorteio, $valorCadaNumero, $valorTotal, $idUsuario, $privacidade)
     {
         $db = new Database();
-        // $usuario = new Usuario();
-
-        // $idUsuario = $usuario->getIdUsuario();
-        // $idUsuario = 1;
 
         if ($valorCadaNumero > 0) {
             $valorTotal = $valorCadaNumero * $quantidadeDeNumeros;

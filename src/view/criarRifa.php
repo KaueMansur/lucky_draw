@@ -59,13 +59,13 @@ $usuario = $_SESSION["usuario"];
             <div class="div_campo_login valor_container">
                 <input type="radio" name="tipo_de_valor" id="radio_valor_numeros" class="tipo_de_valor" checked>
                 <label for="valor_numeros" class="label_login label_valor" style="text-align: center;">Valor de cada número</label>
-                <input type="number" name="valor_numeros" id="valor_numeros" class="input_login input_valor" placeholder="Ex: 2.00" step="0.01" autocomplete="off">
+                <input type="text" name="valor_numeros" id="valor_numeros" value="R$ 0,00" oninput="formatarMoeda(this)" class="input_login input_valor" placeholder="Ex: 2.00" step="0.01" autocomplete="off">
             </div>
 
             <div class="div_campo_login valor_container">
                 <input type="radio" name="tipo_de_valor" id="radio_valor_total" class="tipo_de_valor">
                 <label for="valor_total" class="label_login label_valor" style="text-align: center;">Valor total</label>
-                <input type="number" name="valor_total" id="valor_total" class="input_login input_valor" disabled placeholder="Ex: 200.00" autocomplete="off">
+                <input type="text" name="valor_total" id="valor_total" value="R$ 0,00" oninput="formatarMoeda(this)" class="input_login input_valor" disabled placeholder="Ex: 200.00" autocomplete="off">
             </div>
         </section>
 
@@ -104,6 +104,7 @@ $usuario = $_SESSION["usuario"];
 
     </form>
     <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/mascaras.js"></script>
 </body>
 
 </html>

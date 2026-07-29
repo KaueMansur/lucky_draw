@@ -7,26 +7,17 @@ require_once "../../config.php";
 $img = null;
 $objetivo = null;
 
-// if(isset($_POST["foto"])){
-//     var_dump($_POST["foto"]);
-// }
-
-// if(isset($_FILES["foto"])){
-    // echo "../../assets/img/uploads/".basename($_FILES["foto"]["name"]);
-    // var_dump($_FILES["foto"]["tmp_name"]);
-// }
-
-if($_FILES["foto"]["name"] != "") {
+if ($_FILES["foto"]["name"] != "") {
     //Recebimento da foto de perfil (arquivo)
     $target_dir = "../../assets/img/uploads/";
     $file_name = basename($_FILES["foto"]["name"]);
     $target_file = $target_dir . $file_name;
-    $target_database = "assets/img/uploads/".$file_name;
+    $target_database = "assets/img/uploads/" . $file_name;
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     $check = getimagesize($_FILES["foto"]["tmp_name"]);
-    if($check !== false) {
+    if ($check !== false) {
         // echo "Arquivo enviado é uma imagem - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
@@ -47,16 +38,17 @@ if($_FILES["foto"]["name"] != "") {
     }
 
     // Permitir apenas alguns formatos
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
+    if (
+        $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif"
+    ) {
         echo "Desculpe, somente aceitamos arquivos JPG, JPEG, PNG & GIF.";
         $uploadOk = 0;
-    } 
+    }
 
-    //Se cair em algum daqueles filtros, não realiza upload
     if ($uploadOk == 0) {
         // echo "Desculpe, seu arquivo não foi salvo.";
-    //Senão, realiza.
+        //Senão, realiza.
     } else {
         if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
             // echo "O arquivo ". htmlspecialchars( basename( $_FILES["foto"]["name"])). " foi salvo com sucesso!";
@@ -76,16 +68,37 @@ if (isset($_POST["objetivo"])) {
 if (isset($_POST["quantidade_numeros"])) {
     if (isset($_POST["valor_numeros"]) || isset($_POST["valor_total"]) && isset($_POST["premio"]) && isset($_POST["data_sorteio"]) && isset($_POST["local_sorteio"]) && isset($_POST["id_usuario"]) && isset($_POST["privacidade"])) {
 
-        if(isset($_POST["valor_total"])){
+        $valorCadaNumero = null;
+        $valorTotal = null;
+        if (isset($_POST["valor_total"])) {
             $_POST["valor_numeros"] = null;
-        } else{
+            $valorLimpo = preg_replace('/[^\d,.]/u', '', $_POST["valor_total"]);
+
+            // 2. Se for formato brasileiro (tem vírgula para os centavos)
+            if (strpos($valorLimpo, ',') !== false) {
+                $valorLimpo = str_replace('.', '', $valorLimpo);  // Remove ponto de milhar (ex: 1.500 -> 1500)
+                $valorLimpo = str_replace(',', '.', $valorLimpo);  // Troca vírgula por ponto (ex: 0,00 -> 0.00)
+            }
+
+            // 3. Converte para float
+            $valorTotal = (float) $valorLimpo;
+        } else {
             $_POST["valor_total"] = null;
+            $valorLimpo = preg_replace('/[^\d,.]/u', '', $_POST["valor_numeros"]);
+
+            // 2. Se for formato brasileiro (tem vírgula para os centavos)
+            if (strpos($valorLimpo, ',') !== false) {
+                $valorLimpo = str_replace('.', '', $valorLimpo);  // Remove ponto de milhar (ex: 1.500 -> 1500)
+                $valorLimpo = str_replace(',', '.', $valorLimpo);  // Troca vírgula por ponto (ex: 0,00 -> 0.00)
+            }
+
+            // 3. Converte para float
+            $valorCadaNumero = (float) $valorLimpo;
         }
         $rifa = new Rifa();
 
-        $rifa->criarRifa($objetivo, $_POST["quantidade_numeros"], $_POST["premio"], $target_database, $_POST["data_sorteio"], $_POST["local_sorteio"], $_POST["valor_numeros"], $_POST["valor_total"], $_POST["id_usuario"], $_POST["privacidade"]);
+        $rifa->criarRifa($objetivo, $_POST["quantidade_numeros"], $_POST["premio"], $target_database, $_POST["data_sorteio"], $_POST["local_sorteio"], $valorCadaNumero, $valorTotal, $_POST["id_usuario"], $_POST["privacidade"]);
 
-        // $_SESSION["usuario"] = $_POST["usuario"];
         header("Refresh: 0; URL= ../view/galeria_rifas.php");
     }
 } else {
