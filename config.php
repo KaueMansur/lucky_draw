@@ -22,7 +22,7 @@ if (!isset($_SESSION['user_agent'])) {
     if ($_SESSION['user_agent'] !== ($_SERVER['HTTP_USER_AGENT'] ?? '')) {
         session_unset();
         session_destroy();
-        header("Location: /view/login.php");
+        header("Location: proj_rifas/src/view/login.php");
         exit;
     }
 }

@@ -114,6 +114,17 @@ class Rifa
         );
     }
 
+    public function getQuantidadeDeNumerosPorId($idRifa){
+        $db = new Database();
+
+        return $db->select(
+            "SELECT quantidade_numeros FROM rifas WHERE id_rifa = :idRifa",
+            [
+                ":idRifa" => $idRifa
+            ]
+        );
+    }
+
     public function sortearNumero($idRifa, $somenteNumerosComprados)
     {
         $db = new Database();
@@ -142,9 +153,11 @@ class Rifa
 
         // var_dump($numeroSorteado);
 
-        $db->update(
-            "UPDATE rifas SET numero_sorteado = $numeroSorteado WHERE id_rifa = $idRifa"
-        );
+        // $db->update(
+        //     "UPDATE rifas SET numero_sorteado = $numeroSorteado WHERE id_rifa = $idRifa"
+        // );
+
+        return $numeroSorteado;
     }
 
     public function converterIdEmRifa($idRifa)

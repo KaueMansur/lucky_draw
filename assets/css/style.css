@@ -35,6 +35,16 @@
     box-sizing: border-box;
 }
 
+@keyframes trocaNumeroSorteio{
+    0%{
+        transform: scale(1.5);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+}
+
 body {
     overflow-x: hidden;
 }
@@ -312,11 +322,11 @@ html {
     width: 40vw;
 }
 
-.article_footer {
+/* .article_footer { */
     /* width: 22vw;
     display: flex;
     justify-content: space-around; */
-}
+/* } */
 
 .article_footer {
     width: 40%;
@@ -1454,6 +1464,38 @@ html {
     background-color: #fff;
     box-shadow: 2px 0 4px #000;
     z-index: 2;
+}
+
+#roleta_sorteio_container{
+    /* display: none; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 60vw;
+    height: 60vh; */
+    width: 40vw;
+    height: 40vh;
+    position: fixed;
+    right: 5vw;
+    top: 5vh;
+    border-radius: 30px;
+    background-image: linear-gradient(135deg, var(--amarelo-primario) 40%, var(--vermelho-primario));
+    box-shadow: 2px 0 4px #000;
+    z-index: 3;
+}
+
+#numero_sorteio{
+    width: 20vw;
+    height: 20vh;
+    border-radius: 15px;
+    box-shadow: 3px 1px 5px #000;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--fonte-primaria);
+    font-size: 5em;
+    font-weight: 700;
 }
 
 .infos_local_data{

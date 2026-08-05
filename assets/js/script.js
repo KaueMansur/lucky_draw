@@ -4,6 +4,11 @@ const btnMenu = document.getElementById("btn_menu_haburguer");
 const popupLogin = document.getElementById("popup_login");
 const inputObjetivo = document.getElementById("input_objetivo");
 const numeroDeLetras = document.getElementById("numero_de_letras");
+const stepSorteioAudio = document.getElementById("step_sorteio_audio");
+const winnerSorteioAudio = document.getElementById("winner_sorteio_audio");
+
+const numeroSorteioDiv = document.getElementById("numero_sorteio");
+const roletaSorteioContainer = document.getElementById("roleta_sorteio_container");
 
 function abrirMenu() {
     if (menu.style.display == "block") {
@@ -23,9 +28,9 @@ function abrirMenu() {
 }
 
 function abrirRifa(idRifa, logado) {
-    if(logado){
+    if (logado) {
         document.getElementById("id" + idRifa).style.display = "flex";
-    } else{
+    } else {
         abrirPopupLogin();
     }
 }
@@ -304,12 +309,239 @@ function priorizarLiRifa(idRifa) {
     abrirNumerosComprados(idRifa);
 }
 
+function sortearNumero(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch('../../src/controller/sorteio_controller.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(async response => {
+            if (!response.ok) {
+                const text = await response.text();
+                throw new Error(`Erro na requisição (${response.status}): ${text}`);
+            }
+            return response.json();
+        })
+        .then(sorteio => {
+            // roletaSorteioContainer.style.display = "flex";
+
+            if ("numerosComprados" in sorteio) {
+                const numerosComprados = sorteio.numerosComprados;
+
+                // sorteio.numerosComprados.forEach((numero)=>{
+                //     console.log("Números comprados: " + numero.numero);
+                // })
+                // console.log("Números comprados: " + sorteio.numerosComprados[].numero)
+                // console.log("Número sorteado: " + sorteio.numeroSorteado);
+
+                let maxChanges = 6;
+                const tempoEntreTrocas = 3000;
+
+                if (numerosComprados.length < 7) {
+                    maxChanges = numerosComprados.length;
+                }
+
+                const numChanges = Math.floor(Math.random() * (maxChanges - 4)) + 3;
+
+                for (i = 0; i <= numChanges; i++) {
+                    const delay = i * tempoEntreTrocas;
+                    if (i == numChanges) {
+                        //Altera para número sorteado!
+                        numeroSorteioDiv.innerText = sorteio.numeroSorteado;
+                        // setTimeout(
+                        //     () => { roletaSorteioContainer.style.display = "none" },
+                        //     800
+                        // );
+                    } else {
+                        // Altera para números possíveis!
+                        const indiceAleatorio = Math.floor(Math.random() * numerosComprados.length);
+                        setTimeout(
+                            () => { numeroSorteioDiv.innerText = numerosComprados[indiceAleatorio].numero },
+                            500
+                        );
+                    }
+                }
+            } else {
+                // sorteio.quantidadeNumeros
+                const quantidadeNumeros = sorteio.quantidadeNumeros[0].quantidade_numeros;
+
+                let maxChanges = 6;
+                const tempoEntreTrocas = 3000;
+                // console.log(sorteio.quantidadeNumeros[0].quantidade_numeros);
+
+                // if (quantidadeNumeros < 7) {
+                //     maxChanges = quantidadeNumeros;
+                // }
+
+                const numChanges = Math.floor(Math.random() * (maxChanges - 4)) + 3;
+
+                let i = 0;
+                const indiceAleatorio = Math.floor(Math.random() * quantidadeNumeros.length);
+                numeroSorteioDiv.innerText = Math.ceil(Math.random() * quantidadeNumeros);
+                numeroSorteioDiv.style.animationName = "trocaNumeroSorteio, trocaNumeroSorteio";
+                numeroSorteioDiv.style.animationDuration = "3s";
+                numeroSorteioDiv.style.animationDelay = "0s, 3s";
+                numeroSorteioDiv.style.animationIterationCount = numChanges - 1;
+                stepSorteioAudio.play();
+                const intervalId = setInterval(() => {
+                    i++;
+
+                    // for (i = 0; i <= numChanges; i++) {
+                    const delay = i * tempoEntreTrocas;
+                    if (i === numChanges) {
+                        //Altera para número sorteado!
+                        numeroSorteioDiv.innerText = sorteio.numeroSorteado;
+                        winnerSorteioAudio.play();
+                        numeroSorteioDiv.style.backgroundImage = "linear-gradient(135deg, var(--amarelo-primario) 40%, var(--vermelho-primario));";
+                        // numeroSorteioDiv.style.color = "#FFF";
+                        roletaSorteioContainer.style.backgroundColor = "#FFF";
+
+
+                        clearInterval(intervalId);
+                    } else {
+                        // Altera para números possíveis!
+                        // setTimeout(
+                        //     () => {  },
+                        //     500
+                        // );
+                        // setTimeout(() => {
+                        const indiceAleatorio = Math.floor(Math.random() * quantidadeNumeros.length);
+                        numeroSorteioDiv.innerText = Math.ceil(Math.random() * quantidadeNumeros);
+                        numeroSorteioDiv.style.animationName = "trocaNumeroSorteio, trocaNumeroSorteio";
+                        numeroSorteioDiv.style.animationDuration = "3s";
+                        numeroSorteioDiv.style.animationDelay = "0s, 3s";
+                        numeroSorteioDiv.style.animationIterationCount = numChanges;
+                        stepSorteioAudio.play();
+                        // numeroSorteioDiv.style.animation = "2s linear";
+                        // numeroSorteioDiv.style.backgroundColor = "#FFF";
+                        // numeroSorteioDiv.innerText = [indiceAleatorio].numero;
+                        // }, delay);
+
+                    }
+                    // }
+                }, 3000);
+            }
+
+            if (sorteio.status === 'sucesso') {
+                form.reset();
+            }
+        })
+        .catch(error => console.error('Erro no envio:', error));
+};
+
+// function sortearNumero(e) {
+//     e.preventDefault();
+
+//     const form = e.target;
+//     const formData = new FormData(form);
+
+//     fetch('../../src/controller/sorteio_controller.php', {
+//         method: 'POST',
+//         body: formData
+//     })
+//         .then(async response => {
+//             if (!response.ok) {
+//                 const text = await response.text();
+//                 throw new Error(`Erro na requisição (${response.status}): ${text}`);
+//             }
+//             return response.json();
+//         })
+//         .then(sorteio => {
+// roletaSorteioContainer.style.display = "flex";
+// roletaSorteioContainer.style.setProperty('display', 'flex', 'important');
+// console.log("Chegou até aqui!");
+// console.log("Elemento encontrado:", roletaSorteioContainer);
+// if (roletaSorteioContainer) {
+//     roletaSorteioContainer.style.display = "flex";
+//     // Alternativa garantida adicionando/removendo classe:
+//     // roletaSorteioContainer.classList.add('ativo'); 
+// } else {
+//     console.error("roletaSorteioContainer é null ou undefined!");
+// }
+
+
+// let maxChanges = 6;
+// const tempoEntreTrocas = 4000;// Tempo em ms entre cada "giro" da roleta
+
+// if ("numerosComprados" in sorteio) {
+//     const numerosComprados = sorteio.numerosComprados;
+
+//     if (numerosComprados.length < 7) {
+//         maxChanges = numerosComprados.length;
+//     }
+
+//     // Garante que numChanges seja no mínimo 1 para não dar valor negativo
+//     const limiteSuperior = Math.max(1, maxChanges - 2);
+//     const numChanges = Math.floor(Math.random() * limiteSuperior) + 3;
+
+//     for (let i = 0; i <= numChanges; i++) {
+//         // Multiplica i pelo tempo para os giros acontecerem em sequência
+//         const delay = i * tempoEntreTrocas;
+
+//         if (i === numChanges) {
+//             // Último giro: mostra o número sorteado real
+//             setTimeout(() => {
+//                 numeroSorteioDiv.innerText = sorteio.numeroSorteado;
+//             }, delay);
+
+//             // Fecha a roleta 3 segundos após o resultado ser revelado
+//             // setTimeout(() => {
+//             //     // roletaSorteioContainer.style.display = "none";
+//             // }, delay + 1000);
+
+//         } else {
+//             // Giros intermediários com números aleatórios comprados
+//             setTimeout(() => {
+//                 const indiceAleatorio = Math.floor(Math.random() * numerosComprados.length);
+//                 numeroSorteioDiv.innerText = numerosComprados[indiceAleatorio].numero;
+//             }, delay);
+//         }
+//     }
+// } else {
+//     const quantidadeNumeros = sorteio.quantidadeNumeros[0].quantidade_numeros;
+
+//     if (quantidadeNumeros < 7) {
+//         maxChanges = quantidadeNumeros;
+//     }
+
+//     const limiteSuperior = Math.max(1, maxChanges - 2);
+//     const numChanges = Math.floor(Math.random() * limiteSuperior) + 3;
+
+//     for (let i = 0; i <= numChanges; i++) {
+//         const delay = i * tempoEntreTrocas;
+
+//         if (i === numChanges) {
+//             setTimeout(() => {
+//                 numeroSorteioDiv.innerText = sorteio.numeroSorteado;
+//             }, delay);
+
+//             // setTimeout(() => {
+//             //     // roletaSorteioContainer.style.display = "none";
+//             // }, delay + 1000);
+
+//         } else {
+//             setTimeout(() => {
+//                 numeroSorteioDiv.innerText = Math.ceil(Math.random() * quantidadeNumeros);
+//             }, delay);
+//         }
+//     }
+// }
+
+// if (sorteio.status === 'sucesso') {
+//     form.reset();
+// }
+// })
+// .catch(error => console.error('Erro no envio:', error));
+// }
+
 
 inputObjetivo.addEventListener("input", () => {
-    // numeroDeLetras.value = inputObjetivo.value.length + "/15";
     let qntAtual = inputObjetivo.value.length;
     if (qntAtual < 16) {
         numeroDeLetras.textContent = qntAtual + "/15";
     }
-    console.log(qntAtual)
 });

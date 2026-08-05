@@ -29,9 +29,6 @@ class NumeroComprado
             "SELECT COUNT(*) FROM numeros_comprados WHERE id_rifa = $idRifa AND numero = $numero"
         );
 
-        // return var_dump($verificador[0]->{"COUNT(*)"});
-        // return var_dump($verificador);
-
         if ($verificador[0]->{"COUNT(*)"}) {
             return true;
         } else {

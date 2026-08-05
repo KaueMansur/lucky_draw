@@ -1,16 +1,10 @@
 <?php
 
 require "../model/rifa.php";
+// require "../model/numeroComprado.php";
 require_once "../../config.php";
 
-// if (isset($_POST["id_rifa"])) {
-    // var_dump($_POST["id_rifa"]);
-// }
-
-// if (isset($_POST["numeros_comprados"])) {
-//     var_dump($_POST["numeros_comprados"]);
-// }
-
+header('Content-Type: application/json; charset=utf-8');
 if (isset($_POST["id_rifa"])) {
     if (isset($_POST["numeros_comprados"])) {
         $somenteNumerosComprados = true;
@@ -18,14 +12,37 @@ if (isset($_POST["id_rifa"])) {
         $somenteNumerosComprados = false;
     }
 
-    // var_dump($somenteNumerosComprados);
     $rifa = new Rifa();
-    $db = new Database();
+    $numeroComprado = new NumeroComprado();
+    // $db = new Database();
 
-    // var_dump($somenteNumerosComprados);
+    $numeroSorteado = $rifa->sortearNumero($_POST["id_rifa"], $somenteNumerosComprados);
+    $listaNumerosComprados = $numeroComprado->listarNumerosCompradosDaRifa($_POST["id_rifa"]);
+    // var_dump($listaNumerosComprados->numero);
 
-    $numerosSorteio = $rifa->sortearNumero($_POST["id_rifa"], $somenteNumerosComprados);
+    if ($somenteNumerosComprados) {
+        echo json_encode([
+            'status' => 'sucesso',
+            'numeroSorteado' => $numeroSorteado,
+            'numerosComprados' => $listaNumerosComprados
+        ]);
+        exit;
+    } else {
+        $quantidadeNumeros = $rifa->getQuantidadeDeNumerosPorId($_POST["id_rifa"]);
+        echo json_encode([
+            'status' => 'sucesso',
+            'numeroSorteado' => $numeroSorteado,
+            'quantidadeNumeros' => $quantidadeNumeros
+        ]);
+        exit;
+    }
 
-    header("Refresh:0; URL= ../view/galeria_rifas.php");
-    echo "Erro no If(numeros_comprados)";
-};
+    // header("Refresh:0; URL= ../view/galeria_rifas.php");
+} else {
+
+    echo json_encode([
+        'status' => 'erro',
+        'mensagem' => 'Preencha todos os campos!'
+    ]);
+    exit;
+}
