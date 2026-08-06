@@ -1467,8 +1467,8 @@ html {
 }
 
 #roleta_sorteio_container{
-    /* display: none; */
-    display: flex;
+    display: none;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     /* width: 60vw;

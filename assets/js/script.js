@@ -309,7 +309,7 @@ function priorizarLiRifa(idRifa) {
     abrirNumerosComprados(idRifa);
 }
 
-function sortearNumero(e) {
+function sortearNumero(e, idRifa) {
     e.preventDefault();
 
     const form = e.target;
@@ -327,88 +327,78 @@ function sortearNumero(e) {
             return response.json();
         })
         .then(sorteio => {
-            // roletaSorteioContainer.style.display = "flex";
+            const popupSorteio = document.getElementById("popup_sorteio" + idRifa);
+
+            popupSorteio.style.display = "none";
+            roletaSorteioContainer.style.display = "flex";
+
 
             if ("numerosComprados" in sorteio) {
+                //SOMENTE NÚMEROS COMPRADOS
                 const numerosComprados = sorteio.numerosComprados;
-
-                // sorteio.numerosComprados.forEach((numero)=>{
-                //     console.log("Números comprados: " + numero.numero);
-                // })
-                // console.log("Números comprados: " + sorteio.numerosComprados[].numero)
-                // console.log("Número sorteado: " + sorteio.numeroSorteado);
 
                 let maxChanges = 6;
                 const tempoEntreTrocas = 3000;
 
-                if (numerosComprados.length < 7) {
-                    maxChanges = numerosComprados.length;
-                }
-
                 const numChanges = Math.floor(Math.random() * (maxChanges - 4)) + 3;
 
-                for (i = 0; i <= numChanges; i++) {
+                const indiceAleatorio = Math.floor(Math.random() * numerosComprados.length);
+                numeroSorteioDiv.innerText = numerosComprados[indiceAleatorio].numero;
+                numeroSorteioDiv.style.animationName = "trocaNumeroSorteio, trocaNumeroSorteio";
+                numeroSorteioDiv.style.animationDuration = "3s";
+                numeroSorteioDiv.style.animationDelay = "0s, 3s";
+                numeroSorteioDiv.style.animationIterationCount = numChanges;
+                stepSorteioAudio.play();
+                let i = 0;
+                const intervalId = setInterval(() => {
+                    i++;
+
                     const delay = i * tempoEntreTrocas;
-                    if (i == numChanges) {
+                    if (i === numChanges) {
                         //Altera para número sorteado!
                         numeroSorteioDiv.innerText = sorteio.numeroSorteado;
-                        // setTimeout(
-                        //     () => { roletaSorteioContainer.style.display = "none" },
-                        //     800
-                        // );
+                        winnerSorteioAudio.play();
+                        popupSorteio.style.display = "flex";
+
+                        clearInterval(intervalId);
                     } else {
                         // Altera para números possíveis!
                         const indiceAleatorio = Math.floor(Math.random() * numerosComprados.length);
-                        setTimeout(
-                            () => { numeroSorteioDiv.innerText = numerosComprados[indiceAleatorio].numero },
-                            500
-                        );
+                        numeroSorteioDiv.innerText = numerosComprados[indiceAleatorio].numero;
+                        numeroSorteioDiv.style.animationName = "trocaNumeroSorteio, trocaNumeroSorteio";
+                        numeroSorteioDiv.style.animationDuration = "3s";
+                        numeroSorteioDiv.style.animationDelay = "0s, 3s";
+                        numeroSorteioDiv.style.animationIterationCount = numChanges;
+                        stepSorteioAudio.play();
                     }
-                }
+                }, 3000);
             } else {
-                // sorteio.quantidadeNumeros
+                //TODOS OS NÚMEROS
                 const quantidadeNumeros = sorteio.quantidadeNumeros[0].quantidade_numeros;
 
                 let maxChanges = 6;
                 const tempoEntreTrocas = 3000;
-                // console.log(sorteio.quantidadeNumeros[0].quantidade_numeros);
-
-                // if (quantidadeNumeros < 7) {
-                //     maxChanges = quantidadeNumeros;
-                // }
 
                 const numChanges = Math.floor(Math.random() * (maxChanges - 4)) + 3;
 
-                let i = 0;
-                const indiceAleatorio = Math.floor(Math.random() * quantidadeNumeros.length);
                 numeroSorteioDiv.innerText = Math.ceil(Math.random() * quantidadeNumeros);
                 numeroSorteioDiv.style.animationName = "trocaNumeroSorteio, trocaNumeroSorteio";
                 numeroSorteioDiv.style.animationDuration = "3s";
                 numeroSorteioDiv.style.animationDelay = "0s, 3s";
                 numeroSorteioDiv.style.animationIterationCount = numChanges - 1;
                 stepSorteioAudio.play();
+                let i = 0;
                 const intervalId = setInterval(() => {
                     i++;
 
-                    // for (i = 0; i <= numChanges; i++) {
                     const delay = i * tempoEntreTrocas;
                     if (i === numChanges) {
-                        //Altera para número sorteado!
                         numeroSorteioDiv.innerText = sorteio.numeroSorteado;
                         winnerSorteioAudio.play();
-                        numeroSorteioDiv.style.backgroundImage = "linear-gradient(135deg, var(--amarelo-primario) 40%, var(--vermelho-primario));";
-                        // numeroSorteioDiv.style.color = "#FFF";
-                        roletaSorteioContainer.style.backgroundColor = "#FFF";
-
+                        popupSorteio.style.display = "flex";
 
                         clearInterval(intervalId);
                     } else {
-                        // Altera para números possíveis!
-                        // setTimeout(
-                        //     () => {  },
-                        //     500
-                        // );
-                        // setTimeout(() => {
                         const indiceAleatorio = Math.floor(Math.random() * quantidadeNumeros.length);
                         numeroSorteioDiv.innerText = Math.ceil(Math.random() * quantidadeNumeros);
                         numeroSorteioDiv.style.animationName = "trocaNumeroSorteio, trocaNumeroSorteio";
@@ -416,13 +406,7 @@ function sortearNumero(e) {
                         numeroSorteioDiv.style.animationDelay = "0s, 3s";
                         numeroSorteioDiv.style.animationIterationCount = numChanges;
                         stepSorteioAudio.play();
-                        // numeroSorteioDiv.style.animation = "2s linear";
-                        // numeroSorteioDiv.style.backgroundColor = "#FFF";
-                        // numeroSorteioDiv.innerText = [indiceAleatorio].numero;
-                        // }, delay);
-
                     }
-                    // }
                 }, 3000);
             }
 

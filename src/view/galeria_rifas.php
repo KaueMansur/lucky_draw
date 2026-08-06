@@ -240,8 +240,8 @@ foreach ($listaDeRifas as $r) {
                         <button onclick="abrirSorteio('<?= $rifa->getIdRifa() ?>')">Sortear</button>
                         <button onclick="cancelarOpcoesSorteio('<?= $rifa->getIdRifa() ?>')">Cancelar</button>
                     </div>
-<!-- action="../controller/sorteio_controller.php" -->
-                    <form class="popup_sorteio" id="popup_sorteio<?= $rifa->getIdRifa() ?>" method="post" class="desativado card_sorteio" onsubmit="sortearNumero(event)">
+                    <!-- action="../controller/sorteio_controller.php" -->
+                    <form class="popup_sorteio" id="popup_sorteio<?= $rifa->getIdRifa() ?>" method="post" class="desativado card_sorteio" onsubmit="sortearNumero(event, <?= $rifa->getIdRifa() ?>)">
                         <div class="sorteio_container">
                             <div class="legenda_sorteio_container">
                                 <input type="checkbox" name="numeros_comprados" id="numeros_comprados<?= $rifa->getIdRifa() ?>" value="true" checked>
@@ -254,9 +254,6 @@ foreach ($listaDeRifas as $r) {
                             </div>
                         </div>
                     </form>
-                    <article id="roleta_sorteio_container">
-                        <div id="numero_sorteio"></div>
-                    </article>
                     <audio src="../../assets/sounds/step_sorteio.mp3" id="step_sorteio_audio" style="display: none;"></audio>
                     <audio src="../../assets/sounds/winner_sound.mp3" id="winner_sorteio_audio" style="display: none;"></audio>
                     <?php
@@ -306,14 +303,15 @@ foreach ($listaDeRifas as $r) {
                                 <img src="../../assets/img/icons/estrela.png" alt="Ícone de local">
                                 <p>Número sorteado:
                                     <?php if ($rifa->getStatusVendas() == 0) {
-                                        if($rifa->getNumeroSorteado() != null){
-                                        if ($numeroComprado->verificaNumeroComprado($rifa->getIdRifa(), $rifa->getNumeroSorteado())) {
+                                        if ($rifa->getNumeroSorteado() != null) {
+                                            if ($numeroComprado->verificaNumeroComprado($rifa->getIdRifa(), $rifa->getNumeroSorteado())) {
                                     ?>
-                                            <span class="numero_sorteado_div resultado"><?= $rifa->getNumeroSorteado() ?></span>
+                                                <span class="numero_sorteado_div resultado"><?= $rifa->getNumeroSorteado() ?></span>
                                 </p>
                             <?php } else { ?>
                                 <span><?= $rifa->getNumeroSorteado() ?></span>
-                        <?php }}
+                    <?php }
+                                        }
                                     } ?>
                             </div>
                         </div>
@@ -364,15 +362,18 @@ foreach ($listaDeRifas as $r) {
                     // if (!count($numerosDaRifa) > 0) {
                     ?>
 
-                        <!-- <form action="../controller/deletar_rifa_controller.php" method="post" onsubmit="confirm('Tem certeza de que deseja excluir esta Rifa?')">
+                    <!-- <form action="../controller/deletar_rifa_controller.php" method="post" onsubmit="confirm('Tem certeza de que deseja excluir esta Rifa?')">
                             <input type="hidden" name="id_rifa" value="<?= $rifa->getIdRifa() ?>">
                             <input type="submit" value="Excluir Rifa">
                         </form> -->
-                    <!-- <?php //} ?> -->
+                    <!-- <?php //} 
+                            ?> -->
                 </li>
             <?php } ?>
         </ul>
-
+        <article id="roleta_sorteio_container">
+            <div id="numero_sorteio"></div>
+        </article>
     </main>
     <footer id="footer">
         <ul id="footer_content">
