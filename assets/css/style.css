@@ -576,6 +576,7 @@ html {
     padding-top: 60px;
     gap: 30px;
     height: 90vh;
+    /* height: calc(fit-content + 130px); */
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -1469,15 +1470,19 @@ html {
 #roleta_sorteio_container{
     display: none;
     /* display: flex; */
+    flex-direction: column;
     align-items: center;
+    gap: 60px;
     justify-content: center;
-    /* width: 60vw;
-    height: 60vh; */
-    width: 40vw;
-    height: 40vh;
+    width: 60vw;
+    height: 60vh;
+    /* width: 40vw;
+    height: 40vh; */
     position: fixed;
-    right: 5vw;
-    top: 5vh;
+    /* right: 5vw;
+    top: 5vh; */
+    top: 20vh;
+    right: 20vw;
     border-radius: 30px;
     background-image: linear-gradient(135deg, var(--amarelo-primario) 40%, var(--vermelho-primario));
     box-shadow: 2px 0 4px #000;
@@ -1523,4 +1528,14 @@ html {
     display: inline;
     padding: .4vw;
     font-size: 1em;
+}
+
+.btn_fechar_sorteio{
+    display: none;
+    color: #fff;
+    background-color: #e23030;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
 }

@@ -18,6 +18,7 @@ if (isset($_POST["id_rifa"])) {
 
     $numeroSorteado = $rifa->sortearNumero($_POST["id_rifa"], $somenteNumerosComprados);
     $listaNumerosComprados = $numeroComprado->listarNumerosCompradosDaRifa($_POST["id_rifa"]);
+    $numeroFoiComprado = $numeroComprado->verificaNumeroComprado($_POST["id_rifa"], $numeroSorteado);
     // var_dump($listaNumerosComprados->numero);
 
     if ($somenteNumerosComprados) {
@@ -32,7 +33,8 @@ if (isset($_POST["id_rifa"])) {
         echo json_encode([
             'status' => 'sucesso',
             'numeroSorteado' => $numeroSorteado,
-            'quantidadeNumeros' => $quantidadeNumeros
+            'quantidadeNumeros' => $quantidadeNumeros,
+            'numeroFoiComprado' => $numeroFoiComprado
         ]);
         exit;
     }

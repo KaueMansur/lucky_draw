@@ -6,6 +6,7 @@ const inputObjetivo = document.getElementById("input_objetivo");
 const numeroDeLetras = document.getElementById("numero_de_letras");
 const stepSorteioAudio = document.getElementById("step_sorteio_audio");
 const winnerSorteioAudio = document.getElementById("winner_sorteio_audio");
+const btnFecharSorteio = document.getElementById("btn_fechar_sorteio");
 
 const numeroSorteioDiv = document.getElementById("numero_sorteio");
 const roletaSorteioContainer = document.getElementById("roleta_sorteio_container");
@@ -309,6 +310,10 @@ function priorizarLiRifa(idRifa) {
     abrirNumerosComprados(idRifa);
 }
 
+function fecharSorteio() {
+    roletaSorteioContainer.style.display = "none";
+}
+
 function sortearNumero(e, idRifa) {
     e.preventDefault();
 
@@ -328,7 +333,11 @@ function sortearNumero(e, idRifa) {
         })
         .then(sorteio => {
             const popupSorteio = document.getElementById("popup_sorteio" + idRifa);
+            const resultadoDiv = document.getElementById("resultado" + idRifa);
+            const labelNumeroSorteado = document.getElementById("label_numero_sorteado" + idRifa);
+            const btnOpcoesSorteio = document.getElementById("btn_opcoes_sorteio" + idRifa);
 
+            btnOpcoesSorteio.style.display = "none";
             popupSorteio.style.display = "none";
             roletaSorteioContainer.style.display = "flex";
 
@@ -357,8 +366,16 @@ function sortearNumero(e, idRifa) {
                     if (i === numChanges) {
                         //Altera para número sorteado!
                         numeroSorteioDiv.innerText = sorteio.numeroSorteado;
+                        // resultadoDiv.innerText = sorteio.numeroSorteado;
+                        // console.log(resultadoDiv)
                         winnerSorteioAudio.play();
-                        popupSorteio.style.display = "flex";
+                        const resultadoDiv = document.createElement("span");
+                        resultadoDiv.setAttribute("id", "resultadoSpan" + idRifa)
+                        resultadoDiv.innerText = sorteio.numeroSorteado;
+                        labelNumeroSorteado.appendChild(resultadoDiv);
+                        resultadoDiv.classList.add("numero_sorteado_div");
+                        resultadoDiv.classList.add("resultado");
+                        btnFecharSorteio.style.display = "flex";
 
                         clearInterval(intervalId);
                     } else {
@@ -376,6 +393,9 @@ function sortearNumero(e, idRifa) {
                 //TODOS OS NÚMEROS
                 const quantidadeNumeros = sorteio.quantidadeNumeros[0].quantidade_numeros;
 
+                // console.log(sorteio.numeroFoiComprado);
+                // console.log(resultadoDiv)
+
                 let maxChanges = 6;
                 const tempoEntreTrocas = 3000;
 
@@ -388,14 +408,35 @@ function sortearNumero(e, idRifa) {
                 numeroSorteioDiv.style.animationIterationCount = numChanges - 1;
                 stepSorteioAudio.play();
                 let i = 0;
+
                 const intervalId = setInterval(() => {
                     i++;
 
                     const delay = i * tempoEntreTrocas;
                     if (i === numChanges) {
+
+                        btnFecharSorteio.style.display = "flex";
+                        const resultado = document.getElementById("resultadoSpan" + idRifa);
+
+                        if (resultado != null) {
+                            resultado.style.display = "none";
+                        }
+
                         numeroSorteioDiv.innerText = sorteio.numeroSorteado;
+                        // resultadoDiv.value = sorteio.numeroSorteado;
                         winnerSorteioAudio.play();
-                        popupSorteio.style.display = "flex";
+                        const resultadoDiv = document.createElement("span");
+                        resultadoDiv.setAttribute("id", "resultadoSpan" + idRifa)
+                        resultadoDiv.innerText = sorteio.numeroSorteado;
+                        labelNumeroSorteado.appendChild(resultadoDiv);
+
+                        if (!sorteio.numeroFoiComprado) {
+                            popupSorteio.style.display = "flex";
+                            btnOpcoesSorteio.style.display = "flex";
+                        } else {
+                            resultadoDiv.classList.add("numero_sorteado_div");
+                            resultadoDiv.classList.add("resultado");
+                        }
 
                         clearInterval(intervalId);
                     } else {
@@ -416,112 +457,6 @@ function sortearNumero(e, idRifa) {
         })
         .catch(error => console.error('Erro no envio:', error));
 };
-
-// function sortearNumero(e) {
-//     e.preventDefault();
-
-//     const form = e.target;
-//     const formData = new FormData(form);
-
-//     fetch('../../src/controller/sorteio_controller.php', {
-//         method: 'POST',
-//         body: formData
-//     })
-//         .then(async response => {
-//             if (!response.ok) {
-//                 const text = await response.text();
-//                 throw new Error(`Erro na requisição (${response.status}): ${text}`);
-//             }
-//             return response.json();
-//         })
-//         .then(sorteio => {
-// roletaSorteioContainer.style.display = "flex";
-// roletaSorteioContainer.style.setProperty('display', 'flex', 'important');
-// console.log("Chegou até aqui!");
-// console.log("Elemento encontrado:", roletaSorteioContainer);
-// if (roletaSorteioContainer) {
-//     roletaSorteioContainer.style.display = "flex";
-//     // Alternativa garantida adicionando/removendo classe:
-//     // roletaSorteioContainer.classList.add('ativo'); 
-// } else {
-//     console.error("roletaSorteioContainer é null ou undefined!");
-// }
-
-
-// let maxChanges = 6;
-// const tempoEntreTrocas = 4000;// Tempo em ms entre cada "giro" da roleta
-
-// if ("numerosComprados" in sorteio) {
-//     const numerosComprados = sorteio.numerosComprados;
-
-//     if (numerosComprados.length < 7) {
-//         maxChanges = numerosComprados.length;
-//     }
-
-//     // Garante que numChanges seja no mínimo 1 para não dar valor negativo
-//     const limiteSuperior = Math.max(1, maxChanges - 2);
-//     const numChanges = Math.floor(Math.random() * limiteSuperior) + 3;
-
-//     for (let i = 0; i <= numChanges; i++) {
-//         // Multiplica i pelo tempo para os giros acontecerem em sequência
-//         const delay = i * tempoEntreTrocas;
-
-//         if (i === numChanges) {
-//             // Último giro: mostra o número sorteado real
-//             setTimeout(() => {
-//                 numeroSorteioDiv.innerText = sorteio.numeroSorteado;
-//             }, delay);
-
-//             // Fecha a roleta 3 segundos após o resultado ser revelado
-//             // setTimeout(() => {
-//             //     // roletaSorteioContainer.style.display = "none";
-//             // }, delay + 1000);
-
-//         } else {
-//             // Giros intermediários com números aleatórios comprados
-//             setTimeout(() => {
-//                 const indiceAleatorio = Math.floor(Math.random() * numerosComprados.length);
-//                 numeroSorteioDiv.innerText = numerosComprados[indiceAleatorio].numero;
-//             }, delay);
-//         }
-//     }
-// } else {
-//     const quantidadeNumeros = sorteio.quantidadeNumeros[0].quantidade_numeros;
-
-//     if (quantidadeNumeros < 7) {
-//         maxChanges = quantidadeNumeros;
-//     }
-
-//     const limiteSuperior = Math.max(1, maxChanges - 2);
-//     const numChanges = Math.floor(Math.random() * limiteSuperior) + 3;
-
-//     for (let i = 0; i <= numChanges; i++) {
-//         const delay = i * tempoEntreTrocas;
-
-//         if (i === numChanges) {
-//             setTimeout(() => {
-//                 numeroSorteioDiv.innerText = sorteio.numeroSorteado;
-//             }, delay);
-
-//             // setTimeout(() => {
-//             //     // roletaSorteioContainer.style.display = "none";
-//             // }, delay + 1000);
-
-//         } else {
-//             setTimeout(() => {
-//                 numeroSorteioDiv.innerText = Math.ceil(Math.random() * quantidadeNumeros);
-//             }, delay);
-//         }
-//     }
-// }
-
-// if (sorteio.status === 'sucesso') {
-//     form.reset();
-// }
-// })
-// .catch(error => console.error('Erro no envio:', error));
-// }
-
 
 inputObjetivo.addEventListener("input", () => {
     let qntAtual = inputObjetivo.value.length;

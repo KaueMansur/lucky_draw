@@ -153,9 +153,9 @@ class Rifa
 
         // var_dump($numeroSorteado);
 
-        // $db->update(
-        //     "UPDATE rifas SET numero_sorteado = $numeroSorteado WHERE id_rifa = $idRifa"
-        // );
+        $db->update(
+            "UPDATE rifas SET numero_sorteado = $numeroSorteado WHERE id_rifa = $idRifa"
+        );
 
         return $numeroSorteado;
     }

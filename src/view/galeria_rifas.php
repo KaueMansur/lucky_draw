@@ -233,7 +233,7 @@ foreach ($listaDeRifas as $r) {
                         </form>
 
                     <?php } elseif (!in_array($rifa->getNumeroSorteado(), $numerosConvertidos)) { ?>
-                        <button onclick="mostrarOpcoesDeSorteio('<?= $rifa->getIdRifa() ?>')" class="btn_encerrar_venda" style="background-color: #F80;">Opções de sorteio</button>
+                        <button onclick="mostrarOpcoesDeSorteio('<?= $rifa->getIdRifa() ?>')" id="btn_opcoes_sorteio<?= $rifa->getIdRifa() ?>" class="btn_encerrar_venda" style="background-color: #F80;">Opções de sorteio</button>
                     <?php } ?>
 
                     <div id="opcoes_de_sorteio<?= $rifa->getIdRifa() ?>" class="desativado">
@@ -277,7 +277,7 @@ foreach ($listaDeRifas as $r) {
                                         if ($rifa->getNumeroSorteado() != null) {
                                             if ($numeroComprado->verificaNumeroComprado($rifa->getIdRifa(), $rifa->getNumeroSorteado())) {
                                     ?>
-                                                <span class="numero_sorteado_div resultado"><?= $rifa->getNumeroSorteado() ?></span>
+                                                <span class="numero_sorteado_div resultado" id="resultado<?= $rifa->getIdRifa() ?>"><?= $rifa->getNumeroSorteado() ?></span>
                                 </p>
                             <?php } else { ?>
                                 <span><?= $rifa->getNumeroSorteado() ?></span>
@@ -301,7 +301,7 @@ foreach ($listaDeRifas as $r) {
                             </div>
                             <div class="infos_local_data">
                                 <img src="../../assets/img/icons/estrela.png" alt="Ícone de local">
-                                <p>Número sorteado:
+                                <p id="label_numero_sorteado<?= $rifa->getIdRifa() ?>">Número sorteado:
                                     <?php if ($rifa->getStatusVendas() == 0) {
                                         if ($rifa->getNumeroSorteado() != null) {
                                             if ($numeroComprado->verificaNumeroComprado($rifa->getIdRifa(), $rifa->getNumeroSorteado())) {
@@ -309,7 +309,7 @@ foreach ($listaDeRifas as $r) {
                                                 <span class="numero_sorteado_div resultado"><?= $rifa->getNumeroSorteado() ?></span>
                                 </p>
                             <?php } else { ?>
-                                <span><?= $rifa->getNumeroSorteado() ?></span>
+                                <span id="resultadoSpan<?= $rifa->getIdRifa() ?>"><?= $rifa->getNumeroSorteado() ?></span>
                     <?php }
                                         }
                                     } ?>
@@ -373,6 +373,7 @@ foreach ($listaDeRifas as $r) {
         </ul>
         <article id="roleta_sorteio_container">
             <div id="numero_sorteio"></div>
+            <button onclick="fecharSorteio()" class="btn_fechar_sorteio" id="btn_fechar_sorteio">Fechar</button>
         </article>
     </main>
     <footer id="footer">
