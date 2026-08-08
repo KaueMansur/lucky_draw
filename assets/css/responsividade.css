@@ -95,6 +95,12 @@
     } */
 }
 
+@media screen and (max-width: 950px) {
+    #numero_sorteio{
+        width: 40%;
+    }
+}
+
 @media screen and (max-width: 900px) {
     .label_valor {
         font-size: 9pt;
@@ -185,6 +191,13 @@
         right: 112.5px;
         top: 250px;
     }
+
+    #roleta_sorteio_container{
+        width: 80vw;
+        right: 10vw;
+    }
+
+    #numero_sorteio{}
 
     .lista_rifas_compradas {
         flex-direction: column;
@@ -351,8 +364,8 @@
     }
 }
 
-@media screen and (max-width: 700px){
-    #popup_login{
+@media screen and (max-width: 700px) {
+    #popup_login {
         width: 80vw;
         left: 10vw;
     }
@@ -425,14 +438,18 @@
         font-size: 12pt;
     }
 
-    .popup_sorteio{
+    .popup_sorteio {
         min-height: none;
         height: fit-content;
         padding: 40px 0;
     }
 
-    .sorteio_container{
+    .sorteio_container {
         gap: 40px;
+    }
+
+    #numero_sorteio{
+        width: 60%;
     }
 }
 
@@ -493,31 +510,31 @@
         width: 180px;
     }
 
-    .nav_links{
+    .nav_links {
         font-size: 12pt;
     }
 
-    .lista_rifas_compradas{
+    .lista_rifas_compradas {
         width: 100%;
     }
 
-    .rifas_compradas{
+    .rifas_compradas {
         font-size: 10pt;
         min-width: 100%;
     }
 
-    #menu_rifas_compradas{
+    #menu_rifas_compradas {
         min-width: 180px;
         padding: 5px;
     }
 
-    .menu_numeros_comprados{
+    .menu_numeros_comprados {
         transform: translateX(-31.5%);
         width: 145px;
         height: 145px;
     }
 
-    .numero_sorteado_container{
+    .numero_sorteado_container {
         width: 60px;
         height: 60px;
         top: 450px;
@@ -525,13 +542,13 @@
         /* transform: translateX(40%); */
     }
 
-    .numero_sorteado_div{
+    .numero_sorteado_div {
         width: 50px;
         height: 50px;
         font-size: 16pt;
     }
 
-    .numero{
+    .numero {
         width: 35px;
         height: 35px;
     }
@@ -600,7 +617,7 @@
         width: 140px;
     }
 
-    #popup_login{
+    #popup_login {
         width: 90vw;
         left: 5vw;
         min-width: initial;
@@ -617,29 +634,30 @@
         padding-inline: 2%;
     }
 
-    .btn_menu_hamburguer, .menu_hamburguer{
+    .btn_menu_hamburguer,
+    .menu_hamburguer {
         right: 10px;
     }
 
-    #menu_rifas_compradas{
+    #menu_rifas_compradas {
         right: 75px;
     }
 
-    .menu_hamburguer{
+    .menu_hamburguer {
         width: 150px;
         height: 250px;
         padding: 0;
     }
 
-    .btn_nav{
+    .btn_nav {
         padding: 6px 15px;
     }
 
-    .menu_numeros_comprados{
+    .menu_numeros_comprados {
         right: 144px;
     }
 
-    .numero_sorteado_container{
+    .numero_sorteado_container {
         right: 202px;
     }
 }
@@ -695,16 +713,16 @@
     }
 }
 
-@media screen and (max-width: 350px){
-    #menu_rifas_compradas{
+@media screen and (max-width: 350px) {
+    #menu_rifas_compradas {
         min-width: 170px;
     }
 
-    .menu_numeros_comprados{
+    .menu_numeros_comprados {
         right: 135px;
     }
 
-    .numero_sorteado_container{
+    .numero_sorteado_container {
         right: 192px;
     }
 }
@@ -712,6 +730,11 @@
 @media screen and (max-width: 340px) {
     .input_valor_container {
         width: 290px;
+    }
+
+    #roleta_sorteio_container{
+        width: 90vw;
+        right: 5vw;
     }
 }
 
