@@ -9,6 +9,8 @@ require "../controller/session_on.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Kauê Mansur Dev">
+    <meta name="description" content="Cadastre-se para criar suas rifas ou comprar números de outras rifas existentes">
     <link rel="shortcut icon" href="../../assets/img/icons/Favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../../assets/css/responsividade.css">
     <link rel="stylesheet" href="../../assets/css/style.css">

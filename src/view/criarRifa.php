@@ -13,6 +13,8 @@ $usuario = $_SESSION["usuario"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Kauê Mansur Dev">
+    <meta name="description" content="Crie suas rifas personalizadas com objetivo, prêmio, valor...">
     <link rel="shortcut icon" href="../../assets/img/icons/Favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../assets/css/responsividade.css">
