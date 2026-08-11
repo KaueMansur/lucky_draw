@@ -575,8 +575,7 @@ html {
     border-radius: 8px;
     padding-top: 60px;
     gap: 30px;
-    height: calc(90vh + 110px);
-    /* height: calc(fit-content + 130px); */
+    height: 90vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -606,7 +605,7 @@ html {
     padding: 10px;
     border-radius: 10px;
     align-items: center;
-    margin-bottom: 120px;
+    margin-bottom: 20px;
     width: 85%;
     min-height: 110px;
     overflow: hidden;
@@ -1516,10 +1515,8 @@ html {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    position: absolute;
-    left: 1vw;
-    bottom: -5%;
-    padding-bottom: 10px;
+    width: 100%;
+    /* padding-bottom: 10px; */
 }
 
 .resultado{
