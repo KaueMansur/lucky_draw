@@ -608,12 +608,8 @@ html {
     align-items: center;
     margin-bottom: 120px;
     width: 85%;
-    /* width: 100%; */
-    /* margin-inline: 7.5%; */
     min-height: 110px;
     overflow: hidden;
-    /* max-height: 180px; */
-    /* width: 70%; */
 }
 
 .lista_numeros_label_container{
