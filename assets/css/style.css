@@ -1534,3 +1534,13 @@ html {
     font-weight: 600;
     cursor: pointer;
 }
+
+.aviso_responsabilidade{
+    border-top: 4px solid #FF3300;
+    background-color: #ff33003d;
+    padding: 3px;
+    font-family: Inter, sans-serif;
+    font-size: 1.2em;
+    font-weight: 700;
+    text-align: center;
+}

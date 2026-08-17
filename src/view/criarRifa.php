@@ -23,6 +23,7 @@ $usuario = $_SESSION["usuario"];
 
 <body id="body_login" style="padding: 30px;">
     <h1 class="titulo">Criar Rifa</h1>
+    <div class="aviso_responsabilidade">Não confie dados sensíveis à plataforma, ela é meramente demonstrativa!</div>
 
     <form action="../controller/criar_rifa_controller.php" method="post" enctype="multipart/form-data" class="form_rifa">
 

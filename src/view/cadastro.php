@@ -28,6 +28,7 @@ require "../controller/session_on.php";
     <form action="../controller/cadastrar_usuario_controller.php" method="post" class="form_login">
         <h1 class="titulo txt_left">Cadastre-se</h1>
         <P class="txt_secundario" style="margin-bottom: 25px;">Crie sua conta agora</P>
+        <div class="aviso_responsabilidade">Não confie dados sensíveis à plataforma, ela é meramente demonstrativa!</div>
 
         <div class="div_campo_login">
             <label for="" class="label_login login">Nome</label>

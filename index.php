@@ -314,7 +314,7 @@ foreach ($listaDasRifas as $rifa) {
             </li>
             <li class="li_footer">
                 <h4 class="titulo_footer">Contatos</h4>
-                <p class="legenda_footer">Email: contato@kauemansur.dev.br</p>
+                <p class="legenda_footer">Email: *******************</p>
             </li>
         </ul>
     </footer>
